@@ -1,0 +1,297 @@
+/* ═══════════════════════════════════════
+   SCROLL STUDIOS — contacto.css
+   Estilo inspirado en Obys Agency
+═══════════════════════════════════════ */
+
+/* ────────────────────────────
+   HERO CONTACTO
+──────────────────────────── */
+.contacto-hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  gap: 0;
+  padding-top: var(--header-h);
+  border-bottom: 1px solid var(--gray-dark);
+}
+
+/* ── Columna izquierda ── */
+.ch-left {
+  padding: 5rem 5% 4rem 6%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid var(--gray-dark);
+}
+
+.ch-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 3rem;
+}
+
+.ch-line {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5.5vw, 5.5rem);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.05;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.ch-line.cyan { color: var(--cyan); }
+
+/* Email grande */
+.ch-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+  font-weight: 600;
+  color: var(--gray-light);
+  letter-spacing: 1px;
+  text-decoration: none;
+  border-bottom: 1px solid var(--gray-dark);
+  padding-bottom: 0.4rem;
+  transition: color var(--transition), border-color var(--transition);
+  opacity: 0;
+}
+
+.ch-email:hover {
+  color: var(--cyan);
+  border-color: var(--cyan);
+}
+
+.ch-email-arrow {
+  font-size: 1.1rem;
+  transition: transform var(--transition);
+}
+.ch-email:hover .ch-email-arrow { transform: translate(3px, -3px); }
+
+/* Sidebar info */
+.ch-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--gray-dark);
+  opacity: 0;
+}
+
+.ch-info-label {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  font-family: var(--font-display);
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.ch-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.ch-info-list a {
+  font-size: 0.88rem;
+  color: var(--gray-light);
+  transition: color var(--transition), padding-left var(--transition);
+  display: inline-block;
+}
+.ch-info-list a:hover {
+  color: var(--white);
+  padding-left: 4px;
+}
+
+.ch-info-block p {
+  font-size: 0.88rem;
+  color: var(--gray-light);
+  line-height: 1.7;
+}
+
+/* ── Divider vertical ── */
+.ch-divider {
+  background: var(--gray-dark);
+  width: 1px;
+}
+
+/* ── Columna derecha — formulario ── */
+.ch-right {
+  padding: 5rem 6% 4rem 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0;
+}
+
+.ch-form-intro {
+  font-size: 0.68rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  font-family: var(--font-display);
+  font-weight: 700;
+  margin-bottom: 3rem;
+}
+
+/* Formulario */
+.ch-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.ch-field-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ch-field-wrap label {
+  font-size: 0.75rem;
+  color: var(--gray-mid);
+  letter-spacing: 1px;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+}
+
+.ch-field {
+  position: relative;
+  padding-bottom: 0.6rem;
+}
+
+.ch-field input,
+.ch-field textarea,
+.ch-field select {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.5vw, 2rem);
+  font-weight: 700;
+  color: var(--white);
+  resize: none;
+  line-height: 1.3;
+}
+
+.ch-field input::placeholder,
+.ch-field textarea::placeholder {
+  color: var(--gray-dark);
+  font-weight: 400;
+}
+
+.ch-field select {
+  appearance: none;
+  cursor: pointer;
+}
+
+.ch-field select option {
+  background: var(--black-mid);
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+/* Línea animada bajo el campo */
+.ch-field-line {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--gray-dark);
+  display: block;
+  transition: background var(--transition);
+}
+
+.ch-field-line::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--cyan);
+  transition: width 0.4s ease;
+}
+
+.ch-field:focus-within .ch-field-line::after { width: 100%; }
+.ch-field:focus-within .ch-field-line { background: transparent; }
+
+/* Botón submit */
+.ch-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  background: none;
+  border: 1px solid var(--gray-dark);
+  align-self: flex-start;
+  margin-top: 1rem;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+  position: relative;
+}
+
+.ch-submit:hover { border-color: var(--cyan); }
+
+.ch-submit-text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--white);
+  padding: 1rem 2rem;
+  transition: color 0.3s ease;
+}
+
+.ch-submit-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.2rem;
+  background: var(--cyan);
+  transition: background 0.3s ease;
+}
+
+.ch-submit-icon svg {
+  width: 18px;
+  height: 18px;
+  color: var(--black);
+  transition: transform 0.3s ease;
+}
+
+.ch-submit:hover .ch-submit-text { color: var(--cyan); }
+.ch-submit:hover .ch-submit-icon { background: var(--white); }
+.ch-submit:hover .ch-submit-icon svg { transform: translateX(4px); }
+
+/* ════════════════════════════
+   RESPONSIVE
+════════════════════════════ */
+@media (max-width: 960px) {
+  .contacto-hero {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+  .ch-divider { display: none; }
+  .ch-left {
+    padding: 3rem 5%;
+    border-right: none;
+    border-bottom: 1px solid var(--gray-dark);
+  }
+  .ch-right { padding: 3rem 5%; }
+  .ch-sidebar { flex-direction: row; flex-wrap: wrap; gap: 1.5rem; }
+}
+
+@media (max-width: 600px) {
+  .ch-line { font-size: clamp(2rem, 10vw, 3.5rem); }
+  .ch-field input, .ch-field textarea, .ch-field select { font-size: 1.3rem; }
+  .ch-sidebar { flex-direction: column; }
+  .ch-submit { align-self: stretch; justify-content: center; }
+}

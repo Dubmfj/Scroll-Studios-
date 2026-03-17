@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contacto — Scroll Studios</title>
+  <meta name="description" content="Contactá a Scroll Studios. Presupuesto sin cargo en menos de 24hs."/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="../static/css/global.css"/>
+  <link rel="stylesheet" href="../static/css/contacto.css"/>
+</head>
+<body>
+
+  <!-- PRELOADER -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-bg"></div>
+    <div class="preloader-counter">
+      <span id="preloader-num">0</span>
+      <span class="preloader-dash"> — </span>
+      <span class="preloader-total">100</span>
+    </div>
+    <div class="preloader-big-text">
+      <div class="preloader-line" data-line="1"><span>HABLEMOS</span></div>
+      <div class="preloader-line" data-line="2"><span class="preloader-light">DE TU</span></div>
+      <div class="preloader-line" data-line="3"><span class="preloader-italic">proyecto.</span></div>
+    </div>
+    <div class="preloader-sub-wrap">
+      <p class="preloader-wait">Por favor espera</p>
+      <p class="preloader-wait">unos segundos.</p>
+    </div>
+    <div class="preloader-bar"><div class="preloader-bar-fill" id="preloader-bar"></div></div>
+    <div class="preloader-curtain"></div>
+  </div>
+
+  <!-- HEADER -->
+   <header>
+    <a href="index.html" class="header-logo">
+      <img src="../src/logo.png" alt="Scroll Studios"/>
+    </a>
+
+    <nav class="header-nav">
+      <a href="index.html" class="active">Inicio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#nosotros">Nosotros</a>
+    </nav>
+
+    <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- ── MOBILE MENU ── -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html">Inicio</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#nosotros">Nosotros</a>
+  </div>
+
+  <!-- ══════════════════════════
+       HERO CONTACTO
+  ══════════════════════════ -->
+  <section class="contacto-hero">
+    <div class="ch-left">
+
+      <!-- Título gigante estilo Obys -->
+      <div class="ch-title-wrap">
+        <h1 class="ch-title">
+          <span class="ch-line" data-delay="0">Saluda al</span>
+          <span class="ch-line" data-delay="100">equipo de</span>
+          <span class="ch-line cyan" data-delay="200">Scroll Studios</span>
+        </h1>
+
+        <!-- Email grande clickeable -->
+        <a href="https://wa.me/51999999999" target="_blank" class="ch-contact-btn">
+            <span>Escribinos por WhatsApp</span>
+            <span class="ch-contact-arrow">↗</span>
+        </a>
+      </div>
+
+      <!-- Sidebar info -->
+      <div class="ch-sidebar">
+        <div class="ch-info-block">
+          <span class="ch-info-label">Redes</span>
+          <ul class="ch-info-list">
+            <li><a href="https://www.instagram.com/scroll.studios/">Instagram</a></li>
+            <li><a href="https://www.facebook.com/profile.php?id=61585200328114">Facebook</a></li>
+            <li><a href="https://wa.me/51941454999" target="_blank">WhatsApp</a></li>
+          </ul>
+        </div>
+        <div class="ch-info-block">
+          <span class="ch-info-label">Ubicación</span>
+          <p>Lima, Perú 🇵🇪<br>Trabajamos globalmente</p>
+        </div>
+        <div class="ch-info-block">
+          <span class="ch-info-label">Escribinos</span>
+          <ul class="ch-info-list">
+            <li><a href="mailto:danielhoyysiempre212@gmail.com">danielhoyysiempre212@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Línea divisoria vertical -->
+    <div class="ch-divider"></div>
+
+    <!-- Formulario estilo Obys -->
+    <div class="ch-right">
+      <p class="ch-form-intro">Contactanos</p>
+
+      <form class="ch-form" id="contact-form">
+
+        <div class="ch-field-wrap">
+          <label>Hola, mi nombre es</label>
+          <div class="ch-field">
+            <input type="text" id="nombre" placeholder="tu nombre" required autocomplete="off"/>
+            <span class="ch-field-line"></span>
+          </div>
+        </div>
+
+        <div class="ch-field-wrap">
+          <label>Mi WhatsApp / email es</label>
+          <div class="ch-field">
+            <input type="text" id="contacto-input" placeholder="cómo te contactamos" required autocomplete="off"/>
+            <span class="ch-field-line"></span>
+          </div>
+        </div>
+
+        <div class="ch-field-wrap">
+          <label>Estoy buscando</label>
+          <div class="ch-field ch-select-wrap">
+            <select id="servicio" required>
+              <option value="">Elige un servicio</option>
+              <option>Página web</option>
+              <option>Tienda online</option>
+              <option>Bot de WhatsApp con IA</option>
+              <option>Branding / Logo</option>
+              <option>Paquete completo</option>
+              <option>Otro</option>
+            </select>
+            <span class="ch-field-line"></span>
+          </div>
+        </div>
+
+        <div class="ch-field-wrap">
+          <label>Mi proyecto es</label>
+          <div class="ch-field">
+            <textarea id="mensaje" placeholder="contanos de qué se trata..." rows="3" required></textarea>
+            <span class="ch-field-line"></span>
+          </div>
+        </div>
+
+        <button type="submit" class="ch-submit">
+          <span class="ch-submit-text">Enviar mensaje</span>
+          <span class="ch-submit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </button>
+
+      </form>
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo-wrap">
+          <img src="../static/assets/logo.png" alt="Scroll Studios"/>
+        </div>
+        <p class="footer-desc">
+          Agencia de desarrollo digital en Lima. Webs, e-commerce y bots con IA a medida.
+        </p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/scroll.studios/" aria-label="Instagram">ig</a>
+          <a href="https://www.facebook.com/profile.php?id=61585200328114" aria-label="Facebook">fb</a>
+          <a href="https://wa.me/51941454999" aria-label="WhatsApp">wa</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="index.html#servicios">Páginas web</a></li>
+          <li><a href="index.html#servicios">Tiendas online</a></li>
+          <li><a href="index.html#servicios">Bots con IA</a></li>
+          <li><a href="index.html#servicios">Branding</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="https://wa.me/51941454999">+51 941 454 999</a></li>
+          <li><a href="mailto:danielhoyysiempre212@gmail.com">danielhoyysiempre212@gmail.com</a></li>
+          <li><span style="color:#444">Lima, Perú</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Scroll Studios — Todos los derechos reservados</p>
+      <span>Hecho en Lima 🇵🇪</span>
+    </div>
+  </footer>
+
+  <!-- WhatsApp flotante -->
+  <a href="https://wa.me/51941454999" target="_blank" class="wa-btn" aria-label="WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white">
+      <path d="M16 0C7.163 0 0 7.163 0 16c0 2.82.736 5.469 2.027 7.774L0 32l8.454-2.007A15.93 15.93 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 01-6.756-1.839l-.484-.287-5.02 1.193 1.243-4.893-.317-.503A13.234 13.234 0 012.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.878c-.398-.199-2.354-1.162-2.719-1.295-.365-.133-.63-.199-.896.199-.265.398-1.029 1.295-1.261 1.56-.232.265-.465.298-.863.1-.398-.199-1.681-.619-3.202-1.977-1.183-1.056-1.981-2.36-2.213-2.758-.232-.398-.025-.613.174-.811.179-.178.398-.465.597-.697.199-.232.265-.398.398-.664.133-.265.066-.497-.033-.697-.1-.199-.896-2.16-1.228-2.957-.323-.776-.651-.671-.896-.683l-.763-.013c-.265 0-.697.1-1.062.497-.365.398-1.394 1.362-1.394 3.322s1.427 3.853 1.626 4.118c.199.265 2.808 4.287 6.803 5.011.951.163 1.693.261 2.271.334.954.121 1.823.104 2.51-.061.765-.183 2.354-.963 2.686-1.893.332-.93.332-1.727.232-1.893-.099-.166-.365-.265-.763-.464z"/>
+    </svg>
+  </a>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="../static/js/global.js"></script>
+  <script src="../static/js/contacto.js"></script>
+</body>
+</html>

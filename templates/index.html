@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scroll Studios — Agencia de Desarrollo Digital</title>
+  <meta name="description" content="Agencia de desarrollo digital en Lima. Páginas web, tiendas online, bots de WhatsApp con IA y branding. Soluciones digitales a medida."/>
+  <meta name="robots" content="index, follow"/>
+  <meta property="og:title"       content="Scroll Studios — Agencia de Desarrollo Digital"/>
+  <meta property="og:description" content="Páginas web, e-commerce, bots con IA y branding. Lima, Perú."/>
+  <meta property="og:type"        content="website"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="../static/css/global.css"/>
+  <link rel="stylesheet" href="../static/css/home.css"/>
+</head>
+<body>
+    
+<!-- ══════════════════════════
+       PRELOADER
+  ══════════════════════════ -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-bg"></div>
+
+  <!-- ══════════════════════════
+       PRELOADER
+  ══════════════════════════ -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-bg"></div>
+
+    <!-- Contador arriba izquierda estilo Obys -->
+    <div class="preloader-counter">
+      <span id="preloader-num">0</span>
+      <span class="preloader-dash"> — </span>
+      <span class="preloader-total">100</span>
+    </div>
+
+    <!-- Texto gigante que ocupa la pantalla -->
+    <div class="preloader-big-text">
+      <div class="preloader-line" data-line="1">
+        <span>TU EXPERIENCIA</span>
+      </div>
+      <div class="preloader-line" data-line="2">
+        <span>WEB ESTÁ</span>
+      </div>
+      <div class="preloader-line" data-line="3">
+        <span class="preloader-light">CARGANDO</span>
+      </div>
+      <div class="preloader-line" data-line="4">
+        <span class="preloader-italic">ahora.</span>
+      </div>
+    </div>
+
+    <!-- Texto pequeño abajo izquierda -->
+    <div class="preloader-sub-wrap">
+      <p class="preloader-wait">Por favor espera</p>
+      <p class="preloader-wait">unos segundos.</p>
+    </div>
+
+    <!-- Barra progreso -->
+    <div class="preloader-bar">
+      <div class="preloader-bar-fill" id="preloader-bar"></div>
+    </div>
+
+    <!-- Cortina de salida -->
+    <div class="preloader-curtain"></div>
+  </div>
+
+    <div class="preloader-counter">
+      <span id="preloader-num">0</span><span class="preloader-pct">%</span>
+    </div>
+
+    <div class="preloader-bar">
+      <div class="preloader-bar-fill" id="preloader-bar"></div>
+    </div>
+
+    <div class="preloader-curtain"></div>
+  </div>
+  <!-- ── HEADER ── -->
+  <header>
+    <a href="index.html" class="header-logo">
+      <img src="../src/logo.png" alt="Scroll Studios"/>
+    </a>
+
+    <nav class="header-nav">
+      <a href="index.html" class="active">Inicio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="contacto.html" class="header-cta">Hablemos</a>
+    </nav>
+
+    <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- ── MOBILE MENU ── -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html">Inicio</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="contacto.html" class="btn-primary">Hablemos →</a>
+  </div>
+
+  <!-- ══════════════════════════
+       HERO
+  ══════════════════════════ -->
+  <section class="hero" id="inicio">
+    <div class="hero-bg">
+      <div class="hero-grid"></div>
+      <div class="hero-glow"></div>
+    </div>
+
+    <div class="hero-content">
+        <div class="hero-tag reveal" data-delay="0">
+            <span class="dot"></span>
+            <span class="hero-tag-text">Agencia de Desarrollo Digital — Lima, Perú</span>
+        </div>
+
+      <h1 class="hero-title reveal" data-delay="100">
+        Convertimos ideas<br>en <span class="highlight">experiencias</span><br>digitales.
+      </h1>
+
+      <p class="hero-desc reveal" data-delay="200">
+        Diseñamos y desarrollamos páginas web, tiendas online y bots con IA
+        que hacen crecer tu negocio. Todo a medida, sin plantillas.
+      </p>
+
+      <div class="hero-actions reveal" data-delay="300">
+        <a href="#contacto" class="btn-primary">Empezar proyecto →</a>
+        <a href="#servicios" class="btn-outline">Ver servicios</a>
+      </div>
+
+      <div class="hero-stats reveal" data-delay="400">
+        <div class="stat">
+          <span class="stat-num" data-count="15" data-suffix="+">0</span>
+          <span class="stat-label">Proyectos</span>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+          <span class="stat-num" data-count="100" data-suffix="%">0</span>
+          <span class="stat-label">Satisfacción</span>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+          <span class="stat-num" data-count="24" data-suffix="hs">0</span>
+          <span class="stat-label">Respuesta</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal" data-delay="200">
+      <div class="hero-card">
+        <div class="card-header">
+          <span class="card-dot red"></span>
+          <span class="card-dot yellow"></span>
+          <span class="card-dot green"></span>
+          <span class="card-file">scroll_studios.js</span>
+        </div>
+        <div class="card-body">
+          <p><span class="code-gray">// Soluciones digitales</span></p>
+          <p><span class="code-cyan">const</span> <span class="code-white">servicios</span> <span class="code-gray">= {</span></p>
+          <p class="indent"><span class="code-cyan">web</span><span class="code-gray">:</span> <span class="code-green">'desde S/ 750'</span><span class="code-gray">,</span></p>
+          <p class="indent"><span class="code-cyan">ecommerce</span><span class="code-gray">:</span> <span class="code-green">'desde S/ 1,000'</span><span class="code-gray">,</span></p>
+          <p class="indent"><span class="code-cyan">bot_ia</span><span class="code-gray">:</span> <span class="code-green">'desde S/ 600'</span><span class="code-gray">,</span></p>
+          <p class="indent"><span class="code-cyan">branding</span><span class="code-gray">:</span> <span class="code-green">'desde S/ 400'</span></p>
+          <p><span class="code-gray">}</span></p>
+          <br/>
+          <p><span class="code-cyan">const</span> <span class="code-white">garantia</span> <span class="code-gray">=</span> <span class="code-green">'100%'</span></p>
+          <p class="cursor-line"><span class="code-gray" id="blink-cursor">▋</span></p>
+        </div>
+      </div>
+
+      <div class="hero-badge">
+        <span class="badge-icon">⚡</span>
+        <div>
+          <strong>Pago único</strong>
+          <span>Sin mensualidades</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════
+       SERVICIOS
+  ══════════════════════════ -->
+  <section class="servicios" id="servicios">
+    <div class="section-header reveal">
+      <div class="section-tag">Lo que hacemos</div>
+      <h2>Servicios <span class="highlight">diseñados</span><br>para crecer</h2>
+    </div>
+
+    <div class="servicios-grid">
+
+      <div class="service-card reveal" data-delay="0">
+        <div class="service-num">01</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="14" rx="2"/>
+            <path d="M8 21h8M12 17v4"/>
+          </svg>
+        </div>
+        <h3>Páginas Web</h3>
+        <p>Webs a medida, código limpio, SEO optimizado y animaciones profesionales. Sin plantillas.</p>
+        <div class="service-price">desde S/ 750</div>
+        <a href="#contacto" class="service-link">Solicitar →</a>
+      </div>
+
+      <div class="service-card reveal" data-delay="100">
+        <div class="service-num">02</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 01-8 0"/>
+          </svg>
+        </div>
+        <h3>Tiendas Online</h3>
+        <p>E-commerce completo con catálogo, carrito de compras y pasarela de pago integrada.</p>
+        <div class="service-price">S/ 1,000 — 2,500</div>
+        <a href="#contacto" class="service-link">Solicitar →</a>
+      </div>
+
+      <div class="service-card featured reveal" data-delay="200">
+        <div class="service-badge">Popular</div>
+        <div class="service-num">03</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+          </svg>
+        </div>
+        <h3>Bot WhatsApp con IA</h3>
+        <p>Asistente automático que atiende a tus clientes 24/7. Construido en Python. Pago único.</p>
+        <div class="service-price">desde S/ 600</div>
+        <a href="#contacto" class="service-link">Solicitar →</a>
+      </div>
+
+      <div class="service-card reveal" data-delay="300">
+        <div class="service-num">04</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <h3>Branding</h3>
+        <p>Logo, paleta de colores y tipografía. La identidad visual que tu negocio necesita.</p>
+        <div class="service-price">desde S/ 400</div>
+        <a href="#contacto" class="service-link">Solicitar →</a>
+      </div>
+
+    </div>
+
+    <div class="diff-banner reveal">
+        <div class="diff-item">
+            <span class="diff-dot"></span>
+            <span>Pago único, sin mensualidades</span>
+        </div>
+        <div class="diff-sep"></div>
+        <div class="diff-item">
+            <span class="diff-dot"></span>
+            <span>100% personalizado, sin plantillas</span>
+        </div>
+        <div class="diff-sep"></div>
+        <div class="diff-item">
+            <span class="diff-dot"></span>
+            <span>Responsive y optimizado para celulares</span>
+        </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════
+       NOSOTROS
+  ══════════════════════════ -->
+  <section class="nosotros" id="nosotros">
+    <div class="nosotros-content reveal" data-delay="0">
+      <div class="section-tag">Quiénes somos</div>
+      <h2>Un equipo joven<br>con visión <span class="highlight">grande.</span></h2>
+      <p class="nosotros-desc">
+        Somos Scroll Studios, una agencia digital enfocada en construir
+        soluciones reales para negocios que quieren crecer. Trabajamos
+        con código propio, sin depender de plataformas de terceros.
+      </p>
+      <p class="nosotros-desc">
+        Cada proyecto lo tratamos como si fuera nuestro. Desde el primer
+        mensaje hasta la entrega final, el cliente sabe exactamente qué
+        está pasando y cuándo estará listo.
+      </p>
+
+      <ul class="nosotros-values">
+        <li class="reveal" data-delay="100">
+          <span class="value-check">✓</span>
+          Código limpio y bien documentado
+        </li>
+        <li class="reveal" data-delay="200">
+          <span class="value-check">✓</span>
+          Previsualización antes de cualquier pago
+        </li>
+        <li class="reveal" data-delay="300">
+          <span class="value-check">✓</span>
+          Comunicación directa por WhatsApp
+        </li>
+        <li class="reveal" data-delay="400">
+          <span class="value-check">✓</span>
+          Garantía de 15 días post-entrega
+        </li>
+        <span>
+      </ul>
+
+      <a href="#contacto" class="btn-primary" style="margin-top:2rem; display:inline-flex;">Empezar ahora →</a>
+    </div>
+
+    <div class="nosotros-visual reveal" data-delay="150">
+      <div class="profile-card">
+        <div class="profile-img">
+          <div class="profile-placeholder">
+            <img src="../src/logo-profile.png" alt="Equipo Scroll Studios"/>
+          </div>
+        </div>
+        <div class="profile-info">
+          <strong>Scroll Studios</strong>
+          <span>Lima, Perú 🇵🇪</span>
+          <div class="profile-tags">
+            <span>Python</span>
+            <span>Web</span>
+            <span>IA</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="nosotros-stats">
+        <div class="n-stat reveal" data-delay="200">
+          <span class="n-num" data-count="15" data-suffix="+">0</span>
+          <span class="n-label">Proyectos</span>
+        </div>
+        <div class="n-stat reveal" data-delay="300">
+          <span class="n-num" data-count="4" data-suffix="">0</span>
+          <span class="n-label">Servicios</span>
+        </div>
+        <div class="n-stat reveal" data-delay="400">
+          <span class="n-num" data-count="100" data-suffix="%">0</span>
+          <span class="n-label">Satisfacción</span>
+        </div>
+      </div>
+
+      <div class="tech-stack">
+        <span class="tech-label">Stack tecnológico</span>
+        <div class="tech-pills">
+          <span>HTML</span><span>CSS</span><span>JS</span>
+          <span>Python</span><span>Flask</span><span>OpenAI</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════
+       CTA FINAL — reemplaza la sección contacto
+  ══════════════════════════ -->
+  <section class="cta-final" id="contacto">
+    <div class="cta-inner">
+
+      <div class="cta-tag reveal">
+        <span class="section-tag">¿Empezamos?</span>
+      </div>
+
+      <h2 class="cta-title reveal" data-delay="100">
+        Convierte tu idea<br>en algo <span class="highlight">real.</span>
+      </h2>
+
+      <p class="cta-sub reveal" data-delay="200">
+        Contanos tu proyecto y en menos de 24hs tendrás<br>
+        un presupuesto sin cargo ni compromiso.
+      </p>
+
+      <a href="contacto.html" class="cta-btn reveal" data-delay="300">
+        <span class="cta-btn-text">Vamos a crear</span>
+        <span class="cta-btn-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </span>
+      </a>
+
+    </div>
+
+    <!-- Número decorativo de fondo -->
+    <div class="cta-deco">∞</div>
+  </section>
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo-wrap">
+          <img src="assets/logo.png" alt="Scroll Studios"/>
+        </div>
+        <p class="footer-desc">
+          Agencia de desarrollo digital en Lima. Webs, e-commerce y bots con IA a medida.
+        </p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">ig</a>
+          <a href="#" aria-label="Facebook">fb</a>
+          <a href="https://wa.me/51999999999" aria-label="WhatsApp">wa</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#servicios">Páginas web</a></li>
+          <li><a href="#servicios">Tiendas online</a></li>
+          <li><a href="#servicios">Bots con IA</a></li>
+          <li><a href="#servicios">Branding</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="https://wa.me/51999999999">+51 999 999 999</a></li>
+          <li><a href="#contacto">Pedir presupuesto</a></li>
+          <li><span style="color:#444">Lima, Perú</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Scroll Studios — Todos los derechos reservados</p>
+      <span>Hecho en Lima 🇵🇪</span>
+    </div>
+  </footer>
+
+  <!-- WhatsApp flotante -->
+  <a href="https://wa.me/51999999999" target="_blank" class="wa-btn" aria-label="WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white">
+      <path d="M16 0C7.163 0 0 7.163 0 16c0 2.82.736 5.469 2.027 7.774L0 32l8.454-2.007A15.93 15.93 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 01-6.756-1.839l-.484-.287-5.02 1.193 1.243-4.893-.317-.503A13.234 13.234 0 012.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.878c-.398-.199-2.354-1.162-2.719-1.295-.365-.133-.63-.199-.896.199-.265.398-1.029 1.295-1.261 1.56-.232.265-.465.298-.863.1-.398-.199-1.681-.619-3.202-1.977-1.183-1.056-1.981-2.36-2.213-2.758-.232-.398-.025-.613.174-.811.179-.178.398-.465.597-.697.199-.232.265-.398.398-.664.133-.265.066-.497-.033-.697-.1-.199-.896-2.16-1.228-2.957-.323-.776-.651-.671-.896-.683l-.763-.013c-.265 0-.697.1-1.062.497-.365.398-1.394 1.362-1.394 3.322s1.427 3.853 1.626 4.118c.199.265 2.808 4.287 6.803 5.011.951.163 1.693.261 2.271.334.954.121 1.823.104 2.51-.061.765-.183 2.354-.963 2.686-1.893.332-.93.332-1.727.232-1.893-.099-.166-.365-.265-.763-.464z"/>
+    </svg>
+  </a>
+
+<!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script src="../static/js/global.js"></script>
+    <script src="../static/js/home.js"></script>
+
+</body>
+</html>
