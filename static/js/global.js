@@ -8,7 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
 /* ─────────────────────────────────────
    CURSOR PERSONALIZADO (Solo Desktop)
 ───────────────────────────────────── */
-const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || window.matchMedia('(hover: none)').matches;
+const hasCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+const hasFinePointer = window.matchMedia('(pointer: fine)').matches;
+const isTouchDevice = hasCoarsePointer && !hasFinePointer;
 
 if (!isTouchDevice) {
   const dot  = document.createElement('div');
@@ -17,6 +19,7 @@ if (!isTouchDevice) {
   ring.classList.add('cursor-ring');
   document.body.appendChild(dot);
   document.body.appendChild(ring);
+  document.body.classList.add('custom-cursor-active');
 
   let mouseX = 0, mouseY = 0;
   let ringX  = 0, ringY  = 0;
@@ -158,6 +161,142 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+
+/* ─────────────────────────────────────
+   EXPERIENCIA PREMIUM — SCROLLTRIGGER
+───────────────────────────────────── */
+function initPremiumScroll() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+  const motion = gsap.matchMedia();
+
+  motion.add('(prefers-reduced-motion: no-preference)', () => {
+    const heroLayers = document.querySelectorAll(
+      '.hero-bg, .nos-hero-deco, .proj-hero-deco'
+    );
+
+    heroLayers.forEach(layer => {
+      gsap.to(layer, {
+        yPercent: layer.classList.contains('hero-bg') ? 14 : -18,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: layer.closest('section') || layer,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1.2,
+        },
+      });
+    });
+
+    const nosotrosHero = document.querySelector('.nos-hero-content');
+    if (nosotrosHero) {
+      gsap.fromTo(nosotrosHero, {
+        opacity: 0,
+        y: 36,
+      }, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.nos-hero',
+          start: 'top 82%',
+          once: true,
+        },
+      });
+    }
+
+    const contactHero = document.querySelector('.contacto-hero');
+    if (contactHero) {
+      gsap.to('.ch-left', {
+        yPercent: -4,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: contactHero,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1.1,
+        },
+      });
+
+      gsap.to('.ch-right', {
+        yPercent: 4,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: contactHero,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1.1,
+        },
+      });
+
+      gsap.fromTo('.ch-divider', {
+        scaleY: 0,
+        transformOrigin: 'top center',
+      }, {
+        scaleY: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: contactHero,
+          start: 'top 70%',
+          end: 'top 20%',
+          scrub: 0.8,
+        },
+      });
+    }
+
+    document.querySelectorAll('section').forEach(section => {
+      const tag = section.querySelector('.section-tag');
+      if (!tag || tag.classList.contains('nos-tag')) return;
+
+      gsap.fromTo(tag, {
+        opacity: 0,
+        x: -18,
+      }, {
+        opacity: 1,
+        x: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 78%',
+          once: true,
+        },
+      });
+    });
+
+    document.querySelectorAll('.service-card, .valor-card, .proj-item').forEach(item => {
+      gsap.to(item, {
+        y: -10,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: item,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.6,
+        },
+      });
+    });
+
+    gsap.utils.toArray('.diff-banner, .nos-numbers, .proj-coming').forEach(element => {
+      gsap.fromTo(element, {
+        clipPath: 'inset(0 0 100% 0)',
+      }, {
+        clipPath: 'inset(0 0 0% 0)',
+        duration: 1.1,
+        ease: 'power3.inOut',
+        scrollTrigger: {
+          trigger: element,
+          start: 'top 85%',
+          once: true,
+        },
+      });
+    });
+  });
+}
+
+initPremiumScroll();
 
 
 /* ─────────────────────────────────────

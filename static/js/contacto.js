@@ -79,7 +79,7 @@ function initForm() {
       `*Servicio:* ${servicio}%0A%0A` +
       `*Proyecto:*%0A${mensaje}`;
 
-    window.open(`https://wa.me/51999999999?text=${texto}`, '_blank');
+    window.open(`https://wa.me/51987355501?text=${texto}`, '_blank');
 
     const btnText = btnSubmit?.querySelector('.ch-submit-text');
     if (btnText) {
