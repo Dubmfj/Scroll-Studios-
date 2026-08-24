@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Proyectos — Scroll Studios</title>
+  <meta name="description" content="Proyectos de Scroll Studios — webs, branding y soluciones digitales hechas a medida en Lima, Perú."/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="../static/css/global.css"/>
+  <link rel="stylesheet" href="../static/css/projects.css"/>
+</head>
+<body>
+
+  <!-- PRELOADER -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-bg"></div>
+    <div class="preloader-counter">
+      <span id="preloader-num">0</span>
+      <span class="preloader-dash"> — </span>
+      <span class="preloader-total">100</span>
+    </div>
+    <div class="preloader-big-text">
+      <div class="preloader-line" data-line="1"><span>NUESTROS</span></div>
+      <div class="preloader-line" data-line="2"><span class="preloader-light">PROYECTOS</span></div>
+      <div class="preloader-line" data-line="3"><span class="preloader-italic">destacados.</span></div>
+    </div>
+    <div class="preloader-sub-wrap">
+      <p class="preloader-wait">Por favor espera</p>
+      <p class="preloader-wait">unos segundos.</p>
+    </div>
+    <div class="preloader-bar">
+      <div class="preloader-bar-fill" id="preloader-bar"></div>
+    </div>
+    <div class="preloader-curtain"></div>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <a href="index.html" class="header-logo">
+      <img src="../src/logo.png" alt="Scroll Studios"/>
+    </a>
+    <nav class="header-nav">
+      <a href="index.html">Inicio</a>
+      <a href="index.html#servicios">Servicios</a>
+      <a href="projects.html" class="active">Proyectos</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="contacto.html" class="header-cta">Hablemos</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html">Inicio</a>
+    <a href="index.html#servicios">Servicios</a>
+    <a href="projects.html">Proyectos</a>
+    <a href="nosotros.html">Nosotros</a>
+    <a href="contacto.html" class="btn-primary">Hablemos →</a>
+  </div>
+
+  <!-- ══════════════════════════
+       HERO
+  ══════════════════════════ -->
+  <section class="proj-hero">
+    <div class="proj-hero-content">
+      <div class="proj-hero-top">
+        <span class="proj-count">0<span id="proj-total">4</span></span>
+        <span class="proj-label">Proyectos destacados</span>
+      </div>
+      <h1 class="proj-hero-title">
+        <span class="proj-title-line">TRABAJOS</span>
+        <span class="proj-title-line italic">seleccionados.</span>
+      </h1>
+      <p class="proj-hero-sub">
+        Webs, branding y soluciones digitales construidas<br>a medida para cada cliente.
+      </p>
+    </div>
+    <div class="proj-hero-deco">WORKS</div>
+  </section>
+
+  <!-- ══════════════════════════
+       LISTA DE PROYECTOS
+  ══════════════════════════ -->
+  <section class="proj-list">
+
+    <!-- Proyecto 1 -->
+    <a href="#" class="proj-item" data-img="../src/projects/desi-fashion.png">
+      <div class="proj-item-inner">
+        <span class="proj-num">01</span>
+        <div class="proj-info">
+          <h2 class="proj-name">Desi Fashion</h2>
+          <div class="proj-meta">
+            <span class="proj-type">Tienda Online</span>
+            <span class="proj-sep">·</span>
+            <span class="proj-year">2025</span>
+          </div>
+        </div>
+        <div class="proj-tags">
+          <span>E-commerce</span>
+          <span>Diseño web</span>
+        </div>
+        <span class="proj-arrow">↗</span>
+      </div>
+      <div class="proj-line"></div>
+    </a>
+
+    <!-- Proyecto 2 -->
+    <a href="#" class="proj-item" data-img="../src/projects/ultratec.png">
+      <div class="proj-item-inner">
+        <span class="proj-num">02</span>
+        <div class="proj-info">
+          <h2 class="proj-name">Ultratec AI</h2>
+          <div class="proj-meta">
+            <span class="proj-type">Página Web</span>
+            <span class="proj-sep">·</span>
+            <span class="proj-year">2025</span>
+          </div>
+        </div>
+        <div class="proj-tags">
+          <span>Web</span>
+          <span>IA</span>
+        </div>
+        <span class="proj-arrow">↗</span>
+      </div>
+      <div class="proj-line"></div>
+    </a>
+
+    <!-- Proyecto 3 -->
+    <a href="#" class="proj-item" data-img="../src/projects/drywallpro.png">
+      <div class="proj-item-inner">
+        <span class="proj-num">03</span>
+        <div class="proj-info">
+          <h2 class="proj-name">DrywallPro</h2>
+          <div class="proj-meta">
+            <span class="proj-type">Página Web</span>
+            <span class="proj-sep">·</span>
+            <span class="proj-year">2025</span>
+          </div>
+        </div>
+        <div class="proj-tags">
+          <span>Web</span>
+          <span>SEO</span>
+          <span class="proj-tag-status">En proceso</span>
+        </div>
+        <span class="proj-arrow">↗</span>
+      </div>
+      <div class="proj-line"></div>
+    </a>
+
+    <!-- Proyecto 4 -->
+    <a href="#" class="proj-item" data-img="../src/projects/scroll-studios.png">
+      <div class="proj-item-inner">
+        <span class="proj-num">04</span>
+        <div class="proj-info">
+          <h2 class="proj-name">Scroll Studios</h2>
+          <div class="proj-meta">
+            <span class="proj-type">Identidad Digital</span>
+            <span class="proj-sep">·</span>
+            <span class="proj-year">2025</span>
+          </div>
+        </div>
+        <div class="proj-tags">
+          <span>Branding</span>
+          <span>Web</span>
+        </div>
+        <span class="proj-arrow">↗</span>
+      </div>
+      <div class="proj-line"></div>
+    </a>
+
+  </section>
+
+  <!-- Imagen flotante que sigue el cursor -->
+  <div class="proj-cursor-img" id="proj-cursor-img">
+    <img src="" alt="" id="proj-cursor-img-el"/>
+  </div>
+
+  <!-- ══════════════════════════
+       PRÓXIMAMENTE
+  ══════════════════════════ -->
+  <div class="proj-coming">
+    <p>Más proyectos próximamente...</p>
+  </div>
+
+  <!-- ══════════════════════════
+       CTA
+  ══════════════════════════ -->
+  <section class="proj-cta">
+    <div class="proj-cta-inner">
+      <span class="proj-cta-num">∞</span>
+      <div class="proj-cta-text">
+        <a href="contacto.html" class="proj-cta-link">
+          <span class="proj-cta-label">¿El próximo es tuyo?</span>
+          <div class="proj-cta-big">
+            <span>Vamos</span>
+            <span>a crear</span>
+            <span class="proj-cta-cyan">juntos.</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo-wrap">
+          <a href="index.html">
+            <img src="../src/logo.png" alt="Scroll Studios"/>
+          </a>
+        </div>
+        <p class="footer-desc">
+          Agencia de desarrollo digital en Lima. Webs, e-commerce y bots con IA a medida.
+        </p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">ig</a>
+          <a href="#" aria-label="Facebook">fb</a>
+          <a href="https://wa.me/51999999999" aria-label="WhatsApp">wa</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="index.html#servicios">Páginas web</a></li>
+          <li><a href="index.html#servicios">Tiendas online</a></li>
+          <li><a href="index.html#servicios">Bots con IA</a></li>
+          <li><a href="index.html#servicios">Branding</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="projects.html">Proyectos</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Scroll Studios — Todos los derechos reservados</p>
+      <span>Hecho en Lima 🇵🇪</span>
+    </div>
+  </footer>
+
+  <!-- WhatsApp flotante -->
+  <a href="https://wa.me/51999999999" target="_blank" class="wa-btn" aria-label="WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white">
+      <path d="M16 0C7.163 0 0 7.163 0 16c0 2.82.736 5.469 2.027 7.774L0 32l8.454-2.007A15.93 15.93 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 01-6.756-1.839l-.484-.287-5.02 1.193 1.243-4.893-.317-.503A13.234 13.234 0 012.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.878c-.398-.199-2.354-1.162-2.719-1.295-.365-.133-.63-.199-.896.199-.265.398-1.029 1.295-1.261 1.56-.232.265-.465.298-.863.1-.398-.199-1.681-.619-3.202-1.977-1.183-1.056-1.981-2.36-2.213-2.758-.232-.398-.025-.613.174-.811.179-.178.398-.465.597-.697.199-.232.265-.398.398-.664.133-.265.066-.497-.033-.697-.1-.199-.896-2.16-1.228-2.957-.323-.776-.651-.671-.896-.683l-.763-.013c-.265 0-.697.1-1.062.497-.365.398-1.394 1.362-1.394 3.322s1.427 3.853 1.626 4.118c.199.265 2.808 4.287 6.803 5.011.951.163 1.693.261 2.271.334.954.121 1.823.104 2.51-.061.765-.183 2.354-.963 2.686-1.893.332-.93.332-1.727.232-1.893-.099-.166-.365-.265-.763-.464z"/>
+    </svg>
+  </a>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="../static/js/global.js"></script>
+  <script src="../static/js/projects.js"></script>
+</body>
+</html>

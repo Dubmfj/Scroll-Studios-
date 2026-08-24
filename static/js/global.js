@@ -6,50 +6,63 @@
 document.addEventListener('DOMContentLoaded', () => {
 
 /* ─────────────────────────────────────
-   CURSOR PERSONALIZADO
+   CURSOR PERSONALIZADO (Solo Desktop)
 ───────────────────────────────────── */
-const dot  = document.createElement('div');
-const ring = document.createElement('div');
-dot.classList.add('cursor-dot');
-ring.classList.add('cursor-ring');
-document.body.appendChild(dot);
-document.body.appendChild(ring);
+const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || window.matchMedia('(hover: none)').matches;
 
-let mouseX = 0, mouseY = 0;
-let ringX  = 0, ringY  = 0;
+if (!isTouchDevice) {
+  const dot  = document.createElement('div');
+  const ring = document.createElement('div');
+  dot.classList.add('cursor-dot');
+  ring.classList.add('cursor-ring');
+  document.body.appendChild(dot);
+  document.body.appendChild(ring);
 
-document.addEventListener('mousemove', (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-  dot.style.left = mouseX + 'px';
-  dot.style.top  = mouseY + 'px';
-});
+  let mouseX = 0, mouseY = 0;
+  let ringX  = 0, ringY  = 0;
 
-// Ring sigue con lag suave
-function animateRing() {
-  ringX += (mouseX - ringX) * 0.12;
-  ringY += (mouseY - ringY) * 0.12;
-  ring.style.left = ringX + 'px';
-  ring.style.top  = ringY + 'px';
-  requestAnimationFrame(animateRing);
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    dot.style.left = mouseX + 'px';
+    dot.style.top  = mouseY + 'px';
+  });
+
+  // Ring sigue con lag suave
+  const animateRing = () => {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    ring.style.left = ringX + 'px';
+    ring.style.top  = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  };
+  animateRing();
+
+  // Hover en links y botones agranda el ring
+  const updateHoverTargets = () => {
+    document.querySelectorAll('a, button, .service-card, .btn-primary, .btn-outline, .proj-item, .ch-submit').forEach(el => {
+      if (el.dataset.cursorBound) return;
+      el.dataset.cursorBound = "true";
+      el.addEventListener('mouseenter', () => ring.classList.add('hover'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
+    });
+  };
+  updateHoverTargets();
+  
+  // Observar cambios en el DOM para nuevos elementos
+  const observer = new MutationObserver(updateHoverTargets);
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  // Ocultar cursor al salir de la ventana
+  document.addEventListener('mouseleave', () => {
+    dot.style.opacity  = '0';
+    ring.style.opacity = '0';
+  });
+  document.addEventListener('mouseenter', () => {
+    dot.style.opacity  = '1';
+    ring.style.opacity = '1';
+  });
 }
-animateRing();
-
-// Hover en links y botones agranda el ring
-document.querySelectorAll('a, button, .service-card, .btn-primary, .btn-outline').forEach(el => {
-  el.addEventListener('mouseenter', () => ring.classList.add('hover'));
-  el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
-});
-
-// Ocultar cursor al salir de la ventana
-document.addEventListener('mouseleave', () => {
-  dot.style.opacity  = '0';
-  ring.style.opacity = '0';
-});
-document.addEventListener('mouseenter', () => {
-  dot.style.opacity  = '1';
-  ring.style.opacity = '1';
-});
 
 
 /* ─────────────────────────────────────
@@ -98,6 +111,12 @@ if (hamburger && mobileMenu) {
     mobileMenu.classList.add('open');
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
+
+    // Animar los links de forma fluida escalonada
+    gsap.fromTo('.mobile-menu a', 
+      { opacity: 0, x: 60 }, 
+      { opacity: 1, x: 0, duration: 0.6, stagger: 0.08, ease: 'power3.out', delay: 0.15 }
+    );
   };
 
   const closeMenu = () => {
@@ -105,12 +124,16 @@ if (hamburger && mobileMenu) {
     mobileMenu.classList.remove('open');
     overlay.classList.remove('open');
     document.body.style.overflow = '';
+
+    // Salida suave antes de ocultar
+    gsap.to('.mobile-menu a', { opacity: 0, x: 40, duration: 0.35, ease: 'power2.in' });
+
     setTimeout(() => {
       if (!mobileMenu.classList.contains('open')) {
         mobileMenu.style.display = 'none';
         overlay.style.display    = 'none';
       }
-    }, 380);
+    }, 500);
   };
 
   hamburger.addEventListener('click', () => {

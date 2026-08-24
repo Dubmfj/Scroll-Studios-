@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════
-   SCROLL STUDIOS — contacto.js
+   SCROLL STUDIOS — nosotros.js
 ═══════════════════════════════════════ */
 
 gsap.registerPlugin(ScrollTrigger);
@@ -18,7 +18,6 @@ function initPreloader() {
   document.body.style.overflow = 'hidden';
 
   const tl = gsap.timeline();
-
   tl.to(counter, { opacity: 1, duration: 0.4, ease: 'power2.out' })
     .to(lines, { y: 0, duration: 1, ease: 'power4.out', stagger: 0.12 }, '-=0.1')
     .to(subWrap, { opacity: 1, duration: 0.5, ease: 'power2.out' }, '-=0.5')
@@ -39,65 +38,74 @@ function initPreloader() {
       preloader.classList.add('done');
       gsap.set(preloader, { display: 'none' });
       document.body.style.overflow = '';
-      initPageAnimations();
+      initAnimations();
     });
 }
 
-/* ── Animaciones de entrada ── */
-function initPageAnimations() {
-  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+/* ── Animaciones de scroll ── */
+function initAnimations() {
 
-  // Líneas del título
-  tl.to('.ch-line', {
-    opacity: 1, y: 0, duration: 0.9, stagger: 0.12,
-  })
-  .to('.ch-contact-btn', { opacity: 1, duration: 0.6 }, '-=0.3')
-  .to('.ch-sidebar', { opacity: 1, duration: 0.6 }, '-=0.2')
-  .to('.ch-right', { opacity: 1, duration: 0.7 }, '-=0.4');
+  gsap.fromTo('.nos-historia-left', { opacity: 0, x: -40 }, {
+    opacity: 1, x: 0, duration: 0.9, ease: 'power2.out',
+    scrollTrigger: { trigger: '.nos-historia', start: 'top 75%' }
+  });
+
+  gsap.fromTo('.nos-historia-right', { opacity: 0, x: 40 }, {
+    opacity: 1, x: 0, duration: 0.9, ease: 'power2.out',
+    scrollTrigger: { trigger: '.nos-historia', start: 'top 75%' }
+  });
+
+  gsap.fromTo('.valor-card', { opacity: 0, y: 50 }, {
+    opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', stagger: 0.1,
+    scrollTrigger: { trigger: '.nos-valores-grid', start: 'top 80%' }
+  });
+
+  gsap.fromTo('.nos-stack-left', { opacity: 0, x: -40 }, {
+    opacity: 1, x: 0, duration: 0.9, ease: 'power2.out',
+    scrollTrigger: { trigger: '.nos-stack', start: 'top 75%' }
+  });
+
+  gsap.fromTo('.nos-stack-right', { opacity: 0, x: 40 }, {
+    opacity: 1, x: 0, duration: 0.9, ease: 'power2.out',
+    scrollTrigger: { trigger: '.nos-stack', start: 'top 75%' }
+  });
+
+  gsap.fromTo('.nos-number', { opacity: 0, y: 30 }, {
+    opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', stagger: 0.1,
+    scrollTrigger: { trigger: '.nos-numbers', start: 'top 80%' }
+  });
+
+  gsap.fromTo('.cta-title, .cta-sub, .cta-btn', { opacity: 0, y: 30 }, {
+    opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', stagger: 0.12,
+    scrollTrigger: { trigger: '.cta-final', start: 'top 80%' }
+  });
 }
 
-/* ── Formulario → WhatsApp ── */
-function initForm() {
-  const form      = document.getElementById('contact-form');
-  const btnSubmit = form?.querySelector('.ch-submit');
-  if (!form) return;
+/* ── Contadores ── */
+function initCounters() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.querySelectorAll('[data-count]').forEach(el => {
+        const target = parseInt(el.dataset.count, 10);
+        const suffix = el.dataset.suffix || '';
+        gsap.to({ val: 0 }, {
+          val: target, duration: 1.5, ease: 'power2.out',
+          onUpdate: function() {
+            el.textContent = Math.floor(this.targets()[0].val) + suffix;
+          }
+        });
+      });
+      obs.unobserve(entry.target);
+    });
+  }, { threshold: 0.3 });
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const nombre   = document.getElementById('nombre')?.value.trim();
-    const contacto = document.getElementById('contacto-input')?.value.trim();
-    const servicio = document.getElementById('servicio')?.value;
-    const mensaje  = document.getElementById('mensaje')?.value.trim();
-
-    if (!nombre || !servicio || !mensaje) return;
-
-    const texto =
-      `Hola Scroll Studios! 👋%0A%0A` +
-      `*Nombre:* ${nombre}%0A` +
-      `*Contacto:* ${contacto || 'No indicado'}%0A` +
-      `*Servicio:* ${servicio}%0A%0A` +
-      `*Proyecto:*%0A${mensaje}`;
-
-    window.open(`https://wa.me/51999999999?text=${texto}`, '_blank');
-
-    const btnText = btnSubmit?.querySelector('.ch-submit-text');
-    if (btnText) {
-      const original = btnText.textContent;
-      btnText.textContent = '✓ Enviado!';
-      btnSubmit.style.borderColor = '#28c840';
-      setTimeout(() => {
-        btnText.textContent = original;
-        btnSubmit.style.borderColor = '';
-        form.reset();
-      }, 3000);
-    }
-  });
+  document.querySelectorAll('.nos-numbers').forEach(el => obs.observe(el));
 }
 
 /* ── Cursor magnético ── */
 function initMagneticCursor() {
-  document.querySelectorAll('.ch-submit, .ch-contact-btn, .btn-primary, .btn-outline').forEach(el => {
+  document.querySelectorAll('.cta-btn, .btn-primary, .btn-outline').forEach(el => {
     el.addEventListener('mousemove', (e) => {
       const rect = el.getBoundingClientRect();
       gsap.to(el, {
@@ -115,6 +123,6 @@ function initMagneticCursor() {
 /* ── INIT ── */
 document.addEventListener('DOMContentLoaded', () => {
   initPreloader();
-  initForm();
+  initCounters();
   initMagneticCursor();
 });

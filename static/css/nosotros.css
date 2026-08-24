@@ -1,0 +1,277 @@
+/* ═══════════════════════════════════════
+   SCROLL STUDIOS — nosotros.css
+═══════════════════════════════════════ */
+
+/* ── HERO ── */
+.nos-hero {
+  min-height: 80vh;
+  display: flex;
+  align-items: flex-end;
+  padding: calc(var(--header-h) + 5rem) 6% 5rem;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--gray-dark);
+}
+
+.nos-hero-content { position: relative; z-index: 1; }
+
+.nos-tag { margin-bottom: 1.5rem; }
+
+.nos-title {
+  font-size: clamp(3.5rem, 9vw, 9rem);
+  font-weight: 800;
+  line-height: 0.95;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.8s ease 0.2s both;
+}
+
+.nos-subtitle {
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  color: var(--gray-light);
+  line-height: 1.8;
+  max-width: 440px;
+  animation: fadeUp 0.8s ease 0.4s both;
+}
+
+.nos-hero-deco {
+  position: absolute;
+  right: -2rem;
+  bottom: -3rem;
+  font-family: var(--font-display);
+  font-size: 22vw;
+  font-weight: 800;
+  color: rgba(255,255,255,0.02);
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+
+/* ── HISTORIA ── */
+.nos-historia {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 6rem;
+  padding: var(--section-pad);
+  border-bottom: 1px solid var(--gray-dark);
+  align-items: start;
+}
+
+.nos-historia-left h2 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  margin-top: 0.5rem;
+  position: sticky;
+  top: calc(var(--header-h) + 2rem);
+}
+
+.nos-historia-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.nos-historia-right p {
+  font-size: 0.95rem;
+  color: var(--gray-light);
+  line-height: 1.9;
+}
+
+/* ── VALORES ── */
+.nos-valores {
+  padding: var(--section-pad);
+  background: var(--black-mid);
+  border-bottom: 1px solid var(--gray-dark);
+}
+
+.nos-valores-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.nos-valores-header h2 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  margin-top: 0.5rem;
+}
+
+.nos-valores-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  background: transparent;
+}
+
+.valor-card {
+  background: rgba(15, 13, 30, 0.6);
+  border: 1px solid var(--cyan-border);
+  border-radius: 16px;
+  padding: 2.5rem 1.8rem;
+  position: relative;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.valor-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 3px;
+  background: var(--gradient-accent);
+  transition: width 0.4s ease;
+}
+
+.valor-card:hover {
+  background: rgba(15, 13, 30, 0.85);
+  transform: translateY(-5px);
+  border-color: var(--cyan);
+  box-shadow: 0 15px 40px rgba(99, 102, 241, 0.15);
+}
+.valor-card:hover::after { width: 100%; }
+
+.valor-num {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 800;
+  color: rgba(99, 102, 241, 0.15);
+  line-height: 1;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.valor-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+.valor-card p {
+  font-size: 0.88rem;
+  color: var(--white-soft);
+  line-height: 1.7;
+}
+
+/* ── STACK ── */
+.nos-stack {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 6rem;
+  padding: var(--section-pad);
+  border-bottom: 1px solid var(--gray-dark);
+  align-items: center;
+}
+
+.nos-stack-left h2 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  margin: 0.5rem 0 1rem;
+}
+
+.nos-stack-left p {
+  font-size: 0.95rem;
+  color: var(--white-soft);
+  line-height: 1.8;
+}
+
+.nos-stack-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.stack-category { display: flex; flex-direction: column; gap: 0.8rem; }
+
+.stack-cat-label {
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.stack-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.stack-pills span {
+  font-size: 0.8rem;
+  font-family: 'Courier New', monospace;
+  color: var(--white-soft);
+  background: rgba(15, 13, 30, 0.6);
+  border: 1px solid var(--cyan-border);
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  transition: border-color var(--transition), color var(--transition), background var(--transition);
+}
+
+.stack-pills span:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  background: rgba(99, 102, 241, 0.05);
+}
+
+/* ── NÚMEROS ── */
+.nos-numbers {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  background: transparent;
+  border-bottom: 1px solid var(--gray-dark);
+  border-top: none;
+  padding: var(--section-pad-sm);
+}
+
+.nos-number {
+  background: rgba(15, 13, 30, 0.6);
+  border: 1px solid var(--cyan-border);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: border-color var(--transition), transform var(--transition);
+}
+.nos-number:hover {
+  border-color: var(--cyan);
+  transform: translateY(-3px);
+}
+
+.nos-num {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 800;
+  color: var(--cyan);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.nos-num-label {
+  font-size: 0.78rem;
+  color: var(--white-soft);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: block;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+  .nos-historia  { grid-template-columns: 1fr; gap: 2.5rem; }
+  .nos-historia-left h2 { position: static; }
+  .nos-valores-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+  .nos-stack     { grid-template-columns: 1fr; gap: 2.5rem; }
+  .nos-numbers   { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+  .nos-number    { border-right: none; }
+}
+
+@media (max-width: 600px) {
+  .nos-valores-grid { grid-template-columns: 1fr; }
+  .nos-numbers   { grid-template-columns: repeat(2, 1fr); }
+  .nos-title     { font-size: clamp(3rem, 14vw, 5rem); }
+}

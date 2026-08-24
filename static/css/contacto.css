@@ -45,33 +45,35 @@
 
 .ch-line.cyan { color: var(--cyan); }
 
-/* Email grande */
-.ch-email {
+/* Email grande / WhatsApp clickeable */
+.ch-contact-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   font-family: var(--font-display);
-  font-size: clamp(0.85rem, 1.5vw, 1.1rem);
-  font-weight: 600;
-  color: var(--gray-light);
+  font-size: clamp(0.9rem, 1.6vw, 1.25rem);
+  font-weight: 700;
+  color: var(--white);
   letter-spacing: 1px;
   text-decoration: none;
-  border-bottom: 1px solid var(--gray-dark);
-  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--cyan-border);
+  padding-bottom: 0.5rem;
   transition: color var(--transition), border-color var(--transition);
   opacity: 0;
+  align-self: flex-start;
 }
 
-.ch-email:hover {
+.ch-contact-btn:hover {
   color: var(--cyan);
   border-color: var(--cyan);
 }
 
-.ch-email-arrow {
-  font-size: 1.1rem;
+.ch-contact-arrow {
+  font-size: 1.25rem;
+  color: var(--cyan);
   transition: transform var(--transition);
 }
-.ch-email:hover .ch-email-arrow { transform: translate(3px, -3px); }
+.ch-contact-btn:hover .ch-contact-arrow { transform: translate(4px, -4px); }
 
 /* Sidebar info */
 .ch-sidebar {
@@ -185,7 +187,7 @@
 
 .ch-field input::placeholder,
 .ch-field textarea::placeholder {
-  color: var(--gray-dark);
+  color: var(--gray-mid);
   font-weight: 400;
 }
 
@@ -195,9 +197,10 @@
 }
 
 .ch-field select option {
-  background: var(--black-mid);
+  background: var(--black-soft);
   font-size: 1rem;
   font-weight: 400;
+  color: var(--white);
 }
 
 /* Línea animada bajo el campo */
@@ -216,8 +219,8 @@
   position: absolute;
   bottom: 0; left: 0;
   width: 0;
-  height: 1px;
-  background: var(--cyan);
+  height: 2px;
+  background: var(--gradient-accent);
   transition: width 0.4s ease;
 }
 
@@ -230,15 +233,20 @@
   align-items: center;
   gap: 0;
   background: none;
-  border: 1px solid var(--gray-dark);
+  border: 1px solid var(--cyan-border);
   align-self: flex-start;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   overflow: hidden;
-  transition: border-color 0.3s ease;
+  border-radius: 4px;
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
   position: relative;
 }
 
-.ch-submit:hover { border-color: var(--cyan); }
+.ch-submit:hover { 
+  border-color: var(--cyan); 
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(99, 102, 241, 0.2);
+}
 
 .ch-submit-text {
   font-family: var(--font-display);
@@ -247,7 +255,7 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--white);
-  padding: 1rem 2rem;
+  padding: 1.1rem 2.2rem;
   transition: color 0.3s ease;
 }
 
@@ -255,21 +263,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem 1.2rem;
-  background: var(--cyan);
-  transition: background 0.3s ease;
+  padding: 1.1rem 1.3rem;
+  background: var(--gradient-accent);
+  transition: background var(--transition);
 }
 
 .ch-submit-icon svg {
   width: 18px;
   height: 18px;
-  color: var(--black);
+  color: var(--white);
   transition: transform 0.3s ease;
 }
 
 .ch-submit:hover .ch-submit-text { color: var(--cyan); }
 .ch-submit:hover .ch-submit-icon { background: var(--white); }
-.ch-submit:hover .ch-submit-icon svg { transform: translateX(4px); }
+.ch-submit:hover .ch-submit-icon svg { transform: translateX(4px); color: var(--black); }
 
 /* ════════════════════════════
    RESPONSIVE
@@ -278,20 +286,22 @@
   .contacto-hero {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
+    min-height: auto;
   }
   .ch-divider { display: none; }
   .ch-left {
-    padding: 3rem 5%;
+    padding: 6rem 5% 3rem 6%;
     border-right: none;
     border-bottom: 1px solid var(--gray-dark);
   }
-  .ch-right { padding: 3rem 5%; }
-  .ch-sidebar { flex-direction: row; flex-wrap: wrap; gap: 1.5rem; }
+  .ch-right { padding: 4rem 6% 4rem 5%; }
+  .ch-sidebar { flex-direction: row; flex-wrap: wrap; gap: 2rem; }
 }
 
 @media (max-width: 600px) {
-  .ch-line { font-size: clamp(2rem, 10vw, 3.5rem); }
-  .ch-field input, .ch-field textarea, .ch-field select { font-size: 1.3rem; }
-  .ch-sidebar { flex-direction: column; }
+  .ch-line { font-size: clamp(2rem, 10vw, 3.2rem); }
+  .ch-field input, .ch-field textarea, .ch-field select { font-size: 1.25rem; }
+  .ch-sidebar { flex-direction: column; gap: 1.5rem; }
   .ch-submit { align-self: stretch; justify-content: center; }
+  .ch-contact-btn { width: 100%; justify-content: space-between; }
 }
