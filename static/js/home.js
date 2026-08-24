@@ -3,7 +3,9 @@
    GSAP: Preloader + Animaciones + Cursor
 ═══════════════════════════════════════ */
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 /* ─────────────────────────────────────
    PRELOADER
@@ -18,6 +20,13 @@ function initPreloader() {
   const curtain   = document.querySelector('.preloader-curtain');
 
   if (!preloader) return;
+
+  if (typeof gsap === 'undefined') {
+    preloader.classList.add('done');
+    preloader.style.display = 'none';
+    document.body.style.overflow = '';
+    return;
+  }
 
   document.body.style.overflow = 'hidden';
 
@@ -167,6 +176,7 @@ function initScrollAnimations() {
    CURSOR MAGNÉTICO
 ───────────────────────────────────── */
 function initMagneticCursor() {
+  if (typeof gsap === 'undefined') return;
   const magnetics = document.querySelectorAll('.btn-primary, .btn-outline, .service-link, .btn-wa-big');
 
   magnetics.forEach(el => {
@@ -192,6 +202,7 @@ function initMagneticCursor() {
    CONTADORES
 ───────────────────────────────────── */
 function initCounters() {
+  if (typeof gsap === 'undefined') return;
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;

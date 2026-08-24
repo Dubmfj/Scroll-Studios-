@@ -116,6 +116,7 @@ if (hamburger && mobileMenu) {
     document.body.style.overflow = 'hidden';
 
     // Animar los links de forma fluida escalonada
+    if (typeof gsap === 'undefined') return;
     gsap.fromTo('.mobile-menu a', 
       { opacity: 0, x: 60 }, 
       { opacity: 1, x: 0, duration: 0.6, stagger: 0.08, ease: 'power3.out', delay: 0.15 }
@@ -129,7 +130,9 @@ if (hamburger && mobileMenu) {
     document.body.style.overflow = '';
 
     // Salida suave antes de ocultar
-    gsap.to('.mobile-menu a', { opacity: 0, x: 40, duration: 0.35, ease: 'power2.in' });
+    if (typeof gsap !== 'undefined') {
+      gsap.to('.mobile-menu a', { opacity: 0, x: 40, duration: 0.35, ease: 'power2.in' });
+    }
 
     setTimeout(() => {
       if (!mobileMenu.classList.contains('open')) {

@@ -3,7 +3,9 @@
    Imagen que sigue el cursor + GSAP
 ═══════════════════════════════════════ */
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 /* ── Preloader ── */
 function initPreloader() {
@@ -16,6 +18,14 @@ function initPreloader() {
   const curtain   = document.querySelector('.preloader-curtain');
 
   if (!preloader) return;
+
+  if (typeof gsap === 'undefined') {
+    preloader.classList.add('done');
+    preloader.style.display = 'none';
+    document.body.style.overflow = '';
+    return;
+  }
+
   document.body.style.overflow = 'hidden';
 
   const tl = gsap.timeline();
@@ -77,6 +87,7 @@ function initPageAnimations() {
 
 /* ── IMAGEN FLOTANTE QUE SIGUE EL CURSOR ── */
 function initHoverImage() {
+  if (typeof gsap === 'undefined') return;
   const cursorImg   = document.getElementById('proj-cursor-img');
   const cursorImgEl = document.getElementById('proj-cursor-img-el');
   const items       = document.querySelectorAll('.proj-item');
@@ -159,6 +170,7 @@ function initHoverImage() {
 
 /* ── Cursor magnético en CTA ── */
 function initMagnetic() {
+  if (typeof gsap === 'undefined') return;
   document.querySelectorAll('.proj-cta-link, .btn-primary').forEach(el => {
     el.addEventListener('mousemove', (e) => {
       const rect = el.getBoundingClientRect();

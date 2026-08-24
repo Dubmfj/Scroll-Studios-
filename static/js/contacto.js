@@ -2,7 +2,9 @@
    SCROLL STUDIOS — contacto.js
 ═══════════════════════════════════════ */
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 /* ── Preloader ── */
 function initPreloader() {
@@ -15,6 +17,14 @@ function initPreloader() {
   const curtain   = document.querySelector('.preloader-curtain');
 
   if (!preloader) return;
+
+  if (typeof gsap === 'undefined') {
+    preloader.classList.add('done');
+    preloader.style.display = 'none';
+    document.body.style.overflow = '';
+    return;
+  }
+
   document.body.style.overflow = 'hidden';
 
   const tl = gsap.timeline();
@@ -97,6 +107,7 @@ function initForm() {
 
 /* ── Cursor magnético ── */
 function initMagneticCursor() {
+  if (typeof gsap === 'undefined') return;
   document.querySelectorAll('.ch-submit, .ch-contact-btn, .btn-primary, .btn-outline').forEach(el => {
     el.addEventListener('mousemove', (e) => {
       const rect = el.getBoundingClientRect();

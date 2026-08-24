@@ -2,7 +2,9 @@
    SCROLL STUDIOS — nosotros.js
 ═══════════════════════════════════════ */
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 /* ── Preloader ── */
 function initPreloader() {
@@ -15,6 +17,14 @@ function initPreloader() {
   const curtain   = document.querySelector('.preloader-curtain');
 
   if (!preloader) return;
+
+  if (typeof gsap === 'undefined') {
+    preloader.classList.add('done');
+    preloader.style.display = 'none';
+    document.body.style.overflow = '';
+    return;
+  }
+
   document.body.style.overflow = 'hidden';
 
   const tl = gsap.timeline();
@@ -83,6 +93,7 @@ function initAnimations() {
 
 /* ── Contadores ── */
 function initCounters() {
+  if (typeof gsap === 'undefined') return;
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
@@ -105,6 +116,7 @@ function initCounters() {
 
 /* ── Cursor magnético ── */
 function initMagneticCursor() {
+  if (typeof gsap === 'undefined') return;
   document.querySelectorAll('.cta-btn, .btn-primary, .btn-outline').forEach(el => {
     el.addEventListener('mousemove', (e) => {
       const rect = el.getBoundingClientRect();
