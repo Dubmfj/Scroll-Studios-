@@ -225,6 +225,61 @@ function initCounters() {
 
 
 /* ─────────────────────────────────────
+   CARRUSEL DE SERVICIOS EN MOBILE
+───────────────────────────────────── */
+function initServicesCarousel() {
+  const carousel = document.querySelector('.servicios-grid');
+  const track = document.querySelector('.services-track');
+  const controls = document.querySelector('.services-carousel-controls');
+  const previous = document.querySelector('[data-services-prev]');
+  const next = document.querySelector('[data-services-next]');
+  const dotsWrap = document.querySelector('.services-carousel-dots');
+  const cards = carousel ? [...carousel.querySelectorAll('.service-card')] : [];
+
+  if (!carousel || !track || !controls || !previous || !next || !dotsWrap || !cards.length) return;
+
+  cards.forEach((_, index) => {
+    const dot = document.createElement('span');
+    dot.className = 'services-carousel-dot';
+    dot.dataset.index = index;
+    dotsWrap.appendChild(dot);
+  });
+
+  const dots = [...dotsWrap.children];
+  const isMobile = () => window.matchMedia('(max-width: 900px)').matches;
+  let activeIndex = 0;
+  const currentIndex = () => activeIndex;
+  const update = () => {
+    const index = currentIndex();
+    dots.forEach((dot, dotIndex) => dot.classList.toggle('active', dotIndex === index));
+    previous.disabled = index === 0;
+    next.disabled = index === cards.length - 1;
+    controls.hidden = !isMobile();
+    const gap = parseFloat(getComputedStyle(track).gap || '0');
+    track.style.transform = isMobile() ? `translateX(-${index * (cards[0].offsetWidth + gap)}px)` : '';
+  };
+  const goTo = index => {
+    if (!isMobile()) return;
+    activeIndex = Math.min(cards.length - 1, Math.max(0, index));
+    update();
+  };
+
+  previous.onclick = () => goTo(currentIndex() - 1);
+  next.onclick = () => goTo(currentIndex() + 1);
+  let touchStartX = 0;
+  carousel.addEventListener('touchstart', event => {
+    touchStartX = event.touches[0].clientX;
+  }, { passive: true });
+  carousel.addEventListener('touchend', event => {
+    const distance = event.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(distance) < 40) return;
+    goTo(currentIndex() + (distance < 0 ? 1 : -1));
+  }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+}
+
+/* ─────────────────────────────────────
    FORMULARIO → WhatsApp
 ───────────────────────────────────── */
 function initForm() {
@@ -266,9 +321,16 @@ function initForm() {
 /* ─────────────────────────────────────
    INIT
 ───────────────────────────────────── */
-document.addEventListener('DOMContentLoaded', () => {
+const initHomePage = () => {
   initPreloader();
   initMagneticCursor();
   initCounters();
   initForm();
-});
+  initServicesCarousel();
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initHomePage, { once: true });
+} else {
+  initHomePage();
+}

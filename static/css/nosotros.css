@@ -4,25 +4,32 @@
 
 /* ── HERO ── */
 .nos-hero {
-  min-height: 80vh;
+  min-height: min(80vh, 760px);
   display: flex;
-  align-items: flex-end;
-  padding: calc(var(--header-h) + 5rem) 6% 5rem;
+  align-items: center;
+  padding: calc(var(--header-h) + 4rem) clamp(1.2rem, 6vw, 6%) 5rem;
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid var(--gray-dark);
 }
 
-.nos-hero-content { position: relative; z-index: 1; }
+.nos-hero-content {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  max-width: 100%;
+}
 
 .nos-tag { margin-bottom: 1.5rem; }
 
 .nos-title {
-  font-size: clamp(3.5rem, 9vw, 9rem);
+  font-size: clamp(3.5rem, 8vw, 8rem);
   font-weight: 800;
   line-height: 0.95;
   color: var(--white);
   margin-bottom: 1.5rem;
+  max-width: 8ch;
+  width: 100%;
   animation: fadeUp 0.8s ease 0.2s both;
 }
 
@@ -39,7 +46,7 @@
   right: -2rem;
   bottom: -3rem;
   font-family: var(--font-display);
-  font-size: 22vw;
+  font-size: clamp(8rem, 20vw, 20rem);
   font-weight: 800;
   color: rgba(255,255,255,0.02);
   pointer-events: none;
@@ -51,7 +58,7 @@
 .nos-historia {
   display: grid;
   grid-template-columns: 1fr 1.4fr;
-  gap: 6rem;
+  gap: clamp(2rem, 6vw, 6rem);
   padding: var(--section-pad);
   border-bottom: 1px solid var(--gray-dark);
   align-items: start;
@@ -158,7 +165,7 @@
 .nos-stack {
   display: grid;
   grid-template-columns: 1fr 1.6fr;
-  gap: 6rem;
+  gap: clamp(2rem, 6vw, 6rem);
   padding: var(--section-pad);
   border-bottom: 1px solid var(--gray-dark);
   align-items: center;
@@ -271,7 +278,17 @@
 }
 
 @media (max-width: 600px) {
+  .nos-hero { min-height: 62svh; padding-top: calc(var(--header-h) + 2rem); padding-bottom: 2.5rem; }
+  .nos-title { font-size: clamp(3rem, 15vw, 4.8rem); max-width: 100%; }
+  .nos-subtitle { max-width: 30ch; }
   .nos-valores-grid { grid-template-columns: 1fr; }
   .nos-numbers   { grid-template-columns: repeat(2, 1fr); }
-  .nos-title     { font-size: clamp(3rem, 14vw, 5rem); }
+  .nos-number { padding: 2rem 0.8rem; }
+  .nos-num { font-size: 2.4rem; }
+}
+
+@media (max-width: 380px) {
+  .nos-title { font-size: 2.8rem; }
+  .nos-numbers { gap: 0.7rem; }
+  .nos-num-label { font-size: 0.64rem; letter-spacing: 0.5px; }
 }

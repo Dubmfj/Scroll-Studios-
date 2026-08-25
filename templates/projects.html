@@ -176,6 +176,24 @@
 
   </section>
 
+  <!-- CARGA DE IMAGEN DEL PROYECTO -->
+  <div class="project-upload" id="project-upload" aria-hidden="true">
+    <div class="project-upload-backdrop" data-upload-close></div>
+    <div class="project-upload-dialog" role="dialog" aria-modal="true" aria-labelledby="project-upload-title">
+      <button class="project-upload-close" type="button" data-upload-close aria-label="Cerrar">×</button>
+      <span class="proj-cta-label">Imagen del proyecto</span>
+      <h2 id="project-upload-title">Añade una imagen</h2>
+      <p>Selecciona una imagen para mostrarla en este proyecto.</p>
+      <label class="project-upload-drop" for="project-image-input">
+        <span class="project-upload-icon">+</span>
+        <span>Elegir imagen</span>
+        <small>PNG, JPG o WEBP</small>
+      </label>
+      <input id="project-image-input" type="file" accept="image/png,image/jpeg,image/webp"/>
+      <img class="project-upload-preview" id="project-image-preview" alt="Vista previa del proyecto"/>
+    </div>
+  </div>
+
   <!-- Imagen flotante que sigue el cursor -->
   <div class="proj-cursor-img" id="proj-cursor-img">
     <img src="" alt="" id="proj-cursor-img-el"/>

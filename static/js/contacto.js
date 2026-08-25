@@ -124,8 +124,14 @@ function initMagneticCursor() {
 }
 
 /* ── INIT ── */
-document.addEventListener('DOMContentLoaded', () => {
+const initContactoPage = () => {
   initPreloader();
   initForm();
   initMagneticCursor();
-});
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initContactoPage, { once: true });
+} else {
+  initContactoPage();
+}

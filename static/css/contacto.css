@@ -7,7 +7,7 @@
    HERO CONTACTO
 ──────────────────────────── */
 .contacto-hero {
-  min-height: 100vh;
+  min-height: 100svh;
   display: grid;
   grid-template-columns: 1fr 1px 1fr;
   gap: 0;
@@ -17,7 +17,7 @@
 
 /* ── Columna izquierda ── */
 .ch-left {
-  padding: 5rem 5% 4rem 6%;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.2rem, 5vw, 5%) clamp(3rem, 5vw, 4rem) clamp(1.2rem, 6vw, 6%);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -34,11 +34,12 @@
 .ch-line {
   display: block;
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5.5vw, 5.5rem);
+  font-size: clamp(2.4rem, 5vw, 5.2rem);
   font-weight: 800;
   color: var(--white);
   line-height: 1.05;
   overflow: hidden;
+  max-width: 100%;
   opacity: 0;
   transform: translateY(40px);
 }
@@ -127,7 +128,7 @@
 
 /* ── Columna derecha — formulario ── */
 .ch-right {
-  padding: 5rem 6% 4rem 5%;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.2rem, 6vw, 6%) clamp(3rem, 5vw, 4rem) clamp(1.2rem, 5vw, 5%);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -290,18 +291,27 @@
   }
   .ch-divider { display: none; }
   .ch-left {
-    padding: 6rem 5% 3rem 6%;
+    padding: calc(var(--header-h) + 2.5rem) 5% 3rem;
     border-right: none;
     border-bottom: 1px solid var(--gray-dark);
   }
-  .ch-right { padding: 4rem 6% 4rem 5%; }
+  .ch-right { padding: 3.5rem 5% 4rem; }
   .ch-sidebar { flex-direction: row; flex-wrap: wrap; gap: 2rem; }
 }
 
 @media (max-width: 600px) {
+  .ch-left { padding: calc(var(--header-h) + 2rem) 1.2rem 2.5rem; }
   .ch-line { font-size: clamp(2rem, 10vw, 3.2rem); }
-  .ch-field input, .ch-field textarea, .ch-field select { font-size: 1.25rem; }
+  .ch-contact-btn { font-size: 0.92rem; }
+  .ch-field input, .ch-field textarea, .ch-field select { font-size: 1.15rem; }
+  .ch-form { gap: 1.8rem; }
+  .ch-form-intro { margin-bottom: 2rem; }
   .ch-sidebar { flex-direction: column; gap: 1.5rem; }
   .ch-submit { align-self: stretch; justify-content: center; }
   .ch-contact-btn { width: 100%; justify-content: space-between; }
+}
+
+@media (max-width: 380px) {
+  .ch-line { font-size: 1.9rem; }
+  .ch-info-list a, .ch-info-block p { font-size: 0.82rem; }
 }

@@ -167,6 +167,57 @@ function initHoverImage() {
   });
 }
 
+/* ── CARGA LOCAL DE IMAGEN POR PROYECTO ── */
+function initProjectImageUpload() {
+  const modal = document.getElementById('project-upload');
+  const input = document.getElementById('project-image-input');
+  const preview = document.getElementById('project-image-preview');
+  const title = document.getElementById('project-upload-title');
+  const items = document.querySelectorAll('.proj-item');
+  let selectedItem = null;
+  let objectUrl = '';
+
+  if (!modal || !input || !preview || !title) return;
+
+  const close = () => {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    input.value = '';
+  };
+
+  items.forEach(item => {
+    item.dataset.uploadBound = 'true';
+    item.addEventListener('click', event => {
+      event.preventDefault();
+      selectedItem = item;
+      title.textContent = `Añade una imagen a ${item.querySelector('.proj-name')?.textContent.trim() || 'este proyecto'}`;
+      preview.removeAttribute('src');
+      preview.classList.remove('visible');
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  input.addEventListener('change', () => {
+    const file = input.files?.[0];
+    if (!file || !file.type.startsWith('image/')) return;
+    if (objectUrl) URL.revokeObjectURL(objectUrl);
+    objectUrl = URL.createObjectURL(file);
+    preview.src = objectUrl;
+    preview.classList.add('visible');
+    if (selectedItem) selectedItem.dataset.img = objectUrl;
+  });
+
+  modal.querySelectorAll('[data-upload-close]').forEach(element => {
+    element.addEventListener('click', close);
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && modal.classList.contains('open')) close();
+  });
+}
+
 
 /* ── Cursor magnético en CTA ── */
 function initMagnetic() {
@@ -188,7 +239,23 @@ function initMagnetic() {
 
 
 /* ── INIT ── */
-document.addEventListener('DOMContentLoaded', () => {
+const initProjectsPage = () => {
   initPreloader();
   initMagnetic();
-});
+  initProjectImageUpload();
+};
+
+let projectsPageStarted = false;
+const startProjectsPage = () => {
+  if (projectsPageStarted) return;
+  projectsPageStarted = true;
+  initProjectsPage();
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', startProjectsPage, { once: true });
+} else {
+  startProjectsPage();
+}
+window.addEventListener('load', startProjectsPage, { once: true });
+if (document.querySelector('.proj-item')) startProjectsPage();

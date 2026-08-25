@@ -133,8 +133,14 @@ function initMagneticCursor() {
 }
 
 /* ── INIT ── */
-document.addEventListener('DOMContentLoaded', () => {
+const initNosotrosPage = () => {
   initPreloader();
   initCounters();
   initMagneticCursor();
-});
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initNosotrosPage, { once: true });
+} else {
+  initNosotrosPage();
+}

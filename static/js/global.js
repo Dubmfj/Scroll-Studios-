@@ -301,6 +301,14 @@ function initPremiumScroll() {
 
 initPremiumScroll();
 
+setTimeout(() => {
+  const preloader = document.getElementById('preloader');
+  if (!preloader || getComputedStyle(preloader).display === 'none') return;
+  preloader.classList.add('done');
+  preloader.style.display = 'none';
+  document.body.style.overflow = '';
+}, 9000);
+
 
 /* ─────────────────────────────────────
    ACTIVE NAV LINK según página actual
