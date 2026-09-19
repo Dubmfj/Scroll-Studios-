@@ -496,7 +496,7 @@
     </div>
 
     <div class="ss-input-area">
-      <input type="text" id="ssInput" placeholder="Completa los datos de tu empresa arriba para comenzar..." disabled onkeydown="if(event.key==='Enter') sendSSMessage()"/>
+      <input type="text" id="ssInput" placeholder="Completa los datos de tu empresa arriba para comenzar..." disabled onkeydown="if(event.key==='Enter') sendSSMessage()" onclick="if(messageCount>=MAX_MESSAGES) triggerLimitModal()"/>
       <button class="ss-send-btn" id="ssSendBtn" onclick="sendSSMessage()" disabled aria-label="Enviar mensaje">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
@@ -627,7 +627,12 @@
 
     async function sendSSMessage() {
       if (!isDemoActivated) return;
-      if (messageCount >= MAX_MESSAGES) return;
+
+      // Si ya alcanzó el límite de 5 mensajes, bloquear envío y desplegar modal al intentar la siguiente interacción
+      if (messageCount >= MAX_MESSAGES) {
+        triggerLimitModal();
+        return;
+      }
 
       const input = document.getElementById('ssInput');
       const text = input.value.trim();
@@ -642,28 +647,29 @@
       const typingElem = showSSTyping();
 
       try {
-const res = await fetch('https://avior-ai.onrender.com/api/chat-web', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ 
-      message: text,
-      nombreNegocio: activeNombreNegocio,
-      rubroNegocio: activeRubroNegocio
-    })
-  });
+        const res = await fetch('https://avior-ai.onrender.com/api/chat-web', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            message: text,
+            nombreNegocio: activeNombreNegocio,
+            rubroNegocio: activeRubroNegocio
+          })
+        });
         
         removeSSTyping(typingElem);
         const data = await res.json();
         appendSSMsg(data.reply || 'Sin respuesta del servidor.', 'ss-bot');
       } catch (err) {
         removeSSTyping(typingElem);
-        appendSSMsg('No fue posible conectar con el servidor local. Asegúrate de iniciar la API en http://localhost:3000.', 'ss-bot');
+        appendSSMsg('No fue posible conectar con el servidor local. Asegúrate de iniciar la API.', 'ss-bot');
       }
 
+      // Al completar los 5 mensajes, actualizar placeholder sin interrumpir la lectura del usuario
       if (messageCount >= MAX_MESSAGES) {
-        setTimeout(() => {
-          triggerLimitModal();
-        }, 900);
+        if (input) {
+          input.placeholder = "Demo finalizada - Haz clic para continuar...";
+        }
       }
     }
 
