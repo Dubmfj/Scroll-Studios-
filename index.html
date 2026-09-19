@@ -428,5 +428,269 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="static/js/global.js"></script>
   <script src="static/js/home.js"></script>
+  <!-- ══════════════════════════
+       WIDGET AVIOR AI — SCROLL STUDIOS (Senior UI/UX)
+  ══════════════════════════ -->
+  <div class="ss-cta-tooltip" id="ssCtaTooltip" onclick="toggleSSChat()">
+    <span class="ss-pulse-dot"></span> Probar demo interactiva con mi negocio
+  </div>
+
+  <button class="ss-widget-btn" id="ssWidgetBtn" onclick="toggleSSChat()" aria-label="Abrir asistente Avior">
+    <span class="ss-widget-badge"></span>
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C12 7.5 16.5 12 22 12C16.5 12 12 16.5 12 22C12 16.5 7.5 12 2 12C7.5 12 12 7.5 12 2Z"/>
+    </svg>
+  </button>
+
+  <div class="ss-chat-box" id="ssChatBox" role="dialog" aria-label="Avior AI Chat">
+    <div class="ss-header">
+      <div class="ss-header-info">
+        <div class="ss-header-avatar">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 3C12 7.97 16.03 12 21 12C16.03 12 12 16.03 12 21C12 16.03 7.97 12 3 12C7.97 12 12 7.97 12 3Z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="ss-header-title">Avior AI</div>
+          <div class="ss-header-status">
+            <span class="ss-status-dot"></span> En línea
+          </div>
+        </div>
+      </div>
+      <div class="ss-counter-badge" id="ssCounterBadge">Prueba: 0/5</div>
+      <button class="ss-close-btn" onclick="toggleSSChat()" aria-label="Cerrar chat">✕</button>
+    </div>
+
+    <div class="ss-body" id="ssMessages">
+      <div class="ss-msg ss-bot">
+        Bienvenido a la demo interactiva de Avior. Para configurar el simulador personalizado, ingresa los datos de tu empresa:
+      </div>
+
+      <div class="ss-demo-setup">
+        <div class="ss-demo-label">
+          <span>Configuración de la demo:</span>
+        </div>
+        <div class="ss-demo-inputs">
+          <input type="text" class="ss-demo-input" id="demoNombre" placeholder="Nombre de tu Empresa (Ej: Barbería Silva)" oninput="this.classList.remove('error')"/>
+          <input type="text" class="ss-demo-input" id="demoRubro" placeholder="Rubro / Sector (Ej: Estética y Cortes)" oninput="this.classList.remove('error')"/>
+          <button type="button" class="ss-demo-btn" id="ssStartDemoBtn" onclick="activateSSDemo()">Probar demo con mi negocio</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal superpuesto al alcanzar el límite de 5 mensajes -->
+    <div class="ss-limit-modal" id="ssLimitModal">
+      <div class="ss-limit-card">
+        <div class="ss-limit-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:32px;height:32px;color:#8b5cf6;">
+            <path d="M12 2C12 7.5 16.5 12 22 12C16.5 12 12 16.5 12 22C12 16.5 7.5 12 2 12C7.5 12 12 7.5 12 2Z"/>
+          </svg>
+        </div>
+        <h3>Límite de demo alcanzado</h3>
+        <p>Has completado los <strong>5 mensajes de prueba</strong> del simulador Avior para <strong id="ssLimitNombre">tu negocio</strong>.</p>
+        <p class="ss-limit-subtext">¿Deseas implementar la tecnología de Avior en tu canal oficial de WhatsApp 24/7?</p>
+        <a href="https://wa.me/51987355501?text=Hola%20Scroll%20Studios,%20prob%C3%A9%20la%20demo%20de%20Avior%20y%20quiero%20implementarla%20en%20mi%20negocio" target="_blank" class="ss-limit-cta-btn">
+          Implementar Avior en mi WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <div class="ss-input-area">
+      <input type="text" id="ssInput" placeholder="Completa los datos de tu empresa arriba para comenzar..." disabled onkeydown="if(event.key==='Enter') sendSSMessage()"/>
+      <button class="ss-send-btn" id="ssSendBtn" onclick="sendSSMessage()" disabled aria-label="Enviar mensaje">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const MAX_MESSAGES = 5;
+    let messageCount = 0;
+    let activeNombreNegocio = '';
+    let activeRubroNegocio = '';
+    let isDemoActivated = false;
+    let isTooltipDismissed = false;
+
+    function updateCounterBadge() {
+      const badge = document.getElementById('ssCounterBadge');
+      if (badge) {
+        badge.innerText = `Prueba: ${messageCount}/${MAX_MESSAGES}`;
+        if (messageCount >= MAX_MESSAGES) {
+          badge.classList.add('full');
+        }
+      }
+    }
+
+    function triggerLimitModal() {
+      const ssInput = document.getElementById('ssInput');
+      const ssSendBtn = document.getElementById('ssSendBtn');
+      const messagesBody = document.getElementById('ssMessages');
+      const modal = document.getElementById('ssLimitModal');
+      const nombreSpan = document.getElementById('ssLimitNombre');
+
+      if (ssInput) {
+        ssInput.disabled = true;
+        ssInput.placeholder = "Límite de demo alcanzado (5/5)";
+      }
+      if (ssSendBtn) {
+        ssSendBtn.disabled = true;
+      }
+      if (messagesBody) {
+        messagesBody.classList.add('limit-reached');
+      }
+      if (nombreSpan && activeNombreNegocio) {
+        nombreSpan.innerText = activeNombreNegocio;
+      }
+      if (modal) {
+        modal.classList.add('active');
+      }
+    }
+
+    // Mostrar tooltip CTA flotante a los 2 segundos de cargar la página
+    setTimeout(() => {
+      const tooltip = document.getElementById('ssCtaTooltip');
+      const box = document.getElementById('ssChatBox');
+      if (tooltip && box && !box.classList.contains('open') && !isTooltipDismissed) {
+        tooltip.classList.add('visible');
+      }
+    }, 2000);
+
+    function toggleSSChat() {
+      const box = document.getElementById('ssChatBox');
+      const tooltip = document.getElementById('ssCtaTooltip');
+      const isMobile = window.innerWidth <= 600;
+      
+      // Ocultar tooltip permanentemente al interactuar con el widget
+      isTooltipDismissed = true;
+      if (tooltip) {
+        tooltip.classList.remove('visible');
+        tooltip.style.display = 'none';
+      }
+
+      if (box.classList.contains('open')) {
+        box.classList.remove('open');
+        if (isMobile) document.body.style.overflow = '';
+      } else {
+        box.classList.add('open');
+        if (isMobile) document.body.style.overflow = 'hidden';
+        if (isDemoActivated && messageCount < MAX_MESSAGES) {
+          const input = document.getElementById('ssInput');
+          setTimeout(() => input?.focus(), 350);
+        }
+      }
+    }
+
+    function activateSSDemo() {
+      const nombreInput = document.getElementById('demoNombre');
+      const rubroInput = document.getElementById('demoRubro');
+      let isValid = true;
+
+      if (!nombreInput.value.trim()) {
+        nombreInput.classList.add('error');
+        isValid = false;
+      }
+      if (!rubroInput.value.trim()) {
+        rubroInput.classList.add('error');
+        isValid = false;
+      }
+
+      if (!isValid) return;
+
+      activeNombreNegocio = nombreInput.value.trim();
+      activeRubroNegocio = rubroInput.value.trim();
+      isDemoActivated = true;
+
+      // Animación de ocultar el panel de formulario
+      const demoSetup = document.querySelector('.ss-demo-setup');
+      if (demoSetup) {
+        demoSetup.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        demoSetup.style.opacity = '0';
+        demoSetup.style.transform = 'translateY(-10px)';
+        setTimeout(() => demoSetup.style.display = 'none', 300);
+      }
+
+      // Desbloquear chatbox e input inferior
+      const ssInput = document.getElementById('ssInput');
+      const ssSendBtn = document.getElementById('ssSendBtn');
+      ssInput.disabled = false;
+      ssSendBtn.disabled = false;
+      ssInput.placeholder = `Realiza una consulta a Avior sobre ${activeNombreNegocio}...`;
+
+      // Mensaje automático de confirmación de la IA
+      appendSSMsg(`Simulador activado. Avior responderá como asistente virtual de ${activeNombreNegocio}. Puedes realizar cualquier consulta de un cliente.`, 'ss-bot');
+
+      // Enfocar input para empezar la conversación
+      setTimeout(() => ssInput.focus(), 350);
+    }
+
+    async function sendSSMessage() {
+      if (!isDemoActivated) return;
+      if (messageCount >= MAX_MESSAGES) return;
+
+      const input = document.getElementById('ssInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      messageCount++;
+      updateCounterBadge();
+
+      appendSSMsg(text, 'ss-user');
+      input.value = '';
+
+      const typingElem = showSSTyping();
+
+      try {
+  const res = await fetch('https://avior-ai-backend.onrender.com/api/chat-web', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ 
+      message: text,
+      nombreNegocio: activeNombreNegocio,
+      rubroNegocio: activeRubroNegocio
+    })
+  });
+        
+        removeSSTyping(typingElem);
+        const data = await res.json();
+        appendSSMsg(data.reply || 'Sin respuesta del servidor.', 'ss-bot');
+      } catch (err) {
+        removeSSTyping(typingElem);
+        appendSSMsg('No fue posible conectar con el servidor local. Asegúrate de iniciar la API en http://localhost:3000.', 'ss-bot');
+      }
+
+      if (messageCount >= MAX_MESSAGES) {
+        setTimeout(() => {
+          triggerLimitModal();
+        }, 900);
+      }
+    }
+
+    function appendSSMsg(text, className) {
+      const div = document.createElement('div');
+      div.classList.add('ss-msg', className);
+      div.innerText = text;
+      const container = document.getElementById('ssMessages');
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function showSSTyping() {
+      const div = document.createElement('div');
+      div.classList.add('ss-typing');
+      div.innerHTML = '<span></span><span></span><span></span>';
+      const container = document.getElementById('ssMessages');
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+      return div;
+    }
+
+    function removeSSTyping(elem) {
+      if (elem && elem.parentNode) {
+        elem.parentNode.removeChild(elem);
+      }
+    }
+  </script>
 </body>
 </html>
