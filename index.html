@@ -1,78 +1,64 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="preloader-active">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Scroll Studios — Agencia de Desarrollo Digital</title>
-  <meta name="description" content="Diseñamos páginas web, tiendas online, automatizaciones con IA y marcas digitales que ayudan a negocios a crecer. Scroll Studios, Lima."/>
+  <title>Scroll Studios — Arquitectura de IA y Automatización B2B</title>
+  <meta name="description" content="Diseñamos el futuro operativo de tu empresa. Agentes inteligentes y sistemas autónomos construidos para líderes B2B."/>
   <meta name="robots" content="index, follow"/>
-  <meta property="og:title"       content="Scroll Studios — Agencia de Desarrollo Digital"/>
-  <meta property="og:description" content="Experiencias digitales a medida para negocios que quieren avanzar. Web, e-commerce, IA y branding desde Lima."/>
-  <meta property="og:type"        content="website"/>
+  <meta property="og:title" content="Scroll Studios — Arquitectura de IA y Automatización para Empresas B2B"/>
+  <meta property="og:description" content="Diseñamos el futuro operativo de tu empresa. Agentes inteligentes y sistemas autónomos construidos para líderes B2B."/>
+  <meta property="og:type" content="website"/>
 
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
 
   <link rel="stylesheet" href="static/css/global.css"/>
   <link rel="stylesheet" href="static/css/home.css"/>
 </head>
-<body>
+<body class="preloader-active">
 
   <!-- ══════════════════════════
-       PRELOADER
+       SEAMLESS INTRO CURTAIN (Fondo Blanco Puro)
   ══════════════════════════ -->
-  <div class="preloader" id="preloader">
-    <div class="preloader-bg"></div>
-    <div class="preloader-counter">
-      <span id="preloader-num">0</span>
-      <span class="preloader-dash"> — </span>
-      <span class="preloader-total">100</span>
-    </div>
-    <div class="preloader-big-text">
-      <div class="preloader-line" data-line="1"><span>TU EXPERIENCIA</span></div>
-      <div class="preloader-line" data-line="2"><span>WEB ESTÁ</span></div>
-      <div class="preloader-line" data-line="3"><span class="preloader-light">CARGANDO</span></div>
-      <div class="preloader-line" data-line="4"><span class="preloader-italic">ahora.</span></div>
-    </div>
-    <div class="preloader-sub-wrap">
-      <p class="preloader-wait">Por favor espera</p>
-      <p class="preloader-wait">unos segundos.</p>
-    </div>
-    <div class="preloader-bar">
-      <div class="preloader-bar-fill" id="preloader-bar"></div>
-    </div>
-    <div class="preloader-curtain"></div>
-  </div>
+  <div class="intro-curtain" id="introCurtain"></div>
 
-  <!-- ── HEADER ── -->
+  <!-- ══════════════════════════
+       HEADER (Clay Global Nav)
+  ══════════════════════════ -->
   <header>
     <a href="index.html" class="header-logo">
-      <img src="src/logo.png" alt="Scroll Studios"/>
+      <img src="src/logo.png" alt="Scroll Studios Logo"/>
+      <span>Scroll Studios</span>
     </a>
     <nav class="header-nav">
-      <a href="index.html" class="active">Inicio</a>
-      <a href="#servicios">Servicios</a>
-      <a href="templates/projects.html">Proyectos</a>
+      <a href="#inicio" class="active">Inicio</a>
+      <a href="#capacidades">Capacidades</a>
+      <a href="#proyectos">Selected Work</a>
       <a href="templates/nosotros.html">Nosotros</a>
-      <a href="templates/contacto.html" class="header-cta">Hablemos</a>
+      <a href="javascript:void(0)" onclick="toggleSSChat()">AI Bot</a>
     </nav>
-    <button class="hamburger" id="hamburger" aria-label="Abrir menú">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="header-actions">
+      <a href="templates/contacto.html" class="header-cta btn-clay">Agendar consulta</a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </header>
 
-  <!-- ── MOBILE MENU ── -->
+  <!-- ── MENÚ MÓVIL ── -->
   <div class="mobile-menu" id="mobile-menu">
-    <a href="index.html">Inicio</a>
-    <a href="#servicios">Servicios</a>
-    <a href="templates/projects.html">Proyectos</a>
+    <a href="#inicio" onclick="document.getElementById('mobile-menu').classList.remove('open'); document.getElementById('hamburger').classList.remove('open');">Inicio</a>
+    <a href="#capacidades" onclick="document.getElementById('mobile-menu').classList.remove('open'); document.getElementById('hamburger').classList.remove('open');">Capacidades</a>
+    <a href="#proyectos" onclick="document.getElementById('mobile-menu').classList.remove('open'); document.getElementById('hamburger').classList.remove('open');">Selected Work</a>
     <a href="templates/nosotros.html">Nosotros</a>
-    <a href="templates/contacto.html" class="btn-primary">Hablemos →</a>
+    <a href="javascript:void(0)" onclick="toggleSSChat(); document.getElementById('mobile-menu').classList.remove('open'); document.getElementById('hamburger').classList.remove('open');">Probar AI Bot</a>
+    <a href="templates/contacto.html" class="btn-clay" style="margin-top: 1.5rem;">Agendar consulta técnica →</a>
   </div>
 
   <!-- ══════════════════════════
-       HERO
+       1. HERO SECTION (Impacto Inmediato & Objeto 3D)
   ══════════════════════════ -->
   <section class="hero" id="inicio">
     <div class="hero-bg">
@@ -81,358 +67,449 @@
     </div>
 
     <div class="hero-content">
-      <div class="hero-tag reveal" data-delay="0">
-        <span class="dot"></span>
-        <span class="hero-tag-text">Estudio digital independiente — Lima, Perú</span>
+      <!-- Badge Superior -->
+      <div class="hero-badge-wrap">
+        <span class="clay-badge"><span class="clay-badge-label">Scroll Studios - Lima, Perú</span></span>
       </div>
-      <h1 class="hero-title reveal" data-delay="100">
-        Diseñamos<br>experiencias<br><span class="highlight">que convierten.</span>
+
+      <!-- Titular Corto y Masivo -->
+      <h1 class="hero-title">
+        DISEÑAMOS EL FUTURO OPERATIVO DE TU EMPRESA
       </h1>
-      <p class="hero-desc reveal" data-delay="200">
-        Web, e-commerce y automatización con IA para que tu negocio se vea mejor,
-        funcione mejor y venda más.
+
+      <!-- Subtítulo de Una Sola Línea -->
+      <p class="hero-desc">
+        Agentes inteligentes y sistemas autónomos construidos para líderes B2B.
       </p>
-      <div class="hero-actions reveal" data-delay="300">
-        <a href="templates/contacto.html" class="btn-primary">Empezar proyecto →</a>
-        <a href="#servicios" class="btn-outline">Ver servicios</a>
-      </div>
-      <div class="hero-stats reveal" data-delay="400">
-        <div class="stat">
-          <span class="stat-num" data-count="15" data-suffix="+">0</span>
-          <span class="stat-label">Proyectos</span>
-        </div>
-        <div class="stat-sep"></div>
-        <div class="stat">
-          <span class="stat-num" data-count="100" data-suffix="%">0</span>
-          <span class="stat-label">Satisfacción</span>
-        </div>
-        <div class="stat-sep"></div>
-        <div class="stat">
-          <span class="stat-num" data-count="24" data-suffix="hs">0</span>
-          <span class="stat-label">Respuesta</span>
-        </div>
+
+      <!-- Botón Principal -->
+      <div class="hero-actions">
+        <a href="templates/contacto.html" class="btn-clay">AGENDAR CONSULTA PRIVADA ↗</a>
+        <a href="#proyectos" class="btn-outline">EXPLORAR PROYECTOS ↘</a>
       </div>
     </div>
 
-    <div class="hero-visual reveal" data-delay="200">
-      <div class="hero-card">
-        <div class="card-header">
-          <span class="card-dot red"></span>
-          <span class="card-dot yellow"></span>
-          <span class="card-dot green"></span>
-          <span class="card-file">scroll_studios.js</span>
-        </div>
-        <div class="card-body">
-          <p><span class="code-gray">// Soluciones digitales</span></p>
-          <p><span class="code-cyan">const</span> <span class="code-white">servicios</span> <span class="code-gray">= {</span></p>
-          <p class="indent"><span class="code-cyan">web</span><span class="code-gray">:</span> <span class="code-green">'desde S/ 750'</span><span class="code-gray">,</span></p>
-          <p class="indent"><span class="code-cyan">ecommerce</span><span class="code-gray">:</span> <span class="code-green">'desde S/ 1,000'</span><span class="code-gray">,</span></p>
-          <p class="indent"><span class="code-cyan">bot_ia</span><span class="code-gray">:</span> <span class="code-green">'desde S/ 600'</span><span class="code-gray">,</span></p>
-          <p class="indent"><span class="code-cyan">branding</span><span class="code-gray">:</span> <span class="code-green">'desde S/ 400'</span></p>
-          <p><span class="code-gray">}</span></p>
-          <br/>
-          <p><span class="code-cyan">const</span> <span class="code-white">garantia</span> <span class="code-gray">=</span> <span class="code-green">'100%'</span></p>
-          <p class="cursor-line"><span class="code-gray" id="blink-cursor">▋</span></p>
-        </div>
-      </div>
-      <div class="hero-badge">
-        <span class="badge-icon">⚡</span>
-        <div>
-          <strong>Pago único</strong>
-          <span>Sin mensualidades</span>
-        </div>
-      </div>
-    </div>
+    <!-- Contenedor 3D Interactivo (.hero-3d-stage) -->
+    <div class="hero-visual">
+      <div class="hero-3d-stage" id="heroStage">
+        <!-- Canvas Interactivo 3D con respuesta dinámica al cursor -->
+        <canvas id="hero3DCanvas" class="hero-3d-canvas" width="540" height="540"></canvas>
 
-    <div class="scroll-indicator">
-      <span>scroll</span>
-      <div class="scroll-line"></div>
+        <!-- Leyenda Circular Giratoria -->
+        <div class="circular-badge">
+          <svg viewBox="0 0 200 200" class="rotating-text-svg">
+            <path id="circlePath" d="M 100, 100 m -76, 0 a 76,76 0 1,1 152,0 a 76,76 0 1,1 -152,0" fill="none"/>
+            <text>
+              <textPath href="#circlePath" class="circular-text">
+                SCROLL STUDIOS ⎯ AUTOMATION ARCHITECTURE ⎯ AUTONOMOUS CORE ⎯
+              </textPath>
+            </text>
+          </svg>
+          <div class="circular-center-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07L19.07 4.93"/>
+            </svg>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
   <!-- ══════════════════════════
-       SERVICIOS
+       2. MÉTRICAS IMPACTANTES Y MINIMALISTAS (Bloque Horizontal Delgado)
   ══════════════════════════ -->
-  <section class="servicios" id="servicios">
+  <section class="metrics-strip-section">
+    <div class="metrics-strip reveal" data-delay="100">
+      <div class="metric-column">
+        <div class="metric-num">10x</div>
+        <div class="metric-label">Velocidad de ejecución</div>
+      </div>
+      <div class="metric-separator"></div>
+      <div class="metric-column">
+        <div class="metric-num">24/7</div>
+        <div class="metric-label">Operación autónoma</div>
+      </div>
+      <div class="metric-separator"></div>
+      <div class="metric-column">
+        <div class="metric-num">0%</div>
+        <div class="metric-label">Margen de error humano</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════
+       3. BENTO GRID VISUAL ("Show, Don't Tell" — Cero textos técnicos)
+  ══════════════════════════ -->
+  <section class="showcase-section" id="capacidades">
     <div class="section-header reveal">
-      <div class="section-tag">Lo que hacemos</div>
-      <h2>Soluciones <span class="highlight">digitales</span><br>para avanzar</h2>
-    </div>
-    <div class="servicios-grid">
-      <div class="services-track">
-      <div class="service-card reveal" data-delay="0">
-        <div class="service-num">01</div>
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <rect x="3" y="3" width="18" height="14" rx="2"/>
-            <path d="M8 21h8M12 17v4"/>
-          </svg>
-        </div>
-        <h3>Páginas Web</h3>
-        <p>Una web rápida, clara y hecha para convertir visitas en oportunidades. Código propio y SEO desde el inicio.</p>
-        <div class="service-price">desde S/ 750</div>
-        <a href="templates/contacto.html" class="service-link">Solicitar →</a>
-      </div>
-      <div class="service-card reveal" data-delay="100">
-        <div class="service-num">02</div>
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
-            <line x1="3" y1="6" x2="21" y2="6"/>
-            <path d="M16 10a4 4 0 01-8 0"/>
-          </svg>
-        </div>
-        <h3>Tiendas Online</h3>
-        <p>Tu tienda lista para vender: catálogo, carrito, pagos y una experiencia simple para tus clientes.</p>
-        <div class="service-price">S/ 1,000 — 2,500</div>
-        <a href="templates/contacto.html" class="service-link">Solicitar →</a>
-      </div>
-      <div class="service-card featured reveal" data-delay="200">
-        <div class="service-badge">Popular</div>
-        <div class="service-num">03</div>
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
-          </svg>
-        </div>
-        <h3>Bot WhatsApp con IA</h3>
-        <p>Responde consultas, filtra clientes y atiende por WhatsApp las 24 horas, sin perder el trato humano.</p>
-        <div class="service-price">desde S/ 600</div>
-        <a href="templates/contacto.html" class="service-link">Solicitar →</a>
-      </div>
-      <div class="service-card reveal" data-delay="300">
-        <div class="service-num">04</div>
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <rect x="3" y="4" width="18" height="16" rx="2"/>
-            <path d="M3 8h18M7 13h5M7 16h8"/>
-          </svg>
-        </div>
-        <h3>Landing Pages</h3>
-        <p>Una página enfocada en convertir visitas en contactos, reservas o ventas con un mensaje claro.</p>
-        <div class="service-price">desde S/ 450</div>
-        <a href="templates/contacto.html" class="service-link">Solicitar →</a>
-      </div>
-      </div>
-    </div>
-    <div class="services-carousel-controls" aria-label="Navegación de servicios">
-      <button class="services-carousel-button" type="button" data-services-prev aria-label="Servicio anterior">←</button>
-      <div class="services-carousel-dots" aria-hidden="true"></div>
-      <button class="services-carousel-button" type="button" data-services-next aria-label="Siguiente servicio">→</button>
-    </div>
-    <div class="diff-banner reveal">
-      <div class="diff-item">
-        <span class="diff-dot"></span>
-        <span>Pago único, sin mensualidades</span>
-      </div>
-      <div class="diff-sep"></div>
-      <div class="diff-item">
-        <span class="diff-dot"></span>
-        <span>100% personalizado, sin plantillas</span>
-      </div>
-      <div class="diff-sep"></div>
-      <div class="diff-item">
-        <span class="diff-dot"></span>
-        <span>Responsive y optimizado para celulares</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════
-       PROCESO
-  ══════════════════════════ -->
-  <section class="process" id="proceso">
-    <div class="process-header reveal">
-      <div class="section-tag">Cómo trabajamos</div>
-      <h2>De la idea a una experiencia <span class="highlight">que funciona.</span></h2>
-    </div>
-    <div class="process-grid">
-      <article class="process-step reveal" data-delay="0">
-        <span class="process-num">01</span>
-        <h3>Entendemos</h3>
-        <p>Definimos tu objetivo, tu audiencia y lo que debe lograr el proyecto.</p>
-      </article>
-      <article class="process-step reveal" data-delay="100">
-        <span class="process-num">02</span>
-        <h3>Diseñamos</h3>
-        <p>Convertimos la estrategia en una experiencia clara, atractiva y fácil de usar.</p>
-      </article>
-      <article class="process-step reveal" data-delay="200">
-        <span class="process-num">03</span>
-        <h3>Construimos</h3>
-        <p>Desarrollamos con código propio, cuidando rendimiento, detalle y escalabilidad.</p>
-      </article>
-      <article class="process-step reveal" data-delay="300">
-        <span class="process-num">04</span>
-        <h3>Lanzamos</h3>
-        <p>Publicamos, medimos y te dejamos una solución lista para seguir creciendo.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════
-       NOSOTROS (preview)
-  ══════════════════════════ -->
-  <section class="nosotros" id="nosotros">
-    <div class="nosotros-content reveal" data-delay="0">
-      <div class="section-tag">Quiénes somos</div>
-      <h2>Un equipo joven<br>con visión <span class="highlight">grande.</span></h2>
-      <p class="nosotros-desc">
-        Somos Scroll Studios, un estudio digital que convierte objetivos de negocio
-        en experiencias web claras, rápidas y memorables. Trabajamos con código propio.
-      </p>
-      <p class="nosotros-desc">
-        Te acompañamos desde la primera idea hasta la entrega final, con comunicación
-        directa, decisiones claras y una solución que puedas hacer crecer.
-      </p>
-      <ul class="nosotros-values">
-        <li class="reveal" data-delay="100">
-          <span class="value-check">✓</span>
-          Código limpio y bien documentado
-        </li>
-        <li class="reveal" data-delay="200">
-          <span class="value-check">✓</span>
-          Previsualización antes de cualquier pago
-        </li>
-        <li class="reveal" data-delay="300">
-          <span class="value-check">✓</span>
-          Comunicación directa por WhatsApp
-        </li>
-        <li class="reveal" data-delay="400">
-          <span class="value-check">✓</span>
-          Garantía de 15 días post-entrega
-        </li>
-      </ul>
-      <a href="templates/nosotros.html" class="btn-primary" style="margin-top:2rem; display:inline-flex;">Conocernos mejor →</a>
+      <div class="section-tag">[ CAPACIDADES ]</div>
+      <h2 class="section-title">INGENIERÍA VISUAL</h2>
     </div>
 
-    <div class="nosotros-visual reveal" data-delay="150">
-      <div class="profile-card">
-        <div class="profile-img">
-          <div class="profile-placeholder">
-            <img src="src/logo-profile.png" alt="Scroll Studios"/>
+    <div class="bento-grid">
+      <!-- Tarjeta 1 (Showcase 24/7): Dashboard animado con indicador [ ACTIVE AGENTS ] y gráfica en tiempo real -->
+      <article class="bento-card bento-wide reveal" data-delay="0">
+        <div class="bento-card-top">
+          <div class="bento-badge-group">
+            <span class="bento-badge">[ ACTIVE AGENTS ]</span>
+            <span class="live-pulse-indicator">
+              <span class="live-pulse-dot"></span>
+              12 EJECUTANDO
+            </span>
+          </div>
+          <span class="bento-sla-pill">99.98% SLA</span>
+        </div>
+
+        <div class="bento-headline">
+          <h3>OPERACIÓN AUTÓNOMA 24/7</h3>
+        </div>
+
+        <!-- Componente Gráfico Flotante Tipo Dashboard -->
+        <div class="bento-dashboard-ui">
+          <div class="dash-telemetry-header">
+            <div class="dash-stat-item">
+              <span class="dash-stat-label">Throughput</span>
+              <strong class="dash-stat-value">4,820 tx/min</strong>
+            </div>
+            <div class="dash-stat-item">
+              <span class="dash-stat-label">Latencia de Enrutamiento</span>
+              <strong class="dash-stat-value">&lt; 4ms</strong>
+            </div>
+            <div class="dash-stat-item">
+              <span class="dash-stat-label">Agentes Conectados</span>
+              <strong class="dash-stat-value">12 / 12 Online</strong>
+            </div>
+          </div>
+
+          <!-- Gráfica sutil animada en tiempo real -->
+          <div class="dash-live-graph-container">
+            <svg class="dash-graph-svg" viewBox="0 0 700 160" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="graphGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#111113" stop-opacity="0.12"/>
+                  <stop offset="100%" stop-color="#111113" stop-opacity="0.00"/>
+                </linearGradient>
+                <linearGradient id="strokeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#111113" stop-opacity="0.3"/>
+                  <stop offset="50%" stop-color="#111113" stop-opacity="1"/>
+                  <stop offset="100%" stop-color="#10B981" stop-opacity="0.9"/>
+                </linearGradient>
+              </defs>
+              <path class="graph-fill-area" d="M0,130 Q90,70 180,95 T360,50 T540,80 T700,40 L700,160 L0,160 Z" fill="url(#graphGradient)"/>
+              <path class="graph-wave-line" d="M0,130 Q90,70 180,95 T360,50 T540,80 T700,40" fill="none" stroke="url(#strokeGradient)" stroke-width="2.5"/>
+              <circle class="graph-pulse-node" cx="700" cy="40" r="5" fill="#10B981"/>
+            </svg>
+          </div>
+
+          <!-- Nodos de actividad en streaming -->
+          <div class="dash-nodes-row">
+            <div class="dash-node-chip">
+              <span class="chip-status-dot online"></span>
+              <span class="chip-title">Agent_Fiscal</span>
+              <span class="chip-metric">0.8s</span>
+            </div>
+            <div class="dash-node-chip">
+              <span class="chip-status-dot online"></span>
+              <span class="chip-title">Agent_CRM_Routing</span>
+              <span class="chip-metric">2.1s</span>
+            </div>
+            <div class="dash-node-chip">
+              <span class="chip-status-dot online"></span>
+              <span class="chip-title">Agent_DocParser</span>
+              <span class="chip-metric">0.4s</span>
+            </div>
           </div>
         </div>
-        <div class="profile-info">
-          <strong>Scroll Studios</strong>
-          <span>Lima, Perú 🇵🇪</span>
-          <div class="profile-tags">
-            <span>Python</span>
-            <span>Web</span>
-            <span>IA</span>
+      </article>
+
+      <!-- Tarjeta 2 (Visión & Inteligencia): Visor futurista con escaneo láser suave sobre documento/data -->
+      <article class="bento-card reveal" data-delay="150">
+        <div class="bento-card-top">
+          <span class="bento-badge">[ VISIÓN & INTELIGENCIA ]</span>
+          <span class="bento-sub-pill">OCR // VECTOR</span>
+        </div>
+
+        <div class="bento-headline">
+          <h3>EXTRACCIÓN DOCUMENTAL</h3>
+        </div>
+
+        <!-- Visor de interfaz futurista con efecto láser -->
+        <div class="bento-scanner-viewport">
+          <div class="scanner-grid-overlay"></div>
+
+          <!-- Línea de escaneo láser suave -->
+          <div class="laser-scanner-beam">
+            <div class="laser-glow-trail"></div>
+          </div>
+
+          <!-- Documento esquemático técnico -->
+          <div class="scanner-doc-canvas">
+            <div class="doc-meta-header">
+              <span class="doc-tag-code">DOC_B2B_EXTRACTOR.SYS</span>
+              <span class="doc-status-live">● ESCANEANDO</span>
+            </div>
+
+            <div class="doc-data-lines">
+              <div class="doc-field-row">
+                <span class="field-label">ID ENTIDAD:</span>
+                <span class="field-val">PE-20608945123</span>
+              </div>
+              <div class="doc-field-row">
+                <span class="field-label">TOTAL VALIDADO:</span>
+                <span class="field-val highlight">USD $48,250.00</span>
+              </div>
+              <div class="doc-field-row">
+                <span class="field-label">CONCILIACIÓN:</span>
+                <span class="field-val success">100% CUADRADO</span>
+              </div>
+            </div>
+
+            <div class="scanner-chips-footer">
+              <span class="scan-tag">✓ RUC VALIDADO</span>
+              <span class="scan-tag">✓ SCHEMA MATCH</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="nosotros-stats">
-        <div class="n-stat reveal" data-delay="200">
-          <span class="n-num" data-count="15" data-suffix="+">0</span>
-          <span class="n-label">Proyectos</span>
+      </article>
+
+      <!-- Tarjeta 3 (Rendimiento & Conexión): Contador digital gigante de 0 ms a < 12 ms -->
+      <article class="bento-card reveal" data-delay="250">
+        <div class="bento-card-top">
+          <span class="bento-badge">[ RENDIMIENTO & CONEXIÓN ]</span>
+          <span class="bento-sub-pill">LATENCIA ULTRA-BAJA</span>
         </div>
-        <div class="n-stat reveal" data-delay="300">
-          <span class="n-num" data-count="4" data-suffix="">0</span>
-          <span class="n-label">Servicios</span>
+
+        <div class="bento-headline">
+          <h3>VELOCIDAD DE EJECUCIÓN</h3>
         </div>
-        <div class="n-stat reveal" data-delay="400">
-          <span class="n-num" data-count="100" data-suffix="%">0</span>
-          <span class="n-label">Satisfacción</span>
+
+        <!-- Contador digital gigante animado con GSAP -->
+        <div class="bento-speed-container">
+          <div class="speed-giant-display">
+            <span class="speed-operator">&lt;&nbsp;</span>
+            <span class="speed-digital-counter" id="speedCounter" data-target="12">12</span>
+            <span class="speed-unit">ms</span>
+          </div>
+
+          <div class="speed-detail-bar">
+            <div class="speed-pulse-indicator">
+              <span class="speed-dot"></span>
+              <span>GLOBAL EDGE CDN · INFERENCIA EN TIEMPO REAL</span>
+            </div>
+          </div>
+
+          <!-- Micro barra de telemetría de milisegundos -->
+          <div class="speed-timeline-track">
+            <div class="timeline-segment active" style="width: 25%;"></div>
+            <div class="timeline-segment active" style="width: 35%;"></div>
+            <div class="timeline-segment active" style="width: 40%;"></div>
+          </div>
+          <div class="speed-timeline-labels">
+            <span>DNS 1ms</span>
+            <span>INFERENCIA 7ms</span>
+            <span>SYNC 4ms</span>
+          </div>
         </div>
-      </div>
-      <div class="tech-stack">
-        <span class="tech-label">Stack tecnológico</span>
-        <div class="tech-pills">
-          <span>HTML</span><span>CSS</span><span>JS</span>
-          <span>Python</span><span>Flask</span><span>OpenAI</span>
-        </div>
-      </div>
+      </article>
     </div>
   </section>
 
   <!-- ══════════════════════════
-       CTA FINAL
+       4. SECCIÓN "SELECTED WORK" / PROYECTOS DESTACADOS
   ══════════════════════════ -->
-  <section class="cta-final" id="cta">
-    <div class="cta-inner">
-      <div class="cta-tag reveal">
-        <span class="section-tag">¿Empezamos?</span>
+  <section class="selected-work-section" id="proyectos">
+    <div class="section-header reveal">
+      <div class="section-tag">[ SELECTED WORK ]</div>
+      <h2 class="section-title">ARQUITECTURAS IMPLEMENTADAS</h2>
+    </div>
+
+    <div class="work-gallery-grid">
+      <!-- Proyecto 01 -->
+      <article class="project-card reveal" data-delay="0" onclick="window.location.href='templates/projects.html'">
+        <div class="project-card-header">
+          <span class="work-badge">[ IA A MEDIDA ⎯ 2026 ]</span>
+          <h3 class="project-title">CORE OPERATIVO AUTÓNOMO</h3>
+        </div>
+
+        <div class="project-media-viewport">
+          <div class="mockup-window">
+            <div class="mockup-bar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="mockup-title">scroll.architecture // command_center</span>
+            </div>
+            <div class="mockup-body">
+              <div class="mockup-row-preview">
+                <div class="mockup-metric-card">
+                  <span class="m-label">AGENTES DESPLEGADOS</span>
+                  <span class="m-val">28 Activos</span>
+                </div>
+                <div class="mockup-metric-card">
+                  <span class="m-label">TRANSACCIONES / DÍA</span>
+                  <span class="m-val">1.4M</span>
+                </div>
+                <div class="mockup-metric-card">
+                  <span class="m-label">CONFIABILIDAD</span>
+                  <span class="m-val">99.99%</span>
+                </div>
+              </div>
+              <div class="mockup-chart-strip">
+                <div class="chart-bar" style="height: 45%;"></div>
+                <div class="chart-bar" style="height: 65%;"></div>
+                <div class="chart-bar" style="height: 90%;"></div>
+                <div class="chart-bar" style="height: 75%;"></div>
+                <div class="chart-bar" style="height: 100%;"></div>
+                <div class="chart-bar" style="height: 85%;"></div>
+                <div class="chart-bar" style="height: 95%;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="project-overlay-pill">
+            <span>VER ARQUITECTURA ↗</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Proyecto 02 -->
+      <article class="project-card reveal" data-delay="150" onclick="window.location.href='templates/projects.html'">
+        <div class="project-card-header">
+          <span class="work-badge">[ INFRAESTRUCTURA B2B ⎯ 2026 ]</span>
+          <h3 class="project-title">PIPELINE FISCAL & ERP CONECTADO</h3>
+        </div>
+
+        <div class="project-media-viewport">
+          <div class="mockup-window">
+            <div class="mockup-bar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="mockup-title">scroll.pipeline // fiscal_erp_stream</span>
+            </div>
+            <div class="mockup-body">
+              <div class="mockup-row-preview">
+                <div class="mockup-metric-card">
+                  <span class="m-label">SINCRONIZACIÓN SAP / ERP</span>
+                  <span class="m-val">0.3s</span>
+                </div>
+                <div class="mockup-metric-card">
+                  <span class="m-label">COMPROBANTES SUNAT</span>
+                  <span class="m-val">100% OK</span>
+                </div>
+                <div class="mockup-metric-card">
+                  <span class="m-label">DESVIACIÓN FISCAL</span>
+                  <span class="m-val">0.00%</span>
+                </div>
+              </div>
+              <div class="mockup-pipeline-nodes">
+                <div class="pipe-node">ENTRADA ERP</div>
+                <div class="pipe-arrow">→</div>
+                <div class="pipe-node">FIRMA XML</div>
+                <div class="pipe-arrow">→</div>
+                <div class="pipe-node active">VAL. TRIBUTARIA</div>
+                <div class="pipe-arrow">→</div>
+                <div class="pipe-node">CONCILIACIÓN</div>
+              </div>
+            </div>
+          </div>
+          <div class="project-overlay-pill">
+            <span>VER ARQUITECTURA ↗</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Proyecto 03 -->
+      <article class="project-card reveal" data-delay="250" onclick="window.location.href='templates/projects.html'">
+        <div class="project-card-header">
+          <span class="work-badge">[ AGENTES COGNITIVOS ⎯ 2026 ]</span>
+          <h3 class="project-title">ATENCIÓN & RESOLUCIÓN PREDICTIVA</h3>
+        </div>
+
+        <div class="project-media-viewport">
+          <div class="mockup-window">
+            <div class="mockup-bar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="mockup-title">scroll.cognitive // dispatch_engine</span>
+            </div>
+            <div class="mockup-body">
+              <div class="mockup-row-preview">
+                <div class="mockup-metric-card">
+                  <span class="m-label">RESOLUCIÓN DE PRIMER CONTACTO</span>
+                  <span class="m-val">94.6%</span>
+                </div>
+                <div class="mockup-metric-card">
+                  <span class="m-label">VELOCIDAD PROMEDIO</span>
+                  <span class="m-val">&lt; 0.5s</span>
+                </div>
+                <div class="mockup-metric-card">
+                  <span class="m-label">INTERACCIÓN HUMANA REQUERIDA</span>
+                  <span class="m-val">5.4%</span>
+                </div>
+              </div>
+              <div class="mockup-chat-stream-preview">
+                <div class="stream-bubble user">Consulta de inventario B2B y cotización automática al por mayor.</div>
+                <div class="stream-bubble bot">Cotización generada y confirmada en inventario en 0.2s con despacho programado.</div>
+              </div>
+            </div>
+          </div>
+          <div class="project-overlay-pill">
+            <span>VER ARQUITECTURA ↗</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════
+       5. CIERRE CONVERSIÓN MINIMALISTA B2B
+  ══════════════════════════ -->
+  <footer class="conversion-footer" id="cta">
+    <div class="conv-cta-block reveal">
+      <div class="conv-badge-wrap">
+        <span class="clay-badge">[ INICIAR CONVERSIÓN ]</span>
       </div>
-      <h2 class="cta-title reveal" data-delay="100">
-        Hagamos que tu idea<br>se vuelva <span class="highlight">real.</span>
+      <h2 class="conv-cta-title">
+        DISEÑEMOS TU ARQUITECTURA AUTÓNOMA
       </h2>
-      <p class="cta-sub reveal" data-delay="200">
-        Cuéntanos qué quieres construir y recibe en menos de 24 horas<br>
-        una propuesta clara, sin costo y sin compromiso.
+      <p class="conv-cta-desc">
+        Agenda una sesión estratégica directa con nuestros ingenieros de sistemas.
       </p>
-      <a href="templates/contacto.html" class="cta-btn reveal" data-delay="300">
-        <span class="cta-btn-text">Cuéntanos tu idea</span>
-        <span class="cta-btn-arrow">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </span>
-      </a>
+      <div class="conv-actions">
+        <a href="templates/contacto.html" class="btn-clay">
+          AGENDAR CONSULTA PRIVADA ↗
+        </a>
+      </div>
     </div>
-    <div class="cta-deco">∞</div>
-  </section>
 
-  <!-- ── FOOTER ── -->
-  <footer>
-    <div class="footer-top">
-      <div class="footer-brand">
-        <div class="footer-logo-wrap">
-          <a href="index.html">
-            <img src="src/logo.png" alt="Scroll Studios"/>
-          </a>
-        </div>  
-        <p class="footer-desc">
-          Agencia de desarrollo digital en Lima. Webs, e-commerce y bots con IA a medida.
-        </p>
-        <div class="footer-social">
-          <a href="#" aria-label="Instagram">ig</a>
-          <a href="#" aria-label="Facebook">fb</a>
-          <a href="https://wa.me/51987355501" aria-label="WhatsApp">wa</a>
-        </div>
+    <div class="conv-footer-bar reveal" data-delay="100">
+      <div class="conv-footer-logo">
+        <a href="index.html">Scroll Studios</a>
+        <span class="conv-copyright">© 2026 Scroll Studios ⎯ Automation Architecture ⎯ Lima / Global</span>
       </div>
-      <div class="footer-col">
-        <h4>Servicios</h4>
-        <ul>
-          <li><a href="#servicios">Páginas web</a></li>
-          <li><a href="#servicios">Tiendas online</a></li>
-          <li><a href="#servicios">Bots con IA</a></li>
-          <li><a href="#servicios">Landing Pages</a></li>
-        </ul>
+      <div class="conv-quick-links">
+        <a href="#inicio">Inicio</a>
+        <a href="#capacidades">Capacidades</a>
+        <a href="#proyectos">Selected Work</a>
+        <a href="templates/nosotros.html">Nosotros</a>
+        <a href="templates/contacto.html">Contacto</a>
       </div>
-      <div class="footer-col">
-        <h4>Navegación</h4>
-        <ul>
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="templates/nosotros.html">Nosotros</a></li>
-          <li><a href="templates/contacto.html">Contacto</a></li>
-          <li><a href="https://wa.me/51987355501">+51 987 355 501</a></li>
-        </ul>
+      <div class="conv-social">
+        <a href="https://wa.me/51987355501" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="mailto:contacto@scrollstudios.pe">Email</a>
       </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2025 Scroll Studios — Todos los derechos reservados</p>
-      <span>Hecho en Lima 🇵🇪</span>
     </div>
   </footer>
 
   <!-- WhatsApp flotante -->
-  <a href="https://wa.me/51987355501" target="_blank" class="wa-btn" aria-label="WhatsApp">
+  <a href="https://wa.me/51987355501" target="_blank" class="wa-btn" aria-label="Contactar por WhatsApp">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white">
       <path d="M16 0C7.163 0 0 7.163 0 16c0 2.82.736 5.469 2.027 7.774L0 32l8.454-2.007A15.93 15.93 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 01-6.756-1.839l-.484-.287-5.02 1.193 1.243-4.893-.317-.503A13.234 13.234 0 012.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.878c-.398-.199-2.354-1.162-2.719-1.295-.365-.133-.63-.199-.896.199-.265.398-1.029 1.295-1.261 1.56-.232.265-.465.298-.863.1-.398-.199-1.681-.619-3.202-1.977-1.183-1.056-1.981-2.36-2.213-2.758-.232-.398-.025-.613.174-.811.179-.178.398-.465.597-.697.199-.232.265-.398.398-.664.133-.265.066-.497-.033-.697-.1-.199-.896-2.16-1.228-2.957-.323-.776-.651-.671-.896-.683l-.763-.013c-.265 0-.697.1-1.062.497-.365.398-1.394 1.362-1.394 3.322s1.427 3.853 1.626 4.118c.199.265 2.808 4.287 6.803 5.011.951.163 1.693.261 2.271.334.954.121 1.823.104 2.51-.061.765-.183 2.354-.963 2.686-1.893.332-.93.332-1.727.232-1.893-.099-.166-.365-.265-.763-.464z"/>
     </svg>
   </a>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="static/js/global.js"></script>
-  <script src="static/js/home.js"></script>
   <!-- ══════════════════════════
-       WIDGET AVIOR AI — SCROLL STUDIOS (Senior UI/UX)
+       WIDGET AVIOR AI (Demo Interactiva Preservada)
   ══════════════════════════ -->
   <div class="ss-cta-tooltip" id="ssCtaTooltip" onclick="toggleSSChat()">
-    <span class="ss-pulse-dot"></span> Probar demo interactiva con mi negocio
+    <span class="ss-pulse-dot"></span>
+    <span class="ss-cta-tooltip-label">Probar demo interactiva con mi negocio</span>
   </div>
 
   <button class="ss-widget-btn" id="ssWidgetBtn" onclick="toggleSSChat()" aria-label="Abrir asistente Avior">
@@ -471,25 +548,24 @@
           <span>Configuración de la demo:</span>
         </div>
         <div class="ss-demo-inputs">
-          <input type="text" class="ss-demo-input" id="demoNombre" placeholder="Nombre de tu Empresa (Ej: Barbería Silva)" oninput="this.classList.remove('error')"/>
-          <input type="text" class="ss-demo-input" id="demoRubro" placeholder="Rubro / Sector (Ej: Estética y Cortes)" oninput="this.classList.remove('error')"/>
+          <input type="text" class="ss-demo-input" id="demoNombre" placeholder="Nombre de tu Empresa" oninput="this.classList.remove('error')"/>
+          <input type="text" class="ss-demo-input" id="demoRubro" placeholder="Rubro / Sector" oninput="this.classList.remove('error')"/>
           <button type="button" class="ss-demo-btn" id="ssStartDemoBtn" onclick="activateSSDemo()">Probar demo con mi negocio</button>
         </div>
       </div>
     </div>
 
-    <!-- Modal superpuesto al alcanzar el límite de 5 mensajes -->
     <div class="ss-limit-modal" id="ssLimitModal">
       <div class="ss-limit-card">
         <div class="ss-limit-icon">
-          <svg viewBox="0 0 24 24" fill="currentColor" style="width:32px;height:32px;color:#8b5cf6;">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:32px;height:32px;color:var(--text-primary);">
             <path d="M12 2C12 7.5 16.5 12 22 12C16.5 12 12 16.5 12 22C12 16.5 7.5 12 2 12C7.5 12 12 7.5 12 2Z"/>
           </svg>
         </div>
         <h3>Límite de demo alcanzado</h3>
         <p>Has completado los <strong>5 mensajes de prueba</strong> del simulador Avior para <strong id="ssLimitNombre">tu negocio</strong>.</p>
         <p class="ss-limit-subtext">¿Deseas implementar la tecnología de Avior en tu canal oficial de WhatsApp 24/7?</p>
-        <a href="https://wa.me/51987355501?text=Hola%20Scroll%20Studios,%20prob%C3%A9%20la%20demo%20de%20Avior%20y%20quiero%20implementarla%20en%20mi%20negocio" target="_blank" class="ss-limit-cta-btn">
+        <a href="https://wa.me/51987355501?text=Hola%20Scroll%20Studios,%20prob%C3%A9%20la%20demo%20de%20Avior%20y%20quiero%20implementarla%20en%20mi%20negocio" target="_blank" class="ss-limit-cta-btn btn-clay">
           Implementar Avior en mi WhatsApp
         </a>
       </div>
@@ -505,6 +581,13 @@
     </div>
   </div>
 
+  <!-- Scripts Globales y de Página -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="static/js/global.js"></script>
+  <script src="static/js/home.js"></script>
+
+  <!-- Lógica Widget Avior -->
   <script>
     const MAX_MESSAGES = 5;
     let messageCount = 0;
@@ -548,21 +631,19 @@
       }
     }
 
-    // Mostrar tooltip CTA flotante a los 2 segundos de cargar la página
-    setTimeout(() => {
+    window.addEventListener('ss:preloader-complete', () => setTimeout(() => {
       const tooltip = document.getElementById('ssCtaTooltip');
       const box = document.getElementById('ssChatBox');
       if (tooltip && box && !box.classList.contains('open') && !isTooltipDismissed) {
         tooltip.classList.add('visible');
       }
-    }, 2000);
+    }, 3500), { once: true });
 
     function toggleSSChat() {
       const box = document.getElementById('ssChatBox');
       const tooltip = document.getElementById('ssCtaTooltip');
       const isMobile = window.innerWidth <= 600;
       
-      // Ocultar tooltip permanentemente al interactuar con el widget
       isTooltipDismissed = true;
       if (tooltip) {
         tooltip.classList.remove('visible');
@@ -602,7 +683,6 @@
       activeRubroNegocio = rubroInput.value.trim();
       isDemoActivated = true;
 
-      // Animación de ocultar el panel de formulario
       const demoSetup = document.querySelector('.ss-demo-setup');
       if (demoSetup) {
         demoSetup.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
@@ -611,24 +691,19 @@
         setTimeout(() => demoSetup.style.display = 'none', 300);
       }
 
-      // Desbloquear chatbox e input inferior
       const ssInput = document.getElementById('ssInput');
       const ssSendBtn = document.getElementById('ssSendBtn');
       ssInput.disabled = false;
       ssSendBtn.disabled = false;
       ssInput.placeholder = `Realiza una consulta a Avior sobre ${activeNombreNegocio}...`;
 
-      // Mensaje automático de confirmación de la IA
       appendSSMsg(`Simulador activado. Avior responderá como asistente virtual de ${activeNombreNegocio}. Puedes realizar cualquier consulta de un cliente.`, 'ss-bot');
-
-      // Enfocar input para empezar la conversación
       setTimeout(() => ssInput.focus(), 350);
     }
 
     async function sendSSMessage() {
       if (!isDemoActivated) return;
 
-      // Si ya alcanzó el límite de 5 mensajes, bloquear envío y desplegar modal al intentar la siguiente interacción
       if (messageCount >= MAX_MESSAGES) {
         triggerLimitModal();
         return;
@@ -662,10 +737,9 @@
         appendSSMsg(data.reply || 'Sin respuesta del servidor.', 'ss-bot');
       } catch (err) {
         removeSSTyping(typingElem);
-        appendSSMsg('No fue posible conectar con el servidor local. Asegúrate de iniciar la API.', 'ss-bot');
+        appendSSMsg('Asistente en modo offline. Puedes agendar una llamada con nuestro equipo técnico.', 'ss-bot');
       }
 
-      // Al completar los 5 mensajes, actualizar placeholder sin interrumpir la lectura del usuario
       if (messageCount >= MAX_MESSAGES) {
         if (input) {
           input.placeholder = "Demo finalizada - Haz clic para continuar...";

@@ -1,6 +1,7 @@
 /* ═══════════════════════════════════════
    SCROLL STUDIOS — home.js
-   GSAP: Preloader + Animaciones + Cursor
+   GSAP: Preloader + Animaciones + 3D Canvas + Speed Counter
+   Estilo: Clay Global (clay.global)
 ═══════════════════════════════════════ */
 
 if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
@@ -8,185 +9,409 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
 }
 
 /* ─────────────────────────────────────
-   PRELOADER
+   SEAMLESS OBJECT-TRANSIT HERO PRELOADER
+   (Morphing 3D Core: Center -> Hero Position)
 ───────────────────────────────────── */
 function initPreloader() {
-  const preloader = document.getElementById('preloader');
-  const numEl     = document.getElementById('preloader-num');
-  const barEl     = document.getElementById('preloader-bar');
-  const counter   = document.querySelector('.preloader-counter');
-  const lines     = document.querySelectorAll('.preloader-line span');
-  const subWrap   = document.querySelector('.preloader-sub-wrap');
-  const curtain   = document.querySelector('.preloader-curtain');
+  const curtain    = document.getElementById('introCurtain');
+  const heroVisual = document.querySelector('.hero-visual');
 
-  if (!preloader) return;
+  // Iniciar inmediatamente el render continuo de la escultura 3D a 60 FPS
+  init3DHeroCanvas();
 
-  if (typeof gsap === 'undefined') {
-    preloader.classList.add('done');
-    preloader.style.display = 'none';
+  if (!heroVisual || !curtain || typeof gsap === 'undefined') {
+    if (curtain) curtain.style.display = 'none';
+    document.documentElement.classList.remove('preloader-active');
+    document.body.classList.remove('preloader-active');
     document.body.style.overflow = '';
+    window.scrollTo(0, 0);
+    initScrollAnimations();
+    window.dispatchEvent(new Event('ss:preloader-complete'));
     return;
   }
 
+  // Prevenir desajuste de scroll al refrescar
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  document.documentElement.classList.remove('preloader-active');
+  document.body.classList.remove('preloader-active');
+  document.body.style.overflow = '';
+  window.scrollTo(0, 0);
+  document.documentElement.classList.add('preloader-active');
+  document.body.classList.add('preloader-active');
   document.body.style.overflow = 'hidden';
 
-  const tl = gsap.timeline();
+  // 1. Cálculo matemático de coordenadas hacia el centro de la pantalla
+  const rect = heroVisual.getBoundingClientRect();
+  const viewportCenterX = window.innerWidth / 2;
+  const viewportCenterY = window.innerHeight / 2;
+  const visualCenterX   = rect.left + rect.width / 2;
+  const visualCenterY   = rect.top + rect.height / 2;
 
-  // 1. Contador aparece
-  tl.to(counter, { opacity: 1, duration: 0.4, ease: 'power2.out' })
+  const deltaX = viewportCenterX - visualCenterX;
+  const deltaY = viewportCenterY - visualCenterY;
 
-  // 2. Líneas caen una por una (stagger)
-  .to(lines, {
-    y: 0,
-    duration: 1,
-    ease: 'power4.out',
-    stagger: 0.12,
-  }, '-=0.1')
+  const isMobile = window.innerWidth <= 768;
+  const introScale = isMobile ? 0.88 : 0.92;
 
-  // 3. Sub text aparece
-  .to(subWrap, { opacity: 1, duration: 0.5, ease: 'power2.out' }, '-=0.5')
-
-  // 4. Contador 0→100 + barra
-  .to({}, {
-    duration: 2,
-    ease: 'power1.inOut',
-    onUpdate: function() {
-      const val = Math.round(this.progress() * 100);
-      numEl.textContent = val;
-      barEl.style.width = val + '%';
-    },
-  }, '-=0.8')
-
-  // 5. Pausa breve
-  .to({}, { duration: 0.15 })
-
-  // 6. Todo sale hacia arriba
-  .to(lines, {
-    y: '-110%',
-    duration: 0.7,
-    ease: 'power4.in',
-    stagger: 0.06,
-  })
-  .to([counter, subWrap], { opacity: 0, duration: 0.3 }, '<')
-
-  // 7. Cortina cyan sube
-  .to(curtain, {
-    scaleY: 1,
-    duration: 0.55,
-    ease: 'power3.inOut',
-    transformOrigin: 'bottom',
-  }, '-=0.15')
-
-  // 8. Cortina baja y revela la web
-  .to(curtain, {
-    scaleY: 0,
-    duration: 0.65,
-    ease: 'power3.inOut',
-    transformOrigin: 'top',
-  })
-
-  // 9. Fin
-  .add(() => {
-    preloader.classList.add('done');
-    gsap.set(preloader, { display: 'none' });
-    document.body.style.overflow = '';
-    initHeroAnimations();
-    initScrollAnimations();
-  });
-}
-
-
-/* ─────────────────────────────────────
-   HERO ANIMATIONS
-───────────────────────────────────── */
-function initHeroAnimations() {
-  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-  tl.fromTo('.hero-tag',     { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 })
-    .fromTo('.hero-title',   { opacity: 0, y: 60 },
-                             { opacity: 1, y: 0, duration: 0.9 }, '-=0.2')
-    .fromTo('.hero-desc',    { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7 }, '-=0.4')
-    .fromTo('.hero-actions', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
-    .fromTo('.hero-stats',   { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, '-=0.2')
-    .fromTo('.hero-visual',  { opacity: 0, x: 50  }, { opacity: 1, x: 0, duration: 1   }, '-=0.8');
-}
-
-
-/* ─────────────────────────────────────
-   SCROLL ANIMATIONS
-───────────────────────────────────── */
-function initScrollAnimations() {
-
-  gsap.fromTo('.service-card', { opacity: 0, y: 60 }, {
-    opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', stagger: 0.12,
-    scrollTrigger: { trigger: '.servicios-grid', start: 'top 80%' }
+  // 2. Estado inicial: Escultura 3D en el centro sobre fondo blanco puro
+  gsap.set(heroVisual, {
+    x: deltaX,
+    y: deltaY,
+    scale: introScale,
+    zIndex: 1000,
+    position: 'relative',
+    opacity: 0,
+    transformOrigin: 'center center'
   });
 
-  gsap.fromTo('.section-header', { opacity: 0, y: 40 }, {
-    opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
-    scrollTrigger: { trigger: '.section-header', start: 'top 85%' }
-  });
+  // Ocultar elementos circundantes para sincronizar la entrada
+  gsap.set('header',            { y: -25, opacity: 0 });
+  gsap.set('.hero-badge-wrap',  { y: 20, opacity: 0 });
+  gsap.set('.hero-title',       { y: 35, opacity: 0 });
+  gsap.set('.hero-desc',        { y: 20, opacity: 0 });
+  gsap.set('.hero-actions',     { y: 15, opacity: 0 });
 
-  gsap.fromTo('.nosotros-content', { opacity: 0, x: -50 }, {
-    opacity: 1, x: 0, duration: 0.9, ease: 'power2.out',
-    scrollTrigger: { trigger: '.nosotros', start: 'top 75%' }
-  });
-
-  gsap.fromTo('.nosotros-visual', { opacity: 0, x: 50 }, {
-    opacity: 1, x: 0, duration: 0.9, ease: 'power2.out',
-    scrollTrigger: { trigger: '.nosotros', start: 'top 75%' }
-  });
-
-  gsap.fromTo('.nosotros-values li', { opacity: 0, x: -20 }, {
-    opacity: 1, x: 0, duration: 0.5, ease: 'power2.out', stagger: 0.1,
-    scrollTrigger: { trigger: '.nosotros-values', start: 'top 80%' }
-  });
-
-  gsap.fromTo('.contacto-header', { opacity: 0, y: 40 }, {
-    opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
-    scrollTrigger: { trigger: '.contacto-header', start: 'top 85%' }
-  });
-
-  gsap.fromTo('.contacto-info', { opacity: 0, x: -40 }, {
-    opacity: 1, x: 0, duration: 0.8, ease: 'power2.out',
-    scrollTrigger: { trigger: '.contacto-grid', start: 'top 80%' }
-  });
-
-  gsap.fromTo('.contacto-form', { opacity: 0, x: 40 }, {
-    opacity: 1, x: 0, duration: 0.8, ease: 'power2.out',
-    scrollTrigger: { trigger: '.contacto-grid', start: 'top 80%' }
-  });
-
-  gsap.fromTo('.diff-banner', { opacity: 0, y: 20 }, {
-    opacity: 1, y: 0, duration: 0.6, ease: 'power2.out',
-    scrollTrigger: { trigger: '.diff-banner', start: 'top 90%' }
-  });
-
-  // Parallax en el glow del hero
-  gsap.to('.hero-glow', {
-    y: -80, ease: 'none',
-    scrollTrigger: {
-      trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true,
+  // 3. Orquestación del Timeline fluido
+  const tl = gsap.timeline({
+    delay: 0.15,
+    onComplete: () => {
+      document.documentElement.classList.remove('preloader-active');
+      document.body.classList.remove('preloader-active');
+      document.body.style.overflow = '';
+      window.scrollTo(0, 0);
+      gsap.set(heroVisual, { zIndex: 1, clearProps: 'zIndex' });
+      initScrollAnimations();
+      window.dispatchEvent(new Event('ss:preloader-complete'));
     }
   });
+
+  // Paso 1: Aparición suave de la escultura en el centro (desvanecido limpio)
+  tl.to(heroVisual, {
+    opacity: 1,
+    duration: 0.65,
+    ease: 'power2.out'
+  })
+
+  // Paso 2: Pausa de apreciación visual (+1 segundo extra de presencia en pantalla)
+  .to({}, { duration: 1.85 })
+
+  // Paso 3: VUELO FLUIDO — La escultura viaja del centro a su posición en el Hero
+  .to(heroVisual, {
+    x: 0,
+    y: 0,
+    scale: 1,
+    duration: 1.35,
+    ease: 'power2.inOut'
+  })
+
+  // Paso 4: El fondo blanco se disuelve en paralelo revelando el Hero
+  .to(curtain, {
+    opacity: 0,
+    duration: 0.95,
+    ease: 'power2.out',
+    onComplete: () => {
+      curtain.style.display = 'none';
+    }
+  }, '-=1.2')
+
+  // Paso 5: El Header desciende desde arriba
+  .to('header', {
+    y: 0,
+    opacity: 1,
+    duration: 0.85,
+    ease: 'power3.out'
+  }, '-=0.95')
+
+  // Paso 6: El contenido del Hero entra en cascada armónica
+  .to('.hero-badge-wrap', { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, '-=0.85')
+  .to('.hero-title',      { y: 0, opacity: 1, duration: 0.85, ease: 'power3.out' }, '-=0.75')
+  .to('.hero-desc',       { y: 0, opacity: 1, duration: 0.65, ease: 'power3.out' }, '-=0.65')
+  .to('.hero-actions',    { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, '-=0.6');
 }
 
+/* ─────────────────────────────────────
+   SCROLL ANIMATIONS (GSAP ScrollTrigger Staggers)
+───────────────────────────────────── */
+function initScrollAnimations() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+  // Barra Horizontal de Métricas
+  gsap.fromTo('.metrics-strip', { opacity: 0, y: 40 }, {
+    opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+    scrollTrigger: { trigger: '.metrics-strip-section', start: 'top 85%' }
+  });
+
+  gsap.fromTo('.metric-column', { opacity: 0, y: 25 }, {
+    opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.15,
+    scrollTrigger: { trigger: '.metrics-strip', start: 'top 85%' }
+  });
+
+  // Section Headers
+  gsap.utils.toArray('.section-header').forEach(header => {
+    gsap.fromTo(header, { opacity: 0, y: 35 }, {
+      opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+      scrollTrigger: { trigger: header, start: 'top 88%' }
+    });
+  });
+
+  // Bento Cards Stagger
+  gsap.fromTo('.bento-card', { opacity: 0, y: 45 }, {
+    opacity: 1, y: 0, duration: 0.85, ease: 'power3.out', stagger: 0.18,
+    scrollTrigger: { trigger: '.bento-grid', start: 'top 82%' }
+  });
+
+  // Giant Digital Speed Counter GSAP Animation (< 12 ms)
+  const speedCounter = document.getElementById('speedCounter');
+  if (speedCounter) {
+    ScrollTrigger.create({
+      trigger: '.bento-speed-container',
+      start: 'top 85%',
+      once: true,
+      onEnter: () => {
+        const targetVal = parseInt(speedCounter.getAttribute('data-target') || '12', 10);
+        const obj = { count: 0 };
+        gsap.to(obj, {
+          count: targetVal,
+          duration: 1.6,
+          ease: 'power2.out',
+          onUpdate: function() {
+            speedCounter.textContent = Math.round(obj.count);
+          }
+        });
+      }
+    });
+  }
+
+  // Selected Work Projects Stagger
+  gsap.fromTo('.project-card', { opacity: 0, y: 50 }, {
+    opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.22,
+    scrollTrigger: { trigger: '.work-gallery-grid', start: 'top 80%' }
+  });
+
+  // Conversion Footer Block
+  gsap.fromTo('.conv-cta-block', { opacity: 0, y: 40, scale: 0.98 }, {
+    opacity: 1, y: 0, scale: 1, duration: 0.9, ease: 'power3.out',
+    scrollTrigger: { trigger: '.conversion-footer', start: 'top 82%' }
+  });
+}
+
+/* ─────────────────────────────────────
+   ESCENARIO 3D INTERACTIVO (Hero 3D Canvas con reacción al cursor)
+───────────────────────────────────── */
+function init3DHeroCanvas() {
+  const canvas = document.getElementById('hero3DCanvas');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  let width = canvas.width;
+  let height = canvas.height;
+  let centerX = width / 2;
+  let centerY = height / 2;
+
+  // Interpolación del cursor (Lerp)
+  let mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
+  let isHovered = false;
+
+  const stage = document.getElementById('heroStage') || canvas;
+
+  // Seguimiento suave del mouse
+  window.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const stageCenterX = rect.left + rect.width / 2;
+    const stageCenterY = rect.top + rect.height / 2;
+
+    const dx = (e.clientX - stageCenterX) / (window.innerWidth * 0.5);
+    const dy = (e.clientY - stageCenterY) / (window.innerHeight * 0.5);
+
+    mouse.targetX = Math.max(-1.5, Math.min(1.5, dx));
+    mouse.targetY = Math.max(-1.5, Math.min(1.5, dy));
+  });
+
+  // Touch / Mobile drag
+  canvas.addEventListener('touchmove', (e) => {
+    if (e.touches.length > 0) {
+      const rect = canvas.getBoundingClientRect();
+      const touch = e.touches[0];
+      const dx = (touch.clientX - (rect.left + rect.width / 2)) / (rect.width * 0.5);
+      const dy = (touch.clientY - (rect.top + rect.height / 2)) / (rect.height * 0.5);
+      mouse.targetX = dx;
+      mouse.targetY = dy;
+    }
+  }, { passive: true });
+
+  // Nodos orbitales y geometría 3D
+  const radius = 135;
+  let baseRotation = 0;
+
+  // Puntos de la escultura geométrica (Icosaedro / Gyro Rings)
+  const rings = [
+    { radius: 155, tiltX: 0.6, tiltY: 0.2, speed: 0.013, color: 'rgba(17, 17, 19, 0.45)', lineWidth: 1.5 },
+    { radius: 125, tiltX: -0.5, tiltY: 0.8, speed: -0.017, color: 'rgba(17, 17, 19, 0.35)', lineWidth: 1.2 },
+    { radius: 95,  tiltX: 0.9, tiltY: -0.4, speed: 0.022, color: 'rgba(17, 17, 19, 0.25)', lineWidth: 1.0 }
+  ];
+
+  // Nodos satelitales
+  const satellites = [
+    { angle: 0, distance: 155, ringIndex: 0, size: 4, pulse: 0 },
+    { angle: 2.1, distance: 125, ringIndex: 1, size: 3.5, pulse: 1 },
+    { angle: 4.2, distance: 95, ringIndex: 2, size: 3, pulse: 2 }
+  ];
+
+  function project3D(x, y, z, rotX, rotY) {
+    // Rotación eje Y
+    const cosY = Math.cos(rotY);
+    const sinY = Math.sin(rotY);
+    const x1 = x * cosY - z * sinY;
+    const z1 = z * cosY + x * sinY;
+
+    // Rotación eje X
+    const cosX = Math.cos(rotX);
+    const sinX = Math.sin(rotX);
+    const y1 = y * cosX - z1 * sinX;
+    const z2 = z1 * cosX + y * sinX;
+
+    // Proyección con perspectiva
+    const fov = 400;
+    const scale = fov / (fov + z2 + 80);
+
+    return {
+      x: centerX + x1 * scale,
+      y: centerY + y1 * scale,
+      scale: scale,
+      z: z2
+    };
+  }
+
+  function render() {
+    // Lerp suave del cursor
+    mouse.x += (mouse.targetX - mouse.x) * 0.06;
+    mouse.y += (mouse.targetY - mouse.y) * 0.06;
+
+    baseRotation += 0.011;
+
+    ctx.clearRect(0, 0, width, height);
+
+    const rotX = mouse.y * 0.75 + Math.sin(baseRotation * 0.5) * 0.15;
+    const rotY = baseRotation + mouse.x * 0.9;
+
+    // 1. Núcleo central resplandeciente
+    ctx.save();
+    const coreGrad = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, 65);
+    coreGrad.addColorStop(0, 'rgba(16, 185, 129, 0.15)');
+    coreGrad.addColorStop(0.5, 'rgba(17, 17, 19, 0.04)');
+    coreGrad.addColorStop(1, 'rgba(248, 249, 250, 0)');
+    ctx.fillStyle = coreGrad;
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, 65, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+
+    // 2. Anillos Orbitales con perspectiva
+    rings.forEach((ring, idx) => {
+      ctx.beginPath();
+      const points = 64;
+      for (let i = 0; i <= points; i++) {
+        const theta = (i / points) * Math.PI * 2;
+        const rawX = Math.cos(theta) * ring.radius;
+        const rawY = Math.sin(theta) * ring.radius * Math.cos(ring.tiltX);
+        const rawZ = Math.sin(theta) * ring.radius * Math.sin(ring.tiltY);
+
+        const p = project3D(rawX, rawY, rawZ, rotX, rotY);
+        if (i === 0) {
+          ctx.moveTo(p.x, p.y);
+        } else {
+          ctx.lineTo(p.x, p.y);
+        }
+      }
+      ctx.strokeStyle = ring.color;
+      ctx.lineWidth = ring.lineWidth;
+      ctx.stroke();
+    });
+
+    // 3. Conexiones poligonales del núcleo (Geodesic Wireframe)
+    const polyVerts = [];
+    const numVerts = 8;
+    for (let i = 0; i < numVerts; i++) {
+      const phi = (i / numVerts) * Math.PI * 2;
+      const vx = Math.cos(phi + baseRotation * 0.8) * 45;
+      const vy = Math.sin(phi * 2) * 28;
+      const vz = Math.sin(phi + baseRotation * 0.8) * 45;
+      polyVerts.push(project3D(vx, vy, vz, rotX, rotY));
+    }
+
+    ctx.beginPath();
+    for (let i = 0; i < polyVerts.length; i++) {
+      for (let j = i + 1; j < polyVerts.length; j++) {
+        if (Math.hypot(polyVerts[i].x - polyVerts[j].x, polyVerts[i].y - polyVerts[j].y) < 70) {
+          ctx.moveTo(polyVerts[i].x, polyVerts[i].y);
+          ctx.lineTo(polyVerts[j].x, polyVerts[j].y);
+        }
+      }
+    }
+    ctx.strokeStyle = 'rgba(17, 17, 19, 0.12)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    // Nodos en los vértices centrales
+    polyVerts.forEach((v) => {
+      ctx.beginPath();
+      ctx.arc(v.x, v.y, 2.5 * v.scale, 0, Math.PI * 2);
+      ctx.fillStyle = '#111113';
+      ctx.fill();
+    });
+
+    // 4. Satélites en órbita activa
+    satellites.forEach((sat, idx) => {
+      sat.angle += rings[sat.ringIndex].speed * 2.2;
+      const ring = rings[sat.ringIndex];
+      const rawX = Math.cos(sat.angle) * sat.distance;
+      const rawY = Math.sin(sat.angle) * sat.distance * Math.cos(ring.tiltX);
+      const rawZ = Math.sin(sat.angle) * sat.distance * Math.sin(ring.tiltY);
+
+      const p = project3D(rawX, rawY, rawZ, rotX, rotY);
+
+      // Nodo satelital
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, sat.size * p.scale, 0, Math.PI * 2);
+      ctx.fillStyle = idx === 0 ? '#10B981' : '#111113';
+      ctx.fill();
+
+      // Halo pulsante
+      if (idx === 0) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, (sat.size + 4) * p.scale, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(16, 185, 129, 0.4)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    });
+
+    requestAnimationFrame(render);
+  }
+
+  render();
+}
 
 /* ─────────────────────────────────────
    CURSOR MAGNÉTICO
 ───────────────────────────────────── */
 function initMagneticCursor() {
   if (typeof gsap === 'undefined') return;
-  const magnetics = document.querySelectorAll('.btn-primary, .btn-outline, .service-link, .btn-wa-big');
+  const magnetics = document.querySelectorAll('.btn-clay, .btn-outline, .project-card');
 
   magnetics.forEach(el => {
     el.addEventListener('mousemove', (e) => {
       const rect    = el.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top  + rect.height / 2;
+      const maxMove = el.classList.contains('project-card') ? 6 : 14;
       gsap.to(el, {
-        x: (e.clientX - centerX) * 0.3,
-        y: (e.clientY - centerY) * 0.3,
+        x: Math.max(-maxMove, Math.min(maxMove, (e.clientX - centerX) * 0.15)),
+        y: Math.max(-maxMove, Math.min(maxMove, (e.clientY - centerY) * 0.15)),
         duration: 0.3, ease: 'power2.out',
       });
     });
@@ -197,136 +422,12 @@ function initMagneticCursor() {
   });
 }
 
-
 /* ─────────────────────────────────────
-   CONTADORES
-───────────────────────────────────── */
-function initCounters() {
-  if (typeof gsap === 'undefined') return;
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.querySelectorAll('[data-count]').forEach(el => {
-        const target = parseInt(el.dataset.count, 10);
-        const suffix = el.dataset.suffix || '';
-        gsap.to({ val: 0 }, {
-          val: target, duration: 1.5, ease: 'power2.out',
-          onUpdate: function() {
-            el.textContent = Math.floor(this.targets()[0].val) + suffix;
-          }
-        });
-      });
-      obs.unobserve(entry.target);
-    });
-  }, { threshold: 0.3 });
-
-  document.querySelectorAll('.hero-stats, .nosotros-stats').forEach(el => obs.observe(el));
-}
-
-
-/* ─────────────────────────────────────
-   CARRUSEL DE SERVICIOS EN MOBILE
-───────────────────────────────────── */
-function initServicesCarousel() {
-  const carousel = document.querySelector('.servicios-grid');
-  const track = document.querySelector('.services-track');
-  const controls = document.querySelector('.services-carousel-controls');
-  const previous = document.querySelector('[data-services-prev]');
-  const next = document.querySelector('[data-services-next]');
-  const dotsWrap = document.querySelector('.services-carousel-dots');
-  const cards = carousel ? [...carousel.querySelectorAll('.service-card')] : [];
-
-  if (!carousel || !track || !controls || !previous || !next || !dotsWrap || !cards.length) return;
-
-  cards.forEach((_, index) => {
-    const dot = document.createElement('span');
-    dot.className = 'services-carousel-dot';
-    dot.dataset.index = index;
-    dotsWrap.appendChild(dot);
-  });
-
-  const dots = [...dotsWrap.children];
-  const isMobile = () => window.matchMedia('(max-width: 900px)').matches;
-  let activeIndex = 0;
-  const currentIndex = () => activeIndex;
-  const update = () => {
-    const index = currentIndex();
-    dots.forEach((dot, dotIndex) => dot.classList.toggle('active', dotIndex === index));
-    previous.disabled = index === 0;
-    next.disabled = index === cards.length - 1;
-    controls.hidden = !isMobile();
-    const gap = parseFloat(getComputedStyle(track).gap || '0');
-    track.style.transform = isMobile() ? `translateX(-${index * (cards[0].offsetWidth + gap)}px)` : '';
-  };
-  const goTo = index => {
-    if (!isMobile()) return;
-    activeIndex = Math.min(cards.length - 1, Math.max(0, index));
-    update();
-  };
-
-  previous.onclick = () => goTo(currentIndex() - 1);
-  next.onclick = () => goTo(currentIndex() + 1);
-  let touchStartX = 0;
-  carousel.addEventListener('touchstart', event => {
-    touchStartX = event.touches[0].clientX;
-  }, { passive: true });
-  carousel.addEventListener('touchend', event => {
-    const distance = event.changedTouches[0].clientX - touchStartX;
-    if (Math.abs(distance) < 40) return;
-    goTo(currentIndex() + (distance < 0 ? 1 : -1));
-  }, { passive: true });
-  window.addEventListener('resize', update);
-  update();
-}
-
-/* ─────────────────────────────────────
-   FORMULARIO → WhatsApp
-───────────────────────────────────── */
-function initForm() {
-  const form      = document.getElementById('contact-form');
-  const btnSubmit = form?.querySelector('.btn-submit');
-  if (!form) return;
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const nombre   = document.getElementById('nombre')?.value.trim();
-    const telefono = document.getElementById('telefono')?.value.trim();
-    const servicio = document.getElementById('servicio')?.value;
-    const mensaje  = document.getElementById('mensaje')?.value.trim();
-    if (!nombre || !servicio || !mensaje) return;
-
-    const texto =
-      `Hola Scroll Studios! 👋%0A%0A` +
-      `*Nombre:* ${nombre}%0A` +
-      `*Teléfono:* ${telefono || 'No indicado'}%0A` +
-      `*Servicio:* ${servicio}%0A%0A` +
-      `*Proyecto:*%0A${mensaje}`;
-
-    window.open(`https://wa.me/51987355501?text=${texto}`, '_blank');
-
-    if (btnSubmit) {
-      const original = btnSubmit.textContent;
-      btnSubmit.textContent = '✓ Enviado!';
-      btnSubmit.style.background = '#28c840';
-      setTimeout(() => {
-        btnSubmit.textContent = original;
-        btnSubmit.style.background = '';
-        form.reset();
-      }, 3000);
-    }
-  });
-}
-
-
-/* ─────────────────────────────────────
-   INIT
+   INIT HOMEPAGE
 ───────────────────────────────────── */
 const initHomePage = () => {
   initPreloader();
   initMagneticCursor();
-  initCounters();
-  initForm();
-  initServicesCarousel();
 };
 
 if (document.readyState === 'loading') {
