@@ -2,7 +2,7 @@
 <html lang="es" class="preloader-active">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <title>Scroll Studios — Arquitectura de IA y Automatización B2B</title>
   <meta name="description" content="Diseñamos el futuro operativo de tu empresa. Agentes inteligentes y sistemas autónomos construidos para líderes B2B."/>
   <meta name="robots" content="index, follow"/>
@@ -652,16 +652,104 @@
 
       if (box.classList.contains('open')) {
         box.classList.remove('open');
-        if (isMobile) document.body.style.overflow = '';
+        box.classList.remove('keyboard-open');
+        if (isMobile) {
+          document.body.style.overflow = '';
+          document.documentElement.style.overflow = '';
+        }
+        // Blur any focused input to dismiss keyboard
+        if (document.activeElement && document.activeElement.tagName === 'INPUT') {
+          document.activeElement.blur();
+        }
       } else {
         box.classList.add('open');
-        if (isMobile) document.body.style.overflow = 'hidden';
+        if (isMobile) {
+          document.body.style.overflow = 'hidden';
+          document.documentElement.style.overflow = 'hidden';
+        }
         if (isDemoActivated && messageCount < MAX_MESSAGES) {
           const input = document.getElementById('ssInput');
-          setTimeout(() => input?.focus(), 350);
+          // On mobile don't auto-focus to avoid immediate keyboard popup
+          if (!isMobile) setTimeout(() => input?.focus(), 350);
         }
       }
     }
+
+    /* ── Mobile Keyboard Detection ── */
+    (function initMobileKeyboardHandler() {
+      if (window.innerWidth > 600) return;
+
+      const chatBox = document.getElementById('ssChatBox');
+      if (!chatBox) return;
+
+      // Use visualViewport API (supported on all modern mobile browsers)
+      if (window.visualViewport) {
+        let initialHeight = window.visualViewport.height;
+        
+        window.visualViewport.addEventListener('resize', () => {
+          if (!chatBox.classList.contains('open')) return;
+          
+          const currentHeight = window.visualViewport.height;
+          const heightDiff = initialHeight - currentHeight;
+          // If viewport shrank by more than 100px, keyboard is likely open
+          const keyboardOpen = heightDiff > 100;
+
+          if (keyboardOpen) {
+            chatBox.classList.add('keyboard-open');
+            // Resize chat to fit available viewport
+            chatBox.style.height = currentHeight + 'px';
+            chatBox.style.maxHeight = currentHeight + 'px';
+            // Scroll messages to bottom
+            const body = document.getElementById('ssMessages');
+            if (body) setTimeout(() => body.scrollTop = body.scrollHeight, 50);
+          } else {
+            chatBox.classList.remove('keyboard-open');
+            chatBox.style.height = '';
+            chatBox.style.maxHeight = '';
+          }
+        });
+
+        // Update baseline on orientation change
+        window.visualViewport.addEventListener('scroll', () => {
+          // Prevent iOS from scrolling the page behind the chat
+          if (chatBox.classList.contains('open')) {
+            window.scrollTo(0, 0);
+          }
+        });
+
+        // Recalculate initial height on orientation change
+        window.addEventListener('orientationchange', () => {
+          setTimeout(() => { initialHeight = window.visualViewport.height; }, 300);
+        });
+      }
+
+      // Fallback: focus/blur on inputs inside the chat
+      chatBox.addEventListener('focusin', (e) => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+          setTimeout(() => {
+            chatBox.classList.add('keyboard-open');
+            const body = document.getElementById('ssMessages');
+            if (body) body.scrollTop = body.scrollHeight;
+          }, 300);
+        }
+      });
+
+      chatBox.addEventListener('focusout', (e) => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+          setTimeout(() => {
+            // Only remove if no other input is focused
+            if (!chatBox.contains(document.activeElement) || 
+                (document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA')) {
+              chatBox.classList.remove('keyboard-open');
+              if (window.visualViewport) {
+                chatBox.style.height = '';
+                chatBox.style.maxHeight = '';
+              }
+            }
+          }, 150);
+        }
+      });
+    })();
 
     function activateSSDemo() {
       const nombreInput = document.getElementById('demoNombre');
