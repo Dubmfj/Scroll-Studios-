@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════
    SCROLL STUDIOS — home.js
-   GSAP: Preloader + Animaciones + 3D Canvas + Speed Counter
-   Estilo: Clay Global (clay.global)
+   GSAP: Preloader 3D Transit + ScrollTrigger + 3D Canvas
+   Estilo: Clay Global / Visual-First
 ═══════════════════════════════════════ */
 
 if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
@@ -10,13 +10,13 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
 
 /* ─────────────────────────────────────
    SEAMLESS OBJECT-TRANSIT HERO PRELOADER
-   (Morphing 3D Core: Center -> Hero Position)
+   (Escultura 3D viaja del centro a su posición en el Hero)
 ───────────────────────────────────── */
 function initPreloader() {
   const curtain    = document.getElementById('introCurtain');
   const heroVisual = document.querySelector('.hero-visual');
 
-  // Iniciar inmediatamente el render continuo de la escultura 3D a 60 FPS
+  // Iniciar siempre el render continuo de la escultura 3D a 60 FPS
   init3DHeroCanvas();
 
   if (!heroVisual || !curtain || typeof gsap === 'undefined') {
@@ -72,6 +72,7 @@ function initPreloader() {
   gsap.set('.hero-title',       { y: 35, opacity: 0 });
   gsap.set('.hero-desc',        { y: 20, opacity: 0 });
   gsap.set('.hero-actions',     { y: 15, opacity: 0 });
+  gsap.set('.hero-trust-bar',   { y: 15, opacity: 0 });
 
   // 3. Orquestación del Timeline fluido
   const tl = gsap.timeline({
@@ -82,6 +83,7 @@ function initPreloader() {
       document.body.style.overflow = '';
       window.scrollTo(0, 0);
       gsap.set(heroVisual, { zIndex: 1, clearProps: 'zIndex' });
+      if (curtain) curtain.style.display = 'none';
       initScrollAnimations();
       window.dispatchEvent(new Event('ss:preloader-complete'));
     }
@@ -94,8 +96,8 @@ function initPreloader() {
     ease: 'power2.out'
   })
 
-  // Paso 2: Pausa de apreciación visual (+1 segundo extra de presencia en pantalla)
-  .to({}, { duration: 1.85 })
+  // Paso 2: Pausa de apreciación visual
+  .to({}, { duration: 1.4 })
 
   // Paso 3: VUELO FLUIDO — La escultura viaja del centro a su posición en el Hero
   .to(heroVisual, {
@@ -128,7 +130,25 @@ function initPreloader() {
   .to('.hero-badge-wrap', { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, '-=0.85')
   .to('.hero-title',      { y: 0, opacity: 1, duration: 0.85, ease: 'power3.out' }, '-=0.75')
   .to('.hero-desc',       { y: 0, opacity: 1, duration: 0.65, ease: 'power3.out' }, '-=0.65')
-  .to('.hero-actions',    { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, '-=0.6');
+  .to('.hero-actions',    { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, '-=0.6')
+  .to('.hero-trust-bar',  { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, '-=0.55');
+
+  // Fallback de seguridad infalible (4.8 segundos)
+  setTimeout(() => {
+    if (curtain && getComputedStyle(curtain).display !== 'none') {
+      curtain.style.display = 'none';
+      document.documentElement.classList.remove('preloader-active');
+      document.body.classList.remove('preloader-active');
+      document.body.style.overflow = '';
+      if (heroVisual) {
+        gsap.set(heroVisual, { opacity: 1, x: 0, y: 0, scale: 1, zIndex: 1 });
+      }
+      gsap.set(['header', '.hero-badge-wrap', '.hero-title', '.hero-desc', '.hero-actions', '.hero-trust-bar'], {
+        opacity: 1, y: 0
+      });
+      initScrollAnimations();
+    }
+  }, 4800);
 }
 
 /* ─────────────────────────────────────
@@ -137,68 +157,68 @@ function initPreloader() {
 function initScrollAnimations() {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
-  // Barra Horizontal de Métricas
-  gsap.fromTo('.metrics-strip', { opacity: 0, y: 40 }, {
-    opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
-    scrollTrigger: { trigger: '.metrics-strip-section', start: 'top 85%' }
-  });
+  // Refrescar ScrollTrigger para recalcular posiciones
+  ScrollTrigger.refresh();
 
-  gsap.fromTo('.metric-column', { opacity: 0, y: 25 }, {
-    opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.15,
-    scrollTrigger: { trigger: '.metrics-strip', start: 'top 85%' }
-  });
-
-  // Section Headers
+  // Encabezados de sección
   gsap.utils.toArray('.section-header').forEach(header => {
-    gsap.fromTo(header, { opacity: 0, y: 35 }, {
-      opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+    gsap.fromTo(header, { opacity: 0, y: 30 }, {
+      opacity: 1, y: 0, duration: 0.7, ease: 'power2.out',
       scrollTrigger: { trigger: header, start: 'top 88%' }
     });
   });
 
-  // Bento Cards Stagger
-  gsap.fromTo('.bento-card', { opacity: 0, y: 45 }, {
-    opacity: 1, y: 0, duration: 0.85, ease: 'power3.out', stagger: 0.18,
-    scrollTrigger: { trigger: '.bento-grid', start: 'top 82%' }
+  // Tarjetas Avior
+  gsap.fromTo('.avior-feat-card', { opacity: 0, y: 35 }, {
+    opacity: 1, y: 0, duration: 0.65, ease: 'power2.out', stagger: 0.12,
+    scrollTrigger: { trigger: '.avior-features-grid', start: 'top 85%' }
   });
 
-  // Giant Digital Speed Counter GSAP Animation (< 12 ms)
-  const speedCounter = document.getElementById('speedCounter');
-  if (speedCounter) {
-    ScrollTrigger.create({
-      trigger: '.bento-speed-container',
-      start: 'top 85%',
-      once: true,
-      onEnter: () => {
-        const targetVal = parseInt(speedCounter.getAttribute('data-target') || '12', 10);
-        const obj = { count: 0 };
-        gsap.to(obj, {
-          count: targetVal,
-          duration: 1.6,
-          ease: 'power2.out',
-          onUpdate: function() {
-            speedCounter.textContent = Math.round(obj.count);
-          }
-        });
-      }
-    });
-  }
-
-  // Selected Work Projects Stagger
-  gsap.fromTo('.project-card', { opacity: 0, y: 50 }, {
-    opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.22,
-    scrollTrigger: { trigger: '.work-gallery-grid', start: 'top 80%' }
+  // Tarjetas de Servicios
+  gsap.fromTo('.service-row-card', { opacity: 0, y: 25 }, {
+    opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', stagger: 0.1,
+    scrollTrigger: { trigger: '.services-list-grid', start: 'top 85%' }
   });
 
-  // Conversion Footer Block
-  gsap.fromTo('.conv-cta-block', { opacity: 0, y: 40, scale: 0.98 }, {
-    opacity: 1, y: 0, scale: 1, duration: 0.9, ease: 'power3.out',
-    scrollTrigger: { trigger: '.conversion-footer', start: 'top 82%' }
+  // Tarjetas de Precios
+  gsap.fromTo('.pricing-card', { opacity: 0, y: 35 }, {
+    opacity: 1, y: 0, duration: 0.65, ease: 'power2.out', stagger: 0.1,
+    scrollTrigger: { trigger: '.pricing-grid', start: 'top 85%' }
+  });
+
+  // Muestras de diseño
+  gsap.fromTo('.sample-card', { opacity: 0, y: 35 }, {
+    opacity: 1, y: 0, duration: 0.65, ease: 'power2.out', stagger: 0.12,
+    scrollTrigger: { trigger: '.samples-grid', start: 'top 85%' }
+  });
+
+  // Pasos de proceso
+  gsap.fromTo('.step-card', { opacity: 0, y: 30 }, {
+    opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', stagger: 0.1,
+    scrollTrigger: { trigger: '.process-steps-grid', start: 'top 85%' }
+  });
+
+  // Dos caminos
+  gsap.fromTo('.path-card', { opacity: 0, y: 35 }, {
+    opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', stagger: 0.15,
+    scrollTrigger: { trigger: '.paths-grid', start: 'top 85%' }
+  });
+
+  // FAQ items
+  gsap.fromTo('.faq-item', { opacity: 0, y: 20 }, {
+    opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', stagger: 0.08,
+    scrollTrigger: { trigger: '.faq-accordion-container', start: 'top 88%' }
+  });
+
+  // Cierre de conversión
+  gsap.fromTo('.conv-cta-block', { opacity: 0, y: 35, scale: 0.98 }, {
+    opacity: 1, y: 0, scale: 1, duration: 0.75, ease: 'power2.out',
+    scrollTrigger: { trigger: '.conversion-footer', start: 'top 85%' }
   });
 }
 
 /* ─────────────────────────────────────
-   ESCENARIO 3D INTERACTIVO (Hero 3D Canvas con reacción al cursor)
+   ESCULTURA 3D HERO CANVAS
 ───────────────────────────────────── */
 function init3DHeroCanvas() {
   const canvas = document.getElementById('hero3DCanvas');
