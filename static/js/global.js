@@ -91,6 +91,20 @@ window.addEventListener('scroll', () => {
 
   lastScrollY = currentY <= 0 ? 0 : currentY;
 });
+  // Control de tema dinámico del Header (Oscuro en Hero, Claro en resto de la página)
+  const updateHeaderTheme = () => {
+    const hero = document.querySelector('.hero');
+    if (!hero || !header) return;
+    const heroBottom = hero.getBoundingClientRect().bottom;
+    if (heroBottom > 75) {
+      header.classList.add('header-on-dark');
+    } else {
+      header.classList.remove('header-on-dark');
+    }
+  };
+  window.addEventListener('scroll', updateHeaderTheme, { passive: true });
+  updateHeaderTheme();
+
 
 
 /* ─────────────────────────────────────

@@ -28,7 +28,7 @@ function initPreloader() {
     if (heroVisual) {
       heroVisual.style.opacity = '1'; heroVisual.style.visibility = 'visible'; heroVisual.style.transform = 'none'; gsap.set(heroVisual, { opacity: 1, x: 0, y: 0, scale: 1, zIndex: 1 });
     }
-    gsap.set(['header', '.hero-badge-wrap', '.hero-title', '.hero-desc', '.hero-actions', '.hero-trust-bar'], {
+    gsap.set(['header', '.hero-badge-wrap', '.hero-title', '.hero-desc', '.hero-actions'], {
       opacity: 1, y: 0
     });
     initScrollAnimations();
@@ -162,7 +162,7 @@ function initPreloader() {
       if (heroVisual) {
         gsap.set(heroVisual, { opacity: 1, x: 0, y: 0, scale: 1, zIndex: 1 });
       }
-      gsap.set(['header', '.hero-badge-wrap', '.hero-title', '.hero-desc', '.hero-actions', '.hero-trust-bar'], {
+      gsap.set(['header', '.hero-badge-wrap', '.hero-title', '.hero-desc', '.hero-actions'], {
         opacity: 1, y: 0
       });
       initScrollAnimations();
@@ -303,9 +303,9 @@ function init3DHeroCanvas() {
 
   // Puntos de la escultura geométrica (Icosaedro / Gyro Rings)
   const rings = [
-    { radius: 155, tiltX: 0.6, tiltY: 0.2, speed: 0.013, color: 'rgba(17, 17, 19, 0.45)', lineWidth: 1.5 },
-    { radius: 125, tiltX: -0.5, tiltY: 0.8, speed: -0.017, color: 'rgba(17, 17, 19, 0.35)', lineWidth: 1.2 },
-    { radius: 95,  tiltX: 0.9, tiltY: -0.4, speed: 0.022, color: 'rgba(17, 17, 19, 0.25)', lineWidth: 1.0 }
+    { radius: 155, tiltX: 0.6, tiltY: 0.2, speed: 0.013, color: 'rgba(34, 211, 238, 0.65)', lineWidth: 1.5 },
+    { radius: 125, tiltX: -0.5, tiltY: 0.8, speed: -0.017, color: 'rgba(255, 255, 255, 0.45)', lineWidth: 1.2 },
+    { radius: 95,  tiltX: 0.9, tiltY: -0.4, speed: 0.022, color: 'rgba(255, 255, 255, 0.25)', lineWidth: 1.0 }
   ];
 
   // Nodos satelitales
@@ -355,9 +355,9 @@ function init3DHeroCanvas() {
     // 1. Núcleo central resplandeciente
     ctx.save();
     const coreGrad = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, 65);
-    coreGrad.addColorStop(0, 'rgba(16, 185, 129, 0.15)');
-    coreGrad.addColorStop(0.5, 'rgba(17, 17, 19, 0.04)');
-    coreGrad.addColorStop(1, 'rgba(248, 249, 250, 0)');
+    coreGrad.addColorStop(0, 'rgba(34, 211, 238, 0.28)');
+    coreGrad.addColorStop(0.5, 'rgba(16, 185, 129, 0.08)');
+    coreGrad.addColorStop(1, 'rgba(9, 9, 11, 0)');
     ctx.fillStyle = coreGrad;
     ctx.beginPath();
     ctx.arc(centerX, centerY, 65, 0, Math.PI * 2);
@@ -406,7 +406,7 @@ function init3DHeroCanvas() {
         }
       }
     }
-    ctx.strokeStyle = 'rgba(17, 17, 19, 0.12)';
+    ctx.strokeStyle = 'rgba(34, 211, 238, 0.22)';
     ctx.lineWidth = 1;
     ctx.stroke();
 
@@ -414,7 +414,7 @@ function init3DHeroCanvas() {
     polyVerts.forEach((v) => {
       ctx.beginPath();
       ctx.arc(v.x, v.y, 2.5 * v.scale, 0, Math.PI * 2);
-      ctx.fillStyle = '#111113';
+      ctx.fillStyle = '#FFFFFF';
       ctx.fill();
     });
 
@@ -431,14 +431,14 @@ function init3DHeroCanvas() {
       // Nodo satelital
       ctx.beginPath();
       ctx.arc(p.x, p.y, sat.size * p.scale, 0, Math.PI * 2);
-      ctx.fillStyle = idx === 0 ? '#10B981' : '#111113';
+      ctx.fillStyle = idx === 0 ? '#22D3EE' : '#FFFFFF';
       ctx.fill();
 
       // Halo pulsante
       if (idx === 0) {
         ctx.beginPath();
         ctx.arc(p.x, p.y, (sat.size + 4) * p.scale, 0, Math.PI * 2);
-        ctx.strokeStyle = 'rgba(16, 185, 129, 0.4)';
+        ctx.strokeStyle = 'rgba(34, 211, 238, 0.5)';
         ctx.lineWidth = 1;
         ctx.stroke();
       }

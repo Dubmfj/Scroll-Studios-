@@ -308,6 +308,54 @@ header.scrolled {
 header.hidden {
   transform: translateY(-100%);
 }
+/* ────────────────────────────
+   HEADER ADAPTADO AL HERO OSCURO
+──────────────────────────── */
+header.header-on-dark:not(.scrolled) {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+header.header-on-dark:not(.scrolled) .header-logo span {
+  color: #FFFFFF !important;
+}
+
+header.header-on-dark:not(.scrolled) .header-nav a {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+header.header-on-dark:not(.scrolled) .header-nav a:hover,
+header.header-on-dark:not(.scrolled) .header-nav a.active {
+  color: #FFFFFF !important;
+}
+
+header.header-on-dark:not(.scrolled) .header-nav a::after {
+  background: #22D3EE !important;
+}
+
+header.header-on-dark:not(.scrolled) .header-cta {
+  background: #FFFFFF !important;
+  color: #09090B !important;
+  border-color: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.12) !important;
+}
+
+header.header-on-dark:not(.scrolled) .header-cta:hover {
+  background: #22D3EE !important;
+  color: #09090B !important;
+  border-color: #22D3EE !important;
+  box-shadow: 0 6px 20px rgba(34, 211, 238, 0.35) !important;
+}
+
+header.header-on-dark:not(.scrolled) .hamburger {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+header.header-on-dark:not(.scrolled) .hamburger span {
+  background: #FFFFFF !important;
+}
+
 
 /* Logo */
 .header-logo {
@@ -765,7 +813,7 @@ footer {
 .intro-curtain {
   position: fixed;
   inset: 0;
-  background-color: #FFFFFF;
+  background-color: #09090B;
   z-index: 998;
   pointer-events: none;
 }
