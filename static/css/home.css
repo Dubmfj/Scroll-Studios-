@@ -9,21 +9,16 @@
    1. HERO SECTION (Impacto Inmediato & Escenario 3D)
 ──────────────────────────── */
 .hero {
-  height: 100vh;
-  height: 100dvh;
-  min-height: 100vh;
-  min-height: 100dvh;
-  max-height: 100vh;
-  max-height: 100dvh;
+  min-height: calc(100vh - var(--header-h));
+  min-height: calc(100dvh - var(--header-h));
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   align-items: center;
-  gap: clamp(1rem, 2.5vw, 3.5rem);
-  padding-top: var(--header-h);
-  padding-bottom: clamp(1rem, 2vh, 1.8rem);
+  gap: clamp(1rem, 2.5vw, 3rem);
+  padding-top: calc(var(--header-h) + 1.25rem);
+  padding-bottom: 2rem;
   padding-inline: 6%;
   position: relative;
-  overflow: hidden;
   max-width: 1440px;
   margin: 0 auto;
   box-sizing: border-box;
@@ -69,7 +64,7 @@
 }
 
 .hero-badge-wrap {
-  margin-bottom: clamp(0.6rem, 1.5vh, 1.1rem);
+  margin-bottom: 0.75rem;
 }
 
 .clay-badge {
@@ -88,7 +83,7 @@
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-pill);
-  padding: 0.45rem 1.15rem;
+  padding: 0.42rem 1.1rem;
   box-shadow: var(--shadow-soft);
   user-select: none;
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
@@ -129,29 +124,28 @@
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(2.8rem, 5.2vw, 4.8rem);
+  font-size: clamp(1.85rem, 2.8vw, 2.85rem);
   font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.04em;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
   color: var(--text-primary);
-  margin-bottom: 1.5rem;
-  max-width: 20ch;
-  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+  max-width: 22ch;
 }
 
 .hero-desc {
-  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
-  line-height: 1.5;
+  font-size: clamp(0.92rem, 1.05vw, 1.08rem);
+  line-height: 1.45;
   color: var(--text-secondary);
-  margin-bottom: 2.25rem;
-  max-width: 52ch;
+  margin-bottom: 1.25rem;
+  max-width: 48ch;
   font-weight: 400;
 }
 
 .hero-actions {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 0.85rem;
   flex-wrap: wrap;
 }
 
@@ -159,7 +153,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.9rem 1.8rem;
+  padding: 0.8rem 1.6rem;
   font-size: 0.88rem;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -178,9 +172,9 @@
   box-shadow: var(--shadow-soft);
 }
 
-/* ────────────────────────────
+/* ----------------------------
    ESCENARIO 3D INTERACTIVO (.hero-3d-stage)
-──────────────────────────── */
+---------------------------- */
 .hero-visual {
   position: relative;
   z-index: 1;
@@ -188,22 +182,22 @@
   justify-content: center;
   align-items: center;
   transform-origin: center center;
-  transition: none !important;
+  transition: opacity 0.3s ease;
   will-change: transform, opacity;
-  opacity: 0;
+  opacity: 1;
 }
 
 .hero-3d-stage {
   position: relative;
   width: 100%;
-  max-width: 500px;
+  max-width: min(390px, 45vh);
+  max-height: min(390px, 45vh);
   aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   perspective: 1000px;
 }
-
 .hero-3d-canvas {
   width: 100%;
   height: 100%;
@@ -1287,13 +1281,21 @@
   .hero {
     grid-template-columns: 1fr;
     text-align: center;
-    padding-top: var(--header-h);
-    padding-bottom: 1rem;
+    padding-top: calc(var(--header-h) + 1rem);
+    padding-bottom: 1.5rem;
     gap: 1rem;
   }
 
   .hero-content {
     align-items: center;
+  }
+
+  .hero-title {
+    max-width: 24ch;
+  }
+
+  .hero-desc {
+    max-width: 42ch;
   }
 
   .hero-actions {
@@ -1305,7 +1307,8 @@
   }
 
   .hero-3d-stage {
-    max-width: 280px;
+    max-width: min(240px, 28vh);
+    max-height: min(240px, 28vh);
     margin: 0.5rem auto 0;
   }
 
@@ -1330,28 +1333,32 @@
 
 @media (max-width: 768px) {
   .hero {
-    padding-top: var(--header-h);
+    padding-top: calc(var(--header-h) + 0.75rem);
     padding-inline: 5%;
-    padding-bottom: 0.75rem;
+    padding-bottom: 1.25rem;
     gap: 0.75rem;
   }
 
+  .hero-badge-wrap {
+    margin-bottom: 0.45rem;
+  }
+
   .hero-title {
-    font-size: clamp(2rem, 8.5vw, 2.8rem);
-    line-height: 1.1;
-    margin-bottom: 1.25rem;
+    font-size: clamp(1.45rem, 5.8vw, 1.95rem);
+    line-height: 1.12;
+    margin-bottom: 0.45rem;
   }
 
   .hero-desc {
-    font-size: 0.95rem;
-    line-height: 1.55;
-    margin-bottom: 1.75rem;
+    font-size: 0.88rem;
+    line-height: 1.4;
+    margin-bottom: 0.85rem;
   }
 
   .hero-actions {
     width: 100%;
     flex-direction: column;
-    gap: 0.85rem;
+    gap: 0.45rem;
   }
 
   .hero-actions .btn-clay,
@@ -1359,7 +1366,21 @@
     width: 100%;
     justify-content: center;
     text-align: center;
-    min-height: 46px;
+    min-height: 44px;
+    padding: 0.65rem 1.2rem;
+    font-size: 0.85rem;
+  }
+
+  .hero-trust-bar {
+    margin-top: 0.55rem;
+    font-size: 0.74rem;
+    gap: 0.35rem;
+  }
+
+  .hero-3d-stage {
+    max-width: min(180px, 22vh);
+    max-height: min(180px, 22vh);
+    margin: 0.25rem auto 0;
   }
 
   .avior-demo-cta-box {
@@ -1409,8 +1430,8 @@
 
 @media (max-width: 480px) {
   .hero-trust-bar {
-    font-size: 0.78rem;
-    gap: 0.4rem;
+    font-size: 0.72rem;
+    gap: 0.3rem;
   }
 
   .trust-badge {

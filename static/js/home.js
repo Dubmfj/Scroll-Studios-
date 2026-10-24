@@ -21,15 +21,15 @@ function initPreloader() {
 
   // Si el usuario llega con un hash directo (ej: #precios, #servicios, #avior):
   if (window.location.hash) {
-    if (curtain) curtain.style.display = 'none';
+    if (curtain) { curtain.style.display = 'none'; curtain.style.opacity = '0'; }
     document.documentElement.classList.remove('preloader-active');
     document.body.classList.remove('preloader-active');
     document.body.style.overflow = '';
     if (heroVisual) {
-      gsap.set(heroVisual, { opacity: 1, x: 0, y: 0, scale: 1, zIndex: 1, clearProps: 'all' });
+      heroVisual.style.opacity = '1'; heroVisual.style.visibility = 'visible'; heroVisual.style.transform = 'none'; gsap.set(heroVisual, { opacity: 1, x: 0, y: 0, scale: 1, zIndex: 1 });
     }
     gsap.set(['header', '.hero-badge-wrap', '.hero-title', '.hero-desc', '.hero-actions', '.hero-trust-bar'], {
-      opacity: 1, y: 0, clearProps: 'all'
+      opacity: 1, y: 0
     });
     initScrollAnimations();
     scrollToHashTarget();
