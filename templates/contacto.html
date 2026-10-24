@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-PE">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -15,27 +15,6 @@
 </head>
 <body>
 
-  <!-- PRELOADER -->
-  <div class="preloader" id="preloader">
-    <div class="preloader-bg"></div>
-    <div class="preloader-counter">
-      <span id="preloader-num">0</span>
-      <span class="preloader-dash"> — </span>
-      <span class="preloader-total">100</span>
-    </div>
-    <div class="preloader-big-text">
-      <div class="preloader-line" data-line="1"><span>HABLEMOS</span></div>
-      <div class="preloader-line" data-line="2"><span class="preloader-light">DE TU</span></div>
-      <div class="preloader-line" data-line="3"><span class="preloader-italic">proyecto.</span></div>
-    </div>
-    <div class="preloader-sub-wrap">
-      <p class="preloader-wait">Por favor espera</p>
-      <p class="preloader-wait">unos segundos.</p>
-    </div>
-    <div class="preloader-bar"><div class="preloader-bar-fill" id="preloader-bar"></div></div>
-    <div class="preloader-curtain"></div>
-  </div>
-
   <!-- HEADER -->
    <header>
     <a href="../index.html" class="header-logo">
@@ -43,11 +22,15 @@
     </a>
 
     <nav class="header-nav">
-      <a href="../index.html" class="active">Inicio</a>
-      <a href="../index.html#capacidades">Servicios</a>
-      <a href="projects.html">Proyectos</a>
-      <a href="nosotros.html">Nosotros</a>
+      <a href="../index.html">Inicio</a>
+      <a href="../index.html#servicios">Servicios</a>
+      <a href="../index.html#avior">Avior</a>
+      <a href="../index.html#precios">Precios</a>
+      <a href="contacto.html" class="active">Contacto</a>
     </nav>
+    <div class="header-actions">
+      <a href="https://wa.me/51987355501?text=Hola%20Scroll%20Studios,%20quiero%20hacer%20una%20consulta" target="_blank" class="header-cta btn-clay">Hablemos</a>
+    </div>
 
     <button class="hamburger" id="hamburger" aria-label="Abrir menú">
       <span></span><span></span><span></span>
@@ -57,9 +40,11 @@
   <!-- ── MOBILE MENU ── -->
   <div class="mobile-menu" id="mobile-menu">
     <a href="../index.html">Inicio</a>
-    <a href="../index.html#capacidades">Servicios</a>
-    <a href="projects.html">Proyectos</a>
-    <a href="nosotros.html">Nosotros</a>
+    <a href="../index.html#servicios">Servicios</a>
+    <a href="../index.html#avior">Avior</a>
+    <a href="../index.html#precios">Precios</a>
+    <a href="contacto.html" class="active">Contacto</a>
+    <a href="https://wa.me/51987355501?text=Hola%20Scroll%20Studios,%20quiero%20hacer%20una%20consulta" target="_blank" style="color:var(--cyan);font-weight:700;">Hablemos por WhatsApp ↗</a>
   </div>
 
   <!-- ══════════════════════════
@@ -95,10 +80,10 @@
         </div>
         <div class="ch-info-block">
           <span class="ch-info-label">Ubicación</span>
-          <p>Lima, Perú 🇵🇪<br>Trabajamos globalmente</p>
+          <p>Lima, Perú 🇵🇪<br>Atención directa y cercana</p>
         </div>
         <div class="ch-info-block">
-          <span class="ch-info-label">Escribinos</span>
+          <span class="ch-info-label">Escríbenos</span>
           <ul class="ch-info-list">
             <li><a href="mailto:danielhoyysiempre212@gmail.com">danielhoyysiempre212@gmail.com</a></li>
           </ul>
@@ -151,7 +136,7 @@
         <div class="ch-field-wrap">
           <label>Mi proyecto es</label>
           <div class="ch-field">
-            <textarea id="mensaje" placeholder="contanos de qué se trata..." rows="3" required></textarea>
+            <textarea id="mensaje" placeholder="Cuéntanos de qué se trata tu idea o negocio..." rows="3" required></textarea>
             <span class="ch-field-line"></span>
           </div>
         </div>
@@ -205,8 +190,12 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 Scroll Studios — Todos los derechos reservados</p>
-      <span>Hecho en Lima 🇵🇪</span>
+      <p>© <span class="current-year">2026</span> Scroll Studios — Todos los derechos reservados</p>
+      <div class="footer-legal-links" style="display:flex;gap:1rem;font-size:0.8rem;">
+        <a href="privacidad.html" style="color:inherit;text-decoration:none;">Política de privacidad</a>
+        <a href="terminos.html" style="color:inherit;text-decoration:none;">Términos</a>
+      </div>
+      <span>Lima, Perú 🇵🇪</span>
     </div>
   </footer>
 

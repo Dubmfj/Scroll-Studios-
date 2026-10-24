@@ -161,9 +161,14 @@ const revealObserver = new IntersectionObserver((entries) => {
     setTimeout(() => entry.target.classList.add('visible'), delay);
     revealObserver.unobserve(entry.target);
   });
-}, { threshold: 0.12 });
+}, { threshold: 0.05, rootMargin: '50px' });
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// Seguridad: aseguramos visibilidad total tras 1s
+setTimeout(() => {
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+}, 1200);
 
 
 /* ─────────────────────────────────────
@@ -301,13 +306,10 @@ function initPremiumScroll() {
 
 initPremiumScroll();
 
-setTimeout(() => {
-  const preloader = document.getElementById('preloader');
-  if (!preloader || getComputedStyle(preloader).display === 'none') return;
-  preloader.classList.add('done');
-  preloader.style.display = 'none';
-  document.body.style.overflow = '';
-}, 9000);
+/* Año dinámico */
+document.querySelectorAll('.current-year').forEach(el => {
+  el.textContent = new Date().getFullYear();
+});
 
 
 /* ─────────────────────────────────────

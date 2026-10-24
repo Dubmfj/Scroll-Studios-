@@ -6,52 +6,6 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-/* ── Preloader ── */
-function initPreloader() {
-  const preloader = document.getElementById('preloader');
-  const numEl     = document.getElementById('preloader-num');
-  const barEl     = document.getElementById('preloader-bar');
-  const counter   = document.querySelector('.preloader-counter');
-  const lines     = document.querySelectorAll('.preloader-line span');
-  const subWrap   = document.querySelector('.preloader-sub-wrap');
-  const curtain   = document.querySelector('.preloader-curtain');
-
-  if (!preloader) return;
-
-  if (typeof gsap === 'undefined') {
-    preloader.classList.add('done');
-    preloader.style.display = 'none';
-    document.body.style.overflow = '';
-    return;
-  }
-
-  document.body.style.overflow = 'hidden';
-
-  const tl = gsap.timeline();
-  tl.to(counter, { opacity: 1, duration: 0.4, ease: 'power2.out' })
-    .to(lines, { y: 0, duration: 1, ease: 'power4.out', stagger: 0.12 }, '-=0.1')
-    .to(subWrap, { opacity: 1, duration: 0.5, ease: 'power2.out' }, '-=0.5')
-    .to({}, {
-      duration: 2, ease: 'power1.inOut',
-      onUpdate: function() {
-        const val = Math.round(this.progress() * 100);
-        numEl.textContent = val;
-        barEl.style.width = val + '%';
-      },
-    }, '-=0.8')
-    .to({}, { duration: 0.15 })
-    .to(lines, { y: '-110%', duration: 0.7, ease: 'power4.in', stagger: 0.06 })
-    .to([counter, subWrap], { opacity: 0, duration: 0.3 }, '<')
-    .to(curtain, { scaleY: 1, duration: 0.55, ease: 'power3.inOut', transformOrigin: 'bottom' }, '-=0.15')
-    .to(curtain, { scaleY: 0, duration: 0.65, ease: 'power3.inOut', transformOrigin: 'top' })
-    .add(() => {
-      preloader.classList.add('done');
-      gsap.set(preloader, { display: 'none' });
-      document.body.style.overflow = '';
-      initAnimations();
-    });
-}
-
 /* ── Animaciones de scroll ── */
 function initAnimations() {
 
@@ -134,7 +88,7 @@ function initMagneticCursor() {
 
 /* ── INIT ── */
 const initNosotrosPage = () => {
-  initPreloader();
+  initAnimations();
   initCounters();
   initMagneticCursor();
 };
