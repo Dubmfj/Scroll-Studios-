@@ -265,37 +265,53 @@ function init3DHeroCanvas() {
   let height = canvas.height;
   let centerX = width / 2;
   let centerY = height / 2;
+  const isMobile = window.innerWidth <= 768;
 
   // Interpolación del cursor (Lerp)
   let mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
   let isHovered = false;
 
   const stage = document.getElementById('heroStage') || canvas;
+  let isVisible = true;
+  let rafId = null;
 
-  // Seguimiento suave del mouse
-  window.addEventListener('mousemove', (e) => {
-    const rect = canvas.getBoundingClientRect();
-    const stageCenterX = rect.left + rect.width / 2;
-    const stageCenterY = rect.top + rect.height / 2;
+  // Seguimiento suave del mouse (Solo en desktop para evitar sobrecarga en móviles)
+  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches && !window.matchMedia('(pointer: fine)').matches;
 
-    const dx = (e.clientX - stageCenterX) / (window.innerWidth * 0.5);
-    const dy = (e.clientY - stageCenterY) / (window.innerHeight * 0.5);
+  if (!isTouchDevice) {
+    let cachedMouseRect = null;
+    stage.addEventListener('mouseenter', () => {
+      cachedMouseRect = canvas.getBoundingClientRect();
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (!isVisible) return;
+      const rect = cachedMouseRect || canvas.getBoundingClientRect();
+      const stageCenterX = rect.left + rect.width / 2;
+      const stageCenterY = rect.top + rect.height / 2;
 
-    mouse.targetX = Math.max(-1.5, Math.min(1.5, dx));
-    mouse.targetY = Math.max(-1.5, Math.min(1.5, dy));
-  });
+      const dx = (e.clientX - stageCenterX) / (window.innerWidth * 0.5);
+      const dy = (e.clientY - stageCenterY) / (window.innerHeight * 0.5);
 
-  // Touch / Mobile drag
-  canvas.addEventListener('touchmove', (e) => {
-    if (e.touches.length > 0) {
-      const rect = canvas.getBoundingClientRect();
-      const touch = e.touches[0];
-      const dx = (touch.clientX - (rect.left + rect.width / 2)) / (rect.width * 0.5);
-      const dy = (touch.clientY - (rect.top + rect.height / 2)) / (rect.height * 0.5);
-      mouse.targetX = dx;
-      mouse.targetY = dy;
-    }
-  }, { passive: true });
+      mouse.targetX = Math.max(-1.5, Math.min(1.5, dx));
+      mouse.targetY = Math.max(-1.5, Math.min(1.5, dy));
+    }, { passive: true });
+  } else {
+    // Touch suave en mobile sin bloquear scroll vertical
+    let touchRect = null;
+    canvas.addEventListener('touchstart', () => {
+      touchRect = canvas.getBoundingClientRect();
+    }, { passive: true });
+
+    canvas.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0 && touchRect) {
+        const touch = e.touches[0];
+        const dx = (touch.clientX - (touchRect.left + touchRect.width / 2)) / (touchRect.width * 0.5);
+        const dy = (touch.clientY - (touchRect.top + touchRect.height / 2)) / (touchRect.height * 0.5);
+        mouse.targetX = dx;
+        mouse.targetY = dy;
+      }
+    }, { passive: true });
+  }
 
   // Nodos orbitales y geometría 3D
   const radius = 135;
@@ -364,12 +380,12 @@ function init3DHeroCanvas() {
     ctx.fill();
     ctx.restore();
 
-    // 2. Anillos Orbitales con perspectiva
-    rings.forEach((ring, idx) => {
+    // 2. Anillos Orbitales con perspectiva (optimizado a 32 pts en mobile)
+    const ringPoints = isMobile ? 32 : 64;
+    rings.forEach((ring) => {
       ctx.beginPath();
-      const points = 64;
-      for (let i = 0; i <= points; i++) {
-        const theta = (i / points) * Math.PI * 2;
+      for (let i = 0; i <= ringPoints; i++) {
+        const theta = (i / ringPoints) * Math.PI * 2;
         const rawX = Math.cos(theta) * ring.radius;
         const rawY = Math.sin(theta) * ring.radius * Math.cos(ring.tiltX);
         const rawZ = Math.sin(theta) * ring.radius * Math.sin(ring.tiltY);
@@ -388,7 +404,7 @@ function init3DHeroCanvas() {
 
     // 3. Conexiones poligonales del núcleo (Geodesic Wireframe)
     const polyVerts = [];
-    const numVerts = 8;
+    const numVerts = isMobile ? 6 : 8;
     for (let i = 0; i < numVerts; i++) {
       const phi = (i / numVerts) * Math.PI * 2;
       const vx = Math.cos(phi + baseRotation * 0.8) * 45;
@@ -444,17 +460,40 @@ function init3DHeroCanvas() {
       }
     });
 
-    requestAnimationFrame(render);
+    rafId = requestAnimationFrame(render);
   }
 
-  render();
+  // Pausar render loop cuando el Hero esté fuera de pantalla para 0% uso GPU/CPU al hacer scroll
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          if (!rafId) {
+            rafId = requestAnimationFrame(render);
+          }
+        } else {
+          if (rafId) {
+            cancelAnimationFrame(rafId);
+            rafId = null;
+          }
+        }
+      });
+    }, { rootMargin: '100px 0px 100px 0px', threshold: 0.05 });
+
+    observer.observe(stage);
+  }
+
+  rafId = requestAnimationFrame(render);
 }
 
 /* ─────────────────────────────────────
-   CURSOR MAGNÉTICO
+   CURSOR MAGNÉTICO (Solo Desktop)
 ───────────────────────────────────── */
 function initMagneticCursor() {
   if (typeof gsap === 'undefined') return;
+  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+  if (isTouchDevice) return;
   const magnetics = document.querySelectorAll('.btn-clay, .btn-outline, .project-card');
 
   magnetics.forEach(el => {

@@ -69,7 +69,7 @@ if (!isTouchDevice) {
 
 
 /* ─────────────────────────────────────
-   HEADER — SCROLL + HIDE/SHOW
+   HEADER — SCROLL + HIDE/SHOW (Optimizado con Passive + IntersectionObserver)
 ───────────────────────────────────── */
 const header = document.querySelector('header');
 let lastScrollY = window.scrollY;
@@ -90,20 +90,36 @@ window.addEventListener('scroll', () => {
   }
 
   lastScrollY = currentY <= 0 ? 0 : currentY;
-});
-  // Control de tema dinámico del Header (Oscuro en Hero, Claro en resto de la página)
-  const updateHeaderTheme = () => {
-    const hero = document.querySelector('.hero');
-    if (!hero || !header) return;
-    const heroBottom = hero.getBoundingClientRect().bottom;
-    if (heroBottom > 75) {
-      header.classList.add('header-on-dark');
-    } else {
-      header.classList.remove('header-on-dark');
-    }
-  };
-  window.addEventListener('scroll', updateHeaderTheme, { passive: true });
-  updateHeaderTheme();
+}, { passive: true });
+
+// Control de tema dinámico del Header (Oscuro en Hero, Claro en resto de la página)
+// Utiliza IntersectionObserver para 0% de reflow en scroll
+const hero = document.querySelector('.hero');
+if (hero && header) {
+  if ('IntersectionObserver' in window) {
+    const heroObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          header.classList.add('header-on-dark');
+        } else {
+          header.classList.remove('header-on-dark');
+        }
+      });
+    }, { rootMargin: '-75px 0px 0px 0px', threshold: 0 });
+    heroObserver.observe(hero);
+  } else {
+    const updateHeaderTheme = () => {
+      const heroBottom = hero.getBoundingClientRect().bottom;
+      if (heroBottom > 75) {
+        header.classList.add('header-on-dark');
+      } else {
+        header.classList.remove('header-on-dark');
+      }
+    };
+    window.addEventListener('scroll', updateHeaderTheme, { passive: true });
+    updateHeaderTheme();
+  }
+}
 
 
 
@@ -193,7 +209,8 @@ function initPremiumScroll() {
 
   const motion = gsap.matchMedia();
 
-  motion.add('(prefers-reduced-motion: no-preference)', () => {
+  // 1. Efectos con SCRUB continuo: Únicamente en Desktop (min-width: 769px) para garantizar 60-120 FPS nativos en móviles
+  motion.add('(min-width: 769px) and (prefers-reduced-motion: no-preference)', () => {
     const heroLayers = document.querySelectorAll(
       '.hero-bg, .nos-hero-deco, .proj-hero-deco'
     );
@@ -210,24 +227,6 @@ function initPremiumScroll() {
         },
       });
     });
-
-    const nosotrosHero = document.querySelector('.nos-hero-content');
-    if (nosotrosHero) {
-      gsap.fromTo(nosotrosHero, {
-        opacity: 0,
-        y: 36,
-      }, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: '.nos-hero',
-          start: 'top 82%',
-          once: true,
-        },
-      });
-    }
 
     const contactHero = document.querySelector('.contacto-hero');
     if (contactHero) {
@@ -268,6 +267,40 @@ function initPremiumScroll() {
       });
     }
 
+    document.querySelectorAll('.service-card, .valor-card, .proj-item').forEach(item => {
+      gsap.to(item, {
+        y: -10,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: item,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.6,
+        },
+      });
+    });
+  });
+
+  // 2. Animaciones de Entrada (once: true) que corren fluidas tanto en Desktop como en Celulares sin fricción de scroll
+  motion.add('(prefers-reduced-motion: no-preference)', () => {
+    const nosotrosHero = document.querySelector('.nos-hero-content');
+    if (nosotrosHero) {
+      gsap.fromTo(nosotrosHero, {
+        opacity: 0,
+        y: 36,
+      }, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.nos-hero',
+          start: 'top 82%',
+          once: true,
+        },
+      });
+    }
+
     document.querySelectorAll('section').forEach(section => {
       const tag = section.querySelector('.section-tag');
       if (!tag || tag.classList.contains('nos-tag')) return;
@@ -284,19 +317,6 @@ function initPremiumScroll() {
           trigger: section,
           start: 'top 78%',
           once: true,
-        },
-      });
-    });
-
-    document.querySelectorAll('.service-card, .valor-card, .proj-item').forEach(item => {
-      gsap.to(item, {
-        y: -10,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: item,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1.6,
         },
       });
     });

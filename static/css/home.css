@@ -223,6 +223,8 @@
   align-items: center;
   justify-content: center;
   perspective: 1000px;
+  touch-action: pan-y;
+  will-change: transform;
 }
 
 .hero-3d-canvas {
@@ -231,7 +233,8 @@
   display: block;
   cursor: grab;
   user-select: none;
-  filter: drop-shadow(0 15px 35px rgba(34, 211, 238, 0.14));
+  touch-action: pan-y;
+  /* Glow interno nativo en el canvas 2d; sin CSS drop-shadow para evitar reflows en GPU de móvil */
 }
 
 .hero-3d-canvas:active {
@@ -253,6 +256,8 @@
   height: 100%;
   animation: rotateCircle 26s linear infinite;
   overflow: visible;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .circular-text {
@@ -267,8 +272,6 @@
 
 @keyframes rotateCircle {
   from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
   to   { transform: rotate(360deg); }
 }
 
@@ -1392,10 +1395,19 @@
     gap: 0.35rem;
   }
 
+  .hero-glow {
+    width: 320px;
+    height: 320px;
+    filter: blur(40px);
+    will-change: transform;
+    opacity: 0.7;
+  }
+
   .hero-3d-stage {
     max-width: min(180px, 22vh);
     max-height: min(180px, 22vh);
     margin: 0.25rem auto 0;
+    touch-action: pan-y;
   }
 
   .avior-demo-cta-box {
