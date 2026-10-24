@@ -87,6 +87,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 1.25rem);
   font-size: 16px;
 }
 
@@ -119,54 +120,16 @@ a  { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 button { cursor: pointer; font-family: var(--font-body); }
 
-/* ────────────────────────────
-   CURSOR PERSONALIZADO DE ALTO CONTRASTE (Modo Claro)
-──────────────────────────── */
-.custom-cursor-active * { cursor: none !important; }
-
+/* Cursor nativo del sistema (limpio, visible y sin fallos) */
 .cursor-dot,
 .cursor-ring {
-  position: fixed;
-  pointer-events: none;
-  z-index: 99999;
-  border-radius: 50%;
-  transition: opacity 0.3s, transform 0.1s ease-out;
-  transform: translate(-50%, -50%);
+  display: none !important;
 }
-
-.cursor-dot {
-  width: 6px;
-  height: 6px;
-  background: #111113;
-  box-shadow: 0 0 6px rgba(17, 17, 19, 0.25);
+* {
+  cursor: auto;
 }
-
-.cursor-ring {
-  width: 26px;
-  height: 26px;
-  border: 1px solid rgba(17, 17, 19, 0.25);
-  transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
-              height 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
-              border-color 0.3s ease,
-              background-color 0.3s ease;
-}
-
-.cursor-ring.hover {
-  width: 48px;
-  height: 48px;
-  border-color: #111113;
-  background: rgba(17, 17, 19, 0.05);
-}
-
-/* Desactivar cursor personalizado en dispositivos táctiles */
-@media (hover: none) and (pointer: coarse) {
-  .cursor-dot,
-  .cursor-ring {
-    display: none !important;
-  }
-  * {
-    cursor: auto !important;
-  }
+a, button, [onclick], input[type="submit"], .btn-clay, .btn-outline, .pricing-btn {
+  cursor: pointer !important;
 }
 
 /* ────────────────────────────
@@ -237,7 +200,7 @@ p {
   justify-content: center;
   gap: 0.5rem;
   background: var(--btn-bg);
-  color: var(--btn-text) !important;
+  color: var(--btn-text);
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 0.875rem;
@@ -304,8 +267,8 @@ p {
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 .reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
 /* Reveal animation base */
@@ -315,8 +278,8 @@ p {
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 .reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
 /* ────────────────────────────
@@ -413,7 +376,7 @@ header.hidden {
   font-weight: 600;
   font-family: var(--font-body);
   letter-spacing: -0.01em;
-  color: var(--btn-text) !important;
+  color: var(--btn-text);
   background: var(--btn-bg);
   padding: 0.6rem 1.4rem !important;
   border-radius: var(--radius-pill);
@@ -919,15 +882,7 @@ footer {
 }
 
 /* ── Responsive ── */
-@media (max-width: 600px) {
-  .preloader-line span {
-    font-size: clamp(2rem, 11vw, 4.5rem);
-    letter-spacing: -1px;
-  }
-  .preloader-line[data-line="3"] {
-    flex-wrap: wrap;
-  }
-}
+
 
 html, body {
   max-width: 100%;

@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="es" class="preloader-active">
+<html lang="es-PE" class="preloader-active">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>Scroll Studios — Arquitectura de IA y Automatización B2B</title>
-  <meta name="description" content="Diseñamos el futuro operativo de tu empresa. Agentes inteligentes y sistemas autónomos construidos para líderes B2B."/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scroll Studios — Páginas Web, Tiendas Online y Avior (Asistente de WhatsApp) | Lima, Perú</title>
+  <meta name="description" content="Páginas web, tiendas online y Avior, el asistente de WhatsApp que responde por ti. Para negocios nuevos, pequeños y empresas en Lima, Perú."/>
   <meta name="robots" content="index, follow"/>
-  <meta property="og:title" content="Scroll Studios — Arquitectura de IA y Automatización para Empresas B2B"/>
-  <meta property="og:description" content="Diseñamos el futuro operativo de tu empresa. Agentes inteligentes y sistemas autónomos construidos para líderes B2B."/>
+  <meta property="og:title" content="Scroll Studios — Páginas Web, Tiendas Online y Asistentes de WhatsApp"/>
+  <meta property="og:description" content="Tu negocio atendiendo clientes, incluso a medianoche. Páginas web modernas y Avior en tu WhatsApp."/>
   <meta property="og:type" content="website"/>
+  <meta property="og:image" content="src/logo-profile.png"/>
 
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -16,16 +17,26 @@
 
   <link rel="stylesheet" href="static/css/global.css"/>
   <link rel="stylesheet" href="static/css/home.css"/>
+  <script>
+    if (window.location.hash) {
+      document.documentElement.classList.remove('preloader-active');
+    }
+  </script>
 </head>
 <body class="preloader-active">
+  <script>
+    if (window.location.hash) {
+      document.body.classList.remove('preloader-active');
+    }
+  </script>
 
   <!-- ══════════════════════════
-       SEAMLESS INTRO CURTAIN (Fondo Blanco Puro)
+       SEAMLESS INTRO CURTAIN (Preloader 3D del Hero)
   ══════════════════════════ -->
   <div class="intro-curtain" id="introCurtain"></div>
 
   <!-- ══════════════════════════
-       HEADER (Clay Global Nav)
+       HEADER (Navegación Limpia y Directa)
   ══════════════════════════ -->
   <header>
     <a href="index.html" class="header-logo">
@@ -33,472 +44,741 @@
       <span>Scroll Studios</span>
     </a>
     <nav class="header-nav">
-      <a href="#inicio" class="active">Inicio</a>
-      <a href="#capacidades">Capacidades</a>
-      <a href="#proyectos">Selected Work</a>
-      <a href="templates/nosotros.html">Nosotros</a>
-      <a href="javascript:void(0)" onclick="toggleSSChat()">AI Bot</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#avior">Avior</a>
+      <a href="#precios">Precios</a>
+      <a href="templates/contacto.html">Contacto</a>
     </nav>
     <div class="header-actions">
-      <a href="templates/contacto.html" class="header-cta btn-clay">Agendar consulta</a>
+      <a href="https://wa.me/51987355501?text=Hola%20Scroll%20Studios,%20quiero%20hacer%20una%20consulta" target="_blank" class="header-cta btn-clay">Hablemos</a>
       <button class="hamburger" id="hamburger" aria-label="Abrir menú">
         <span></span><span></span><span></span>
       </button>
     </div>
   </header>
 
-  <!-- ── MENÚ MÓVIL ── -->
+  <!-- Menú móvil colapsable -->
   <div class="mobile-menu" id="mobile-menu">
-    <a href="#inicio" onclick="document.getElementById('mobile-menu').classList.remove('open'); document.getElementById('hamburger').classList.remove('open');">Inicio</a>
-    <a href="#capacidades" onclick="document.getElementById('mobile-menu').classList.remove('open'); document.getElementById('hamburger').classList.remove('open');">Capacidades</a>
-    <a href="#proyectos" onclick="document.getElementById('mobile-menu').classList.remove('open'); document.getElementById('hamburger').classList.remove('open');">Selected Work</a>
-    <a href="templates/nosotros.html">Nosotros</a>
-    <a href="javascript:void(0)" onclick="toggleSSChat(); document.getElementById('mobile-menu').classList.remove('open'); document.getElementById('hamburger').classList.remove('open');">Probar AI Bot</a>
-    <a href="templates/contacto.html" class="btn-clay" style="margin-top: 1.5rem;">Agendar consulta técnica →</a>
+    <a href="#servicios" onclick="document.getElementById('mobile-menu').classList.remove('open')">Servicios</a>
+    <a href="#avior" onclick="document.getElementById('mobile-menu').classList.remove('open')">Avior (IA)</a>
+    <a href="#precios" onclick="document.getElementById('mobile-menu').classList.remove('open')">Precios</a>
+    <a href="templates/contacto.html">Contacto</a>
+    <a href="https://wa.me/51987355501?text=Hola%20Scroll%20Studios,%20quiero%20hacer%20una%20consulta" target="_blank" style="color:var(--cyan);font-weight:700;">Escribir por WhatsApp ↗</a>
   </div>
 
-  <!-- ══════════════════════════
-       1. HERO SECTION (Impacto Inmediato & Objeto 3D)
-  ══════════════════════════ -->
-  <section class="hero" id="inicio">
-    <div class="hero-bg">
-      <div class="hero-grid"></div>
-      <div class="hero-glow"></div>
-    </div>
-
-    <div class="hero-content">
-      <!-- Badge Superior -->
-      <div class="hero-badge-wrap">
-        <span class="clay-badge"><span class="clay-badge-label">Scroll Studios - Lima, Perú</span></span>
+  <main>
+    <!-- ══════════════════════════
+         1. HERO SECTION (Objeto 3D que viaja del centro a su posición)
+    ══════════════════════════ -->
+    <section class="hero" id="inicio">
+      <div class="hero-bg">
+        <div class="hero-grid"></div>
+        <div class="hero-glow"></div>
       </div>
 
-      <!-- Titular Corto y Masivo -->
-      <h1 class="hero-title">
-        DISEÑAMOS EL FUTURO OPERATIVO DE TU EMPRESA
-      </h1>
+      <div class="hero-content">
+        <div class="hero-badge-wrap">
+          <span class="clay-badge">
+            <span class="clay-badge-label">Agencia digital · Lima, Perú</span>
+          </span>
+        </div>
 
-      <!-- Subtítulo de Una Sola Línea -->
-      <p class="hero-desc">
-        Agentes inteligentes y sistemas autónomos construidos para líderes B2B.
-      </p>
+        <h1 class="hero-title">
+          Tu negocio atendiendo clientes, incluso a medianoche.
+        </h1>
 
-      <!-- Botón Principal -->
-      <div class="hero-actions">
-        <a href="templates/contacto.html" class="btn-clay">AGENDAR CONSULTA PRIVADA ↗</a>
-        <a href="#proyectos" class="btn-outline">EXPLORAR PROYECTOS ↘</a>
+        <p class="hero-desc">
+          Páginas web, tiendas online y Avior, el asistente de WhatsApp que responde por ti. Para negocios nuevos, pequeños y empresas.
+        </p>
+
+        <div class="hero-actions">
+          <a href="javascript:void(0)" onclick="toggleSSChat()" class="btn-clay">
+            Probar Avior con mi negocio (gratis) ↗
+          </a>
+          <a href="https://wa.me/51987355501?text=Hola%20Scroll%20Studios,%20quiero%20hacer%20una%20consulta%20sobre%20sus%20servicios" target="_blank" class="btn-outline">
+            Escribir por WhatsApp ↗
+          </a>
+        </div>
+
+        <div class="hero-trust-bar">
+          <span class="trust-badge">Lima</span>
+          <span class="trust-sep">·</span>
+          <span>Entrega en 7 días (landing + Avior)</span>
+          <span class="trust-sep">·</span>
+          <span>Yape o Plin</span>
+          <span class="trust-sep">·</span>
+          <span>50 % al iniciar y 50 % al entregar</span>
+        </div>
       </div>
-    </div>
 
-    <!-- Contenedor 3D Interactivo (.hero-3d-stage) -->
-    <div class="hero-visual">
-      <div class="hero-3d-stage" id="heroStage">
-        <!-- Canvas Interactivo 3D con respuesta dinámica al cursor -->
-        <canvas id="hero3DCanvas" class="hero-3d-canvas" width="540" height="540"></canvas>
+      <!-- Objeto 3D Interactivo / Giroscopio Escultórico -->
+      <div class="hero-visual">
+        <div class="hero-3d-stage" id="heroStage">
+          <canvas id="hero3DCanvas" width="560" height="560"></canvas>
+          <div class="canvas-reflection-overlay"></div>
+        </div>
 
-        <!-- Leyenda Circular Giratoria -->
-        <div class="circular-badge">
-          <svg viewBox="0 0 200 200" class="rotating-text-svg">
-            <path id="circlePath" d="M 100, 100 m -76, 0 a 76,76 0 1,1 152,0 a 76,76 0 1,1 -152,0" fill="none"/>
-            <text>
-              <textPath href="#circlePath" class="circular-text">
-                SCROLL STUDIOS ⎯ AUTOMATION ARCHITECTURE ⎯ AUTONOMOUS CORE ⎯
-              </textPath>
-            </text>
-          </svg>
-          <div class="circular-center-icon">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07L19.07 4.93"/>
+        <div class="canvas-floating-meta">
+          <div class="rotating-text-ring">
+            <svg viewBox="0 0 100 100" class="rotating-text-svg">
+              <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"/>
+              <text>
+                <textPath href="#circlePath">SCROLL STUDIOS • LIMA PERÚ • WEB & WHATSAPP •</textPath>
+              </text>
             </svg>
           </div>
         </div>
+      </div>
+    </section>
 
+    <!-- ══════════════════════════
+         2. FRANJA QUE SE DESPLAZA (Marquee Ticker)
+    ══════════════════════════ -->
+    <div class="marquee-section" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-item">Páginas web <span class="marquee-dot">·</span> Tiendas online <span class="marquee-dot">·</span> Avior (IA) <span class="marquee-dot">·</span> A medida <span class="marquee-dot">·</span></div>
+        <div class="marquee-item">Páginas web <span class="marquee-dot">·</span> Tiendas online <span class="marquee-dot">·</span> Avior (IA) <span class="marquee-dot">·</span> A medida <span class="marquee-dot">·</span></div>
+        <div class="marquee-item">Páginas web <span class="marquee-dot">·</span> Tiendas online <span class="marquee-dot">·</span> Avior (IA) <span class="marquee-dot">·</span> A medida <span class="marquee-dot">·</span></div>
+        <div class="marquee-item">Páginas web <span class="marquee-dot">·</span> Tiendas online <span class="marquee-dot">·</span> Avior (IA) <span class="marquee-dot">·</span> A medida <span class="marquee-dot">·</span></div>
       </div>
     </div>
-  </section>
 
-  <!-- ══════════════════════════
-       2. MÉTRICAS IMPACTANTES Y MINIMALISTAS (Bloque Horizontal Delgado)
-  ══════════════════════════ -->
-  <section class="metrics-strip-section">
-    <div class="metrics-strip reveal" data-delay="100">
-      <div class="metric-column">
-        <div class="metric-num">10x</div>
-        <div class="metric-label">Velocidad de ejecución</div>
+    <!-- ══════════════════════════
+         3. AVIOR, PRODUCTO ESTRELLA
+    ══════════════════════════ -->
+    <section class="avior-showcase-section" id="avior">
+      <div class="section-header reveal">
+        <div class="section-tag">[ ASISTENTE INTELIGENTE ]</div>
+        <h2 class="section-title">Avior atiende en tu WhatsApp cuando tú no puedes</h2>
+        <p class="section-subtitle">
+          Configurado con la información de tu negocio para que tus clientes reciban respuestas inmediatas y amables a cualquier hora.
+        </p>
       </div>
-      <div class="metric-separator"></div>
-      <div class="metric-column">
-        <div class="metric-num">24/7</div>
-        <div class="metric-label">Operación autónoma</div>
+
+      <div class="avior-features-grid">
+        <div class="avior-feat-card reveal" data-delay="0">
+          <div class="avior-feat-num">01</div>
+          <h3 class="avior-feat-title">Responde preguntas frecuentes</h3>
+          <p class="avior-feat-desc">
+            Horarios, precios, ubicación, métodos de pago, catálogo o tiempos de entrega. Responde con los datos exactos que tú nos facilites.
+          </p>
+        </div>
+
+        <div class="avior-feat-card reveal" data-delay="100">
+          <div class="avior-feat-num">02</div>
+          <h3 class="avior-feat-title">Te avisa para pedidos especiales</h3>
+          <p class="avior-feat-desc">
+            Cuando un cliente necesita una cotización personalizada o pide hablar con una persona, Avior te envía una alerta directa para que no pierdas la venta.
+          </p>
+        </div>
+
+        <div class="avior-feat-card reveal" data-delay="200">
+          <div class="avior-feat-num">03</div>
+          <h3 class="avior-feat-title">Se pausa cuando tú entras al chat</h3>
+          <p class="avior-feat-desc">
+            En cuanto tú comienzas a responderle a tu cliente, Avior se silencia de forma automática para darte control total de la conversación.
+          </p>
+        </div>
       </div>
-      <div class="metric-separator"></div>
-      <div class="metric-column">
-        <div class="metric-num">0%</div>
-        <div class="metric-label">Margen de error humano</div>
+
+      <div class="avior-demo-cta-box reveal">
+        <div class="avior-demo-cta-text">
+          <strong>¿Quieres ver cómo respondería a los clientes de tu rubro?</strong>
+          <span>Puedes probar el simulador interactivo aquí mismo en segundos.</span>
+        </div>
+        <button class="btn-clay" onclick="toggleSSChat()">
+          Probar simulador de Avior gratis ↗
+        </button>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ══════════════════════════
-       3. BENTO GRID VISUAL ("Show, Don't Tell" — Cero textos técnicos)
-  ══════════════════════════ -->
-  <section class="showcase-section" id="capacidades">
-    <div class="section-header reveal">
-      <div class="section-tag">[ CAPACIDADES ]</div>
-      <h2 class="section-title">INGENIERÍA VISUAL</h2>
-    </div>
+    <!-- ══════════════════════════
+         4. SERVICIOS EN TARJETAS (Con Acordeón "Ver qué incluye")
+    ══════════════════════════ -->
+    <section class="services-section" id="servicios">
+      <div class="section-header reveal">
+        <div class="section-tag">[ SOLUCIONES CLARAS ]</div>
+        <h2 class="section-title">Servicios pensados para dar resultados</h2>
+        <p class="section-subtitle">Sin tecnicismos. Cada propuesta resuelve una necesidad puntual de tu negocio.</p>
+      </div>
 
-    <div class="bento-grid">
-      <!-- Tarjeta 1 (Showcase 24/7): Dashboard animado con indicador [ ACTIVE AGENTS ] y gráfica en tiempo real -->
-      <article class="bento-card bento-wide reveal" data-delay="0">
-        <div class="bento-card-top">
-          <div class="bento-badge-group">
-            <span class="bento-badge">[ ACTIVE AGENTS ]</span>
-            <span class="live-pulse-indicator">
-              <span class="live-pulse-dot"></span>
-              12 EJECUTANDO
-            </span>
+      <div class="services-list-grid">
+        <!-- Servicio 1: Pack Recomendado -->
+        <article class="service-row-card featured reveal">
+          <div class="service-row-main">
+            <div class="service-badge-pill">Recomendado</div>
+            <div class="service-info">
+              <h3 class="service-name">Pack Landing + Avior</h3>
+              <p class="service-one-line">Tu página web de aterrizaje + asistente en WhatsApp listo para captar clientes desde el día 1.</p>
+            </div>
+            <button class="accordion-toggle-btn" onclick="toggleServiceAccordion(this)" aria-expanded="false">
+              <span>Ver qué incluye</span> <span class="arrow-icon">▾</span>
+            </button>
           </div>
-          <span class="bento-sla-pill">99.98% SLA</span>
-        </div>
-
-        <div class="bento-headline">
-          <h3>OPERACIÓN AUTÓNOMA 24/7</h3>
-        </div>
-
-        <!-- Componente Gráfico Flotante Tipo Dashboard -->
-        <div class="bento-dashboard-ui">
-          <div class="dash-telemetry-header">
-            <div class="dash-stat-item">
-              <span class="dash-stat-label">Throughput</span>
-              <strong class="dash-stat-value">4,820 tx/min</strong>
-            </div>
-            <div class="dash-stat-item">
-              <span class="dash-stat-label">Latencia de Enrutamiento</span>
-              <strong class="dash-stat-value">&lt; 4ms</strong>
-            </div>
-            <div class="dash-stat-item">
-              <span class="dash-stat-label">Agentes Conectados</span>
-              <strong class="dash-stat-value">12 / 12 Online</strong>
+          <div class="service-accordion-panel">
+            <div class="accordion-inner">
+              <ul>
+                <li>Diseño de landing page rápida, visual y enfocada en captar prospectos.</li>
+                <li>Asistente Avior configurado con tus preguntas frecuentes en tu WhatsApp.</li>
+                <li>Botón directo y flotante a WhatsApp con mensaje de bienvenida.</li>
+                <li>Entrega en 7 días hábiles (tras entrega de información).</li>
+                <li>2 rondas completas de cambios incluidas.</li>
+              </ul>
+              <a href="https://wa.me/51987355501?text=Hola%20Scroll%20Studios,%20me%20interesa%20el%20Pack%20Landing%20plus%20Avior" target="_blank" class="service-action-link">Consultar por WhatsApp ↗</a>
             </div>
           </div>
+        </article>
 
-          <!-- Gráfica sutil animada en tiempo real -->
-          <div class="dash-live-graph-container">
-            <svg class="dash-graph-svg" viewBox="0 0 700 160" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="graphGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stop-color="#111113" stop-opacity="0.12"/>
-                  <stop offset="100%" stop-color="#111113" stop-opacity="0.00"/>
-                </linearGradient>
-                <linearGradient id="strokeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#111113" stop-opacity="0.3"/>
-                  <stop offset="50%" stop-color="#111113" stop-opacity="1"/>
-                  <stop offset="100%" stop-color="#10B981" stop-opacity="0.9"/>
-                </linearGradient>
-              </defs>
-              <path class="graph-fill-area" d="M0,130 Q90,70 180,95 T360,50 T540,80 T700,40 L700,160 L0,160 Z" fill="url(#graphGradient)"/>
-              <path class="graph-wave-line" d="M0,130 Q90,70 180,95 T360,50 T540,80 T700,40" fill="none" stroke="url(#strokeGradient)" stroke-width="2.5"/>
-              <circle class="graph-pulse-node" cx="700" cy="40" r="5" fill="#10B981"/>
-            </svg>
+        <!-- Servicio 2: Landing Page -->
+        <article class="service-row-card reveal">
+          <div class="service-row-main">
+            <div class="service-info">
+              <h3 class="service-name">Landing Page</h3>
+              <p class="service-one-line">Una sola página directa al grano, ideal para campañas de publicidad o lanzar un producto.</p>
+            </div>
+            <button class="accordion-toggle-btn" onclick="toggleServiceAccordion(this)" aria-expanded="false">
+              <span>Ver qué incluye</span> <span class="arrow-icon">▾</span>
+            </button>
           </div>
-
-          <!-- Nodos de actividad en streaming -->
-          <div class="dash-nodes-row">
-            <div class="dash-node-chip">
-              <span class="chip-status-dot online"></span>
-              <span class="chip-title">Agent_Fiscal</span>
-              <span class="chip-metric">0.8s</span>
-            </div>
-            <div class="dash-node-chip">
-              <span class="chip-status-dot online"></span>
-              <span class="chip-title">Agent_CRM_Routing</span>
-              <span class="chip-metric">2.1s</span>
-            </div>
-            <div class="dash-node-chip">
-              <span class="chip-status-dot online"></span>
-              <span class="chip-title">Agent_DocParser</span>
-              <span class="chip-metric">0.4s</span>
+          <div class="service-accordion-panel">
+            <div class="accordion-inner">
+              <ul>
+                <li>Estructura pensada para que el usuario entienda tu oferta y te contacte.</li>
+                <li>100% adaptable y legible en celulares (360 a 430 px).</li>
+                <li>Formulario de contacto o enlace directo a WhatsApp.</li>
+                <li>Entrega en 7 días hábiles y 2 rondas de cambios.</li>
+              </ul>
+              <a href="https://wa.me/51987355501?text=Hola%20Scroll%20Studios,%20quiero%20informacion%20sobre%20una%20Landing%20Page" target="_blank" class="service-action-link">Consultar por WhatsApp ↗</a>
             </div>
           </div>
-        </div>
-      </article>
+        </article>
 
-      <!-- Tarjeta 2 (Visión & Inteligencia): Visor futurista con escaneo láser suave sobre documento/data -->
-      <article class="bento-card reveal" data-delay="150">
-        <div class="bento-card-top">
-          <span class="bento-badge">[ VISIÓN & INTELIGENCIA ]</span>
-          <span class="bento-sub-pill">OCR // VECTOR</span>
-        </div>
-
-        <div class="bento-headline">
-          <h3>EXTRACCIÓN DOCUMENTAL</h3>
-        </div>
-
-        <!-- Visor de interfaz futurista con efecto láser -->
-        <div class="bento-scanner-viewport">
-          <div class="scanner-grid-overlay"></div>
-
-          <!-- Línea de escaneo láser suave -->
-          <div class="laser-scanner-beam">
-            <div class="laser-glow-trail"></div>
+        <!-- Servicio 3: Página Web Corporativa -->
+        <article class="service-row-card reveal">
+          <div class="service-row-main">
+            <div class="service-info">
+              <h3 class="service-name">Página Web Corporativa</h3>
+              <p class="service-one-line">Múltiples secciones y páginas para empresas que necesitan transmitir solidez y confianza.</p>
+            </div>
+            <button class="accordion-toggle-btn" onclick="toggleServiceAccordion(this)" aria-expanded="false">
+              <span>Ver qué incluye</span> <span class="arrow-icon">▾</span>
+            </button>
           </div>
-
-          <!-- Documento esquemático técnico -->
-          <div class="scanner-doc-canvas">
-            <div class="doc-meta-header">
-              <span class="doc-tag-code">DOC_B2B_EXTRACTOR.SYS</span>
-              <span class="doc-status-live">● ESCANEANDO</span>
-            </div>
-
-            <div class="doc-data-lines">
-              <div class="doc-field-row">
-                <span class="field-label">ID ENTIDAD:</span>
-                <span class="field-val">PE-20608945123</span>
-              </div>
-              <div class="doc-field-row">
-                <span class="field-label">TOTAL VALIDADO:</span>
-                <span class="field-val highlight">USD $48,250.00</span>
-              </div>
-              <div class="doc-field-row">
-                <span class="field-label">CONCILIACIÓN:</span>
-                <span class="field-val success">100% CUADRADO</span>
-              </div>
-            </div>
-
-            <div class="scanner-chips-footer">
-              <span class="scan-tag">✓ RUC VALIDADO</span>
-              <span class="scan-tag">✓ SCHEMA MATCH</span>
+          <div class="service-accordion-panel">
+            <div class="accordion-inner">
+              <ul>
+                <li>Páginas completas: Inicio, Nosotros, Servicios, Proyectos y Contacto.</li>
+                <li>Diseño exclusivo según los colores y la personalidad de tu marca.</li>
+                <li>Optimización para buscadores (Google) y carga rápida.</li>
+                <li>Soporte técnico y asesoría incluidos.</li>
+              </ul>
+              <a href="https://wa.me/51987355501?text=Hola%20Scroll%20Studios,%20quiero%20cotizar%20una%20Pagina%20Web%20Corporativa" target="_blank" class="service-action-link">Cotizar por WhatsApp ↗</a>
             </div>
           </div>
-        </div>
-      </article>
+        </article>
 
-      <!-- Tarjeta 3 (Rendimiento & Conexión): Contador digital gigante de 0 ms a < 12 ms -->
-      <article class="bento-card reveal" data-delay="250">
-        <div class="bento-card-top">
-          <span class="bento-badge">[ RENDIMIENTO & CONEXIÓN ]</span>
-          <span class="bento-sub-pill">LATENCIA ULTRA-BAJA</span>
-        </div>
-
-        <div class="bento-headline">
-          <h3>VELOCIDAD DE EJECUCIÓN</h3>
-        </div>
-
-        <!-- Contador digital gigante animado con GSAP -->
-        <div class="bento-speed-container">
-          <div class="speed-giant-display">
-            <span class="speed-operator">&lt;&nbsp;</span>
-            <span class="speed-digital-counter" id="speedCounter" data-target="12">12</span>
-            <span class="speed-unit">ms</span>
+        <!-- Servicio 4: Avior -->
+        <article class="service-row-card reveal">
+          <div class="service-row-main">
+            <div class="service-info">
+              <h3 class="service-name">Avior (Asistente de WhatsApp)</h3>
+              <p class="service-one-line">Automatiza la atención inicial en tu WhatsApp oficial sin cuotas ocultas ni plataformas complejas.</p>
+            </div>
+            <button class="accordion-toggle-btn" onclick="toggleServiceAccordion(this)" aria-expanded="false">
+              <span>Ver qué incluye</span> <span class="arrow-icon">▾</span>
+            </button>
           </div>
-
-          <div class="speed-detail-bar">
-            <div class="speed-pulse-indicator">
-              <span class="speed-dot"></span>
-              <span>GLOBAL EDGE CDN · INFERENCIA EN TIEMPO REAL</span>
+          <div class="service-accordion-panel">
+            <div class="accordion-inner">
+              <ul>
+                <li>Entrenamiento personalizado con las dudas habituales de tus clientes.</li>
+                <li>Notificación inmediata cuando un cliente solicita atención personalizada.</li>
+                <li>Pausa automática en cuanto tú abres el chat y respondes.</li>
+                <li>Configuración en tu propio número de WhatsApp.</li>
+              </ul>
+              <a href="https://wa.me/51987355501?text=Hola%20Scroll%20Studios,%20quiero%20Avior%20en%20mi%20WhatsApp" target="_blank" class="service-action-link">Pedir Avior por WhatsApp ↗</a>
             </div>
           </div>
+        </article>
 
-          <!-- Micro barra de telemetría de milisegundos -->
-          <div class="speed-timeline-track">
-            <div class="timeline-segment active" style="width: 25%;"></div>
-            <div class="timeline-segment active" style="width: 35%;"></div>
-            <div class="timeline-segment active" style="width: 40%;"></div>
+        <!-- Servicio 5: Tienda Online -->
+        <article class="service-row-card reveal">
+          <div class="service-row-main">
+            <div class="service-info">
+              <h3 class="service-name">Tienda Online (E-commerce)</h3>
+              <p class="service-one-line">Vende tus productos por internet con catálogo visual ordenado y pedidos automáticos.</p>
+            </div>
+            <button class="accordion-toggle-btn" onclick="toggleServiceAccordion(this)" aria-expanded="false">
+              <span>Ver qué incluye</span> <span class="arrow-icon">▾</span>
+            </button>
           </div>
-          <div class="speed-timeline-labels">
-            <span>DNS 1ms</span>
-            <span>INFERENCIA 7ms</span>
-            <span>SYNC 4ms</span>
+          <div class="service-accordion-panel">
+            <div class="accordion-inner">
+              <ul>
+                <li>Catálogo de productos con fotos, precios y carrito de compras.</li>
+                <li>Integración de pagos (Yape, Plin, tarjeta o pedidos directos por WhatsApp).</li>
+                <li>Panel intuitivo para que agregues o modifiques productos cuando quieras.</li>
+                <li>Capacitación para que administres tus productos sin depender de nadie.</li>
+              </ul>
+              <a href="https://wa.me/51987355501?text=Hola%20Scroll%20Studios,%20quiero%20cotizar%20una%20Tienda%20Online" target="_blank" class="service-action-link">Cotizar por WhatsApp ↗</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════
+         5. SECCIÓN PRECIOS TRANSPARENTES (HTML Directo y Sólido)
+    ══════════════════════════ -->
+    <section class="pricing-section" id="precios">
+      <div class="section-header reveal">
+        <div class="section-tag">[ TARIFAS CLARAS ]</div>
+        <h2 class="section-title">Precios honestos, sin sorpresas</h2>
+        <p class="section-subtitle">Siempre sabes exactamente cuánto vas a invertir antes de dar el primer paso.</p>
+      </div>
+
+      <div class="pricing-grid" id="pricingGrid">
+        <!-- 1. Pack Landing + Avior (Destacado) -->
+        <div class="pricing-card featured reveal" id="pack-landing-avior">
+          <span class="pricing-card-badge">Recomendado</span>
+          <div class="pricing-card-header">
+            <h3 class="pricing-title">Pack Landing + Avior</h3>
+            <p class="pricing-sub">Página web de aterrizaje + asistente en tu WhatsApp configurado para tu negocio.</p>
+          </div>
+          <div class="pricing-cost-wrap">
+            <div class="pricing-cost-main">
+              <span class="pricing-from">Desde</span>
+              <span class="pricing-currency">S/</span>
+              <span class="pricing-amount">300</span>
+            </div>
+            <span class="pricing-save-badge">Ahorras S/ 100 este mes</span>
+            <div class="pricing-promo-note">Precio de lanzamiento · termina el 31/10</div>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="p-check">✓</span> Landing page de alta conversión para celular y PC</li>
+            <li><span class="p-check">✓</span> Avior configurado con las preguntas de tu negocio</li>
+            <li><span class="p-check">✓</span> Botón directo y enlace a WhatsApp</li>
+            <li><span class="p-check">✓</span> Entrega en 7 días hábiles</li>
+            <li><span class="p-check">✓</span> 2 rondas de cambios incluidas</li>
+          </ul>
+          <div class="pricing-cta-wrap">
+            <a href="https://wa.me/51987355501?text=Hola%20Scroll%20Studios!%20Me%20interesa%20el%20Pack%20Landing%20%2B%20Avior%20en%20oferta%20por%20S/%20300" target="_blank" class="pricing-btn btn-clay-primary">
+              Pedir Pack por WhatsApp ↗
+            </a>
           </div>
         </div>
-      </article>
-    </div>
-  </section>
 
-  <!-- ══════════════════════════
-       4. SECCIÓN "SELECTED WORK" / PROYECTOS DESTACADOS
-  ══════════════════════════ -->
-  <section class="selected-work-section" id="proyectos">
-    <div class="section-header reveal">
-      <div class="section-tag">[ SELECTED WORK ]</div>
-      <h2 class="section-title">ARQUITECTURAS IMPLEMENTADAS</h2>
-    </div>
-
-    <div class="work-gallery-grid">
-      <!-- Proyecto 01 -->
-      <article class="project-card reveal" data-delay="0" onclick="window.location.href='templates/projects.html'">
-        <div class="project-card-header">
-          <span class="work-badge">[ IA A MEDIDA ⎯ 2026 ]</span>
-          <h3 class="project-title">CORE OPERATIVO AUTÓNOMO</h3>
+        <!-- 2. Landing Page -->
+        <div class="pricing-card reveal" id="landing-page">
+          <div class="pricing-card-header">
+            <h3 class="pricing-title">Landing Page</h3>
+            <p class="pricing-sub">Una sola página directa al grano, ideal para lanzar un producto o captar clientes.</p>
+          </div>
+          <div class="pricing-cost-wrap">
+            <div class="pricing-cost-main">
+              <span class="pricing-from">Desde</span>
+              <span class="pricing-currency">S/</span>
+              <span class="pricing-amount">200</span>
+            </div>
+            <div class="pricing-promo-note">Precio de lanzamiento · termina el 31/10</div>
+            <div class="pricing-next-note">Desde noviembre: S/ 300</div>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="p-check">✓</span> Diseño moderno adaptado a celulares (360-430px)</li>
+            <li><span class="p-check">✓</span> Formulario o botón de contacto a WhatsApp</li>
+            <li><span class="p-check">✓</span> Carga rápida y optimización visual</li>
+            <li><span class="p-check">✓</span> Entrega en 7 días hábiles</li>
+            <li><span class="p-check">✓</span> 2 rondas de cambios incluidas</li>
+          </ul>
+          <div class="pricing-cta-wrap">
+            <a href="https://wa.me/51987355501?text=Hola%20Scroll%20Studios!%20Me%20interesa%20contratar%20una%20Landing%20Page" target="_blank" class="pricing-btn btn-clay-secondary">
+              Consultar por WhatsApp ↗
+            </a>
+          </div>
         </div>
 
-        <div class="project-media-viewport">
-          <div class="mockup-window">
-            <div class="mockup-bar">
+        <!-- 3. Avior (Asistente de WhatsApp) -->
+        <div class="pricing-card reveal" id="avior-ia">
+          <div class="pricing-card-header">
+            <h3 class="pricing-title">Avior (Asistente WhatsApp)</h3>
+            <p class="pricing-sub">Responde consultas frecuentes de tus clientes en WhatsApp cuando tú no puedes.</p>
+          </div>
+          <div class="pricing-cost-wrap">
+            <div class="pricing-cost-main">
+              <span class="pricing-from">Desde</span>
+              <span class="pricing-currency">S/</span>
+              <span class="pricing-amount">200</span>
+            </div>
+            <div class="pricing-promo-note">Precio de lanzamiento · termina el 31/10</div>
+            <div class="pricing-next-note">Desde noviembre: S/ 350</div>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="p-check">✓</span> Entrenado con información real de tus productos/servicios</li>
+            <li><span class="p-check">✓</span> Te avisa cuando un cliente solicita hablar con una persona</li>
+            <li><span class="p-check">✓</span> Se pausa automáticamente cuando tomas la conversación</li>
+            <li><span class="p-check">✓</span> Sin cobros sorpresa de plataforma</li>
+            <li><span class="p-check">✓</span> Configuración lista en tu número de WhatsApp</li>
+          </ul>
+          <div class="pricing-cta-wrap">
+            <a href="https://wa.me/51987355501?text=Hola%20Scroll%20Studios!%20Me%20interesa%20implementar%20el%20asistente%20Avior%20en%20mi%20WhatsApp" target="_blank" class="pricing-btn btn-clay-secondary">
+              Pedir Avior por WhatsApp ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- 4. Página Web Corporativa -->
+        <div class="pricing-card reveal" id="web-corporativa">
+          <div class="pricing-card-header">
+            <h3 class="pricing-title">Página Web Corporativa</h3>
+            <p class="pricing-sub">Múltiples secciones y páginas para empresas que necesitan mostrar solvencia y servicios.</p>
+          </div>
+          <div class="pricing-cost-wrap">
+            <div class="pricing-cost-main">
+              <span class="pricing-from">Desde</span>
+              <span class="pricing-currency">S/</span>
+              <span class="pricing-amount">500</span>
+            </div>
+            <div class="pricing-next-note">Presupuesto según requerimientos</div>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="p-check">✓</span> Inicio, Nosotros, Servicios, Proyectos y Contacto</li>
+            <li><span class="p-check">✓</span> Diseño a medida según la identidad de tu marca</li>
+            <li><span class="p-check">✓</span> Estructura orientada a transmitir confianza profesional</li>
+            <li><span class="p-check">✓</span> Optimización para buscadores (Google) y móviles</li>
+            <li><span class="p-check">✓</span> 2 rondas de cambios incluidas</li>
+          </ul>
+          <div class="pricing-cta-wrap">
+            <a href="https://wa.me/51987355501?text=Hola%20Scroll%20Studios!%20Quisiera%20cotizar%20una%20Pagina%20Web%20Corporativa%20para%20mi%20empresa" target="_blank" class="pricing-btn btn-clay-secondary">
+              Cotizar por WhatsApp ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- 5. Tienda Online -->
+        <div class="pricing-card reveal" id="tienda-online">
+          <div class="pricing-card-header">
+            <h3 class="pricing-title">Tienda Online (E-commerce)</h3>
+            <p class="pricing-sub">Catálogo de productos organizado, pasarelas de pago o pedidos directos por WhatsApp.</p>
+          </div>
+          <div class="pricing-cost-wrap">
+            <div class="pricing-cost-main">
+              <span class="pricing-from">Desde</span>
+              <span class="pricing-currency">S/</span>
+              <span class="pricing-amount">800</span>
+            </div>
+            <div class="pricing-next-note">Presupuesto según catálogo y pasarela</div>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="p-check">✓</span> Catálogo interactivo con carrito de compras</li>
+            <li><span class="p-check">✓</span> Integración de pagos (Yape, Plin, Tarjeta o WhatsApp)</li>
+            <li><span class="p-check">✓</span> Panel para agregar o editar productos fácilmente</li>
+            <li><span class="p-check">✓</span> Adaptada para comprar desde cualquier celular</li>
+            <li><span class="p-check">✓</span> 2 rondas de cambios incluidas</li>
+          </ul>
+          <div class="pricing-cta-wrap">
+            <a href="https://wa.me/51987355501?text=Hola%20Scroll%20Studios!%20Quisiera%20cotizar%20una%20Tienda%20Online%20para%20mi%20negocio" target="_blank" class="pricing-btn btn-clay-secondary">
+              Cotizar Tienda por WhatsApp ↗
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notas visibles de transparencia -->
+      <div class="pricing-disclaimer-box reveal">
+        <div class="disclaimer-item">
+          <strong>Costos de servidor:</strong> El hosting y dominio se contratan aparte según las necesidades de tu web. Te orientamos paso a paso para que queden 100% a tu nombre.
+        </div>
+        <div class="disclaimer-item">
+          <strong>Revisiones:</strong> Todos los planes incluyen 2 rondas de cambios para afinar textos, fotos y detalles a tu entera conformidad.
+        </div>
+        <div class="disclaimer-item">
+          <strong>Modalidad de pago:</strong> 50 % al iniciar el trabajo y 50 % al entregar y publicar la web.
+        </div>
+        <div class="disclaimer-item">
+          <strong>Plazo de 7 días:</strong> Aplica específicamente al paquete de Landing Page + Avior tras recibir tu información completa.
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════
+         6. EJEMPLOS DE DISEÑO (Muestras de Portfolio)
+    ══════════════════════════ -->
+    <section class="samples-section" id="ejemplos">
+      <div class="section-header reveal">
+        <div class="section-tag">[ DEMOSTRACIÓN VISUAL ]</div>
+        <h2 class="section-title">Ejemplos de cómo lucirá tu marca</h2>
+        <p class="section-subtitle">Conceptos visuales funcionales adaptables a la identidad de tu empresa.</p>
+      </div>
+
+      <div class="samples-grid">
+        <!-- Ejemplo 1 -->
+        <article class="sample-card reveal">
+          <div class="sample-tag-pill">Ejemplo de diseño</div>
+          <div class="sample-preview boutique">
+            <div class="sample-mock-bar">
               <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-              <span class="mockup-title">scroll.architecture // command_center</span>
+              <span class="mock-url">boutique.tienda // catalogo</span>
             </div>
-            <div class="mockup-body">
-              <div class="mockup-row-preview">
-                <div class="mockup-metric-card">
-                  <span class="m-label">AGENTES DESPLEGADOS</span>
-                  <span class="m-val">28 Activos</span>
-                </div>
-                <div class="mockup-metric-card">
-                  <span class="m-label">TRANSACCIONES / DÍA</span>
-                  <span class="m-val">1.4M</span>
-                </div>
-                <div class="mockup-metric-card">
-                  <span class="m-label">CONFIABILIDAD</span>
-                  <span class="m-val">99.99%</span>
-                </div>
-              </div>
-              <div class="mockup-chart-strip">
-                <div class="chart-bar" style="height: 45%;"></div>
-                <div class="chart-bar" style="height: 65%;"></div>
-                <div class="chart-bar" style="height: 90%;"></div>
-                <div class="chart-bar" style="height: 75%;"></div>
-                <div class="chart-bar" style="height: 100%;"></div>
-                <div class="chart-bar" style="height: 85%;"></div>
-                <div class="chart-bar" style="height: 95%;"></div>
+            <div class="sample-mock-content">
+              <div class="mock-product-row">
+                <div class="mock-prod-box">👗 Colección Verano</div>
+                <div class="mock-prod-box">🛍️ Carrito (S/ 180)</div>
               </div>
             </div>
           </div>
-          <div class="project-overlay-pill">
-            <span>VER ARQUITECTURA ↗</span>
+          <div class="sample-footer">
+            <h3>Boutique & Ropa Urbana</h3>
+            <p>Tienda online con catálogo de productos y compra directa por WhatsApp.</p>
+            <a href="https://wa.me/51987355501?text=Hola%20Scroll%20Studios,%20quiero%20una%20web%20para%20tienda%20de%20ropa" target="_blank" class="sample-link">Consultar para mi rubro ↗</a>
           </div>
-        </div>
-      </article>
+        </article>
 
-      <!-- Proyecto 02 -->
-      <article class="project-card reveal" data-delay="150" onclick="window.location.href='templates/projects.html'">
-        <div class="project-card-header">
-          <span class="work-badge">[ INFRAESTRUCTURA B2B ⎯ 2026 ]</span>
-          <h3 class="project-title">PIPELINE FISCAL & ERP CONECTADO</h3>
-        </div>
-
-        <div class="project-media-viewport">
-          <div class="mockup-window">
-            <div class="mockup-bar">
+        <!-- Ejemplo 2 -->
+        <article class="sample-card reveal" data-delay="100">
+          <div class="sample-tag-pill">Ejemplo de diseño</div>
+          <div class="sample-preview gourmet">
+            <div class="sample-mock-bar">
               <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-              <span class="mockup-title">scroll.pipeline // fiscal_erp_stream</span>
+              <span class="mock-url">restaurante.pe // carta_digital</span>
             </div>
-            <div class="mockup-body">
-              <div class="mockup-row-preview">
-                <div class="mockup-metric-card">
-                  <span class="m-label">SINCRONIZACIÓN SAP / ERP</span>
-                  <span class="m-val">0.3s</span>
-                </div>
-                <div class="mockup-metric-card">
-                  <span class="m-label">COMPROBANTES SUNAT</span>
-                  <span class="m-val">100% OK</span>
-                </div>
-                <div class="mockup-metric-card">
-                  <span class="m-label">DESVIACIÓN FISCAL</span>
-                  <span class="m-val">0.00%</span>
-                </div>
-              </div>
-              <div class="mockup-pipeline-nodes">
-                <div class="pipe-node">ENTRADA ERP</div>
-                <div class="pipe-arrow">→</div>
-                <div class="pipe-node">FIRMA XML</div>
-                <div class="pipe-arrow">→</div>
-                <div class="pipe-node active">VAL. TRIBUTARIA</div>
-                <div class="pipe-arrow">→</div>
-                <div class="pipe-node">CONCILIACIÓN</div>
+            <div class="sample-mock-content">
+              <div class="mock-product-row">
+                <div class="mock-prod-box">🍽️ Platos a la Carta</div>
+                <div class="mock-prod-box">📍 Reservar Mesa</div>
               </div>
             </div>
           </div>
-          <div class="project-overlay-pill">
-            <span>VER ARQUITECTURA ↗</span>
+          <div class="sample-footer">
+            <h3>Restaurante & Bar Gourmet</h3>
+            <p>Landing page con carta digital en QR, reservas y horarios actualizados.</p>
+            <a href="https://wa.me/51987355501?text=Hola%20Scroll%20Studios,%20quiero%20una%20web%20para%20restaurante" target="_blank" class="sample-link">Consultar para mi rubro ↗</a>
           </div>
-        </div>
-      </article>
+        </article>
 
-      <!-- Proyecto 03 -->
-      <article class="project-card reveal" data-delay="250" onclick="window.location.href='templates/projects.html'">
-        <div class="project-card-header">
-          <span class="work-badge">[ AGENTES COGNITIVOS ⎯ 2026 ]</span>
-          <h3 class="project-title">ATENCIÓN & RESOLUCIÓN PREDICTIVA</h3>
-        </div>
-
-        <div class="project-media-viewport">
-          <div class="mockup-window">
-            <div class="mockup-bar">
+        <!-- Ejemplo 3 -->
+        <article class="sample-card reveal" data-delay="200">
+          <div class="sample-tag-pill">Ejemplo de diseño</div>
+          <div class="sample-preview clinica">
+            <div class="sample-mock-bar">
               <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-              <span class="mockup-title">scroll.cognitive // dispatch_engine</span>
+              <span class="mock-url">clinica.salud // citas_avior</span>
             </div>
-            <div class="mockup-body">
-              <div class="mockup-row-preview">
-                <div class="mockup-metric-card">
-                  <span class="m-label">RESOLUCIÓN DE PRIMER CONTACTO</span>
-                  <span class="m-val">94.6%</span>
-                </div>
-                <div class="mockup-metric-card">
-                  <span class="m-label">VELOCIDAD PROMEDIO</span>
-                  <span class="m-val">&lt; 0.5s</span>
-                </div>
-                <div class="mockup-metric-card">
-                  <span class="m-label">INTERACCIÓN HUMANA REQUERIDA</span>
-                  <span class="m-val">5.4%</span>
-                </div>
-              </div>
-              <div class="mockup-chat-stream-preview">
-                <div class="stream-bubble user">Consulta de inventario B2B y cotización automática al por mayor.</div>
-                <div class="stream-bubble bot">Cotización generada y confirmada en inventario en 0.2s con despacho programado.</div>
+            <div class="sample-mock-content">
+              <div class="mock-product-row">
+                <div class="mock-prod-box">🩺 Especialidades</div>
+                <div class="mock-prod-box">💬 Cita en WhatsApp</div>
               </div>
             </div>
           </div>
-          <div class="project-overlay-pill">
-            <span>VER ARQUITECTURA ↗</span>
+          <div class="sample-footer">
+            <h3>Centro Dental & Consultorio</h3>
+            <p>Web corporativa con Avior respondiendo precios de consultas y agendando turnos.</p>
+            <a href="https://wa.me/51987355501?text=Hola%20Scroll%20Studios,%20quiero%20una%20web%20para%20clinica%20o%20consultorio" target="_blank" class="sample-link">Consultar para mi rubro ↗</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════
+         7. CÓMO TRABAJAMOS (4 Pasos Simples)
+    ══════════════════════════ -->
+    <section class="process-section">
+      <div class="section-header reveal">
+        <div class="section-tag">[ METODOLOGÍA ]</div>
+        <h2 class="section-title">Trabajar con nosotros es fácil</h2>
+        <p class="section-subtitle">Un proceso ordenado para que no pierdas tiempo ni te compliques con temas técnicos.</p>
+      </div>
+
+      <div class="process-steps-grid">
+        <div class="step-card reveal" data-delay="0">
+          <div class="step-num">01</div>
+          <h3 class="step-title">Hablamos</h3>
+          <p class="step-desc">Nos cuentas sobre tu negocio, tus productos y qué objetivo quieres lograr. Te recomendamos la opción más conveniente.</p>
+        </div>
+
+        <div class="step-card reveal" data-delay="100">
+          <div class="step-num">02</div>
+          <h3 class="step-title">Lo armamos</h3>
+          <p class="step-desc">Diseñamos y programamos tu página web o configuramos tu asistente Avior con código limpio, rápido y adaptado a celulares.</p>
+        </div>
+
+        <div class="step-card reveal" data-delay="200">
+          <div class="step-num">03</div>
+          <h3 class="step-title">Revisas</h3>
+          <p class="step-desc">Te mostramos el proyecto en un enlace privado. Tienes 2 rondas de cambios incluidas para pulir textos, fotos y detalles.</p>
+        </div>
+
+        <div class="step-card reveal" data-delay="300">
+          <div class="step-num">04</div>
+          <h3 class="step-title">Lo recibes</h3>
+          <p class="step-desc">Publicamos tu web en tu dominio o activamos a Avior en tu número oficial. Todo queda 100% bajo tu propiedad.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════
+         8. DOS CAMINOS (Segmentación)
+    ══════════════════════════ -->
+    <section class="two-paths-section">
+      <div class="paths-grid">
+        <!-- Camino 1: Negocios -->
+        <div class="path-card business reveal">
+          <span class="path-badge">Negocios y Emprendedores</span>
+          <h3 class="path-title">Tengo un negocio</h3>
+          <p class="path-desc">
+            Necesitas una web que se vea profesional en celular, que cargue en 1 segundo y un asistente que atienda en WhatsApp cuando estés ocupado.
+          </p>
+          <ul class="path-points">
+            <li>✓ Precios accesibles y sin mensualidades forzadas.</li>
+            <li>✓ Entrega en 7 días para Landing + Avior.</li>
+            <li>✓ Pago 50% al inicio y 50% al entregar.</li>
+          </ul>
+          <a href="#precios" class="btn-clay">Ver opciones de precios ↗</a>
+        </div>
+
+        <!-- Camino 2: Empresas -->
+        <div class="path-card enterprise reveal" data-delay="100">
+          <span class="path-badge">Empresas e Instituciones</span>
+          <h3 class="path-title">Soy una empresa</h3>
+          <p class="path-desc">
+            Cuéntanos tu caso y evaluamos qué se puede automatizar en la atención de tus clientes o cómo renovar tu presencia institucional sin tecnicismos innecesarios.
+          </p>
+          <ul class="path-points">
+            <li>✓ Arquitectura web a medida con tu identidad corporativa.</li>
+            <li>✓ Diagnóstico honesto de flujos de mensajes repetitivos.</li>
+            <li>✓ Trato directo con los desarrolladores del proyecto.</li>
+          </ul>
+          <a href="https://wa.me/51987355501?text=Hola%20Scroll%20Studios,%20represento%20a%20una%20empresa%20y%20quisiera%20conversar%20sobre%20un%20proyecto" target="_blank" class="btn-outline">
+            Conversar sobre mi empresa ↗
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════
+         9. PREGUNTAS FRECUENTES (FAQ)
+    ══════════════════════════ -->
+    <section class="faq-section" id="faq">
+      <div class="section-header reveal">
+        <div class="section-tag">[ DUDAS FRECUENTES ]</div>
+        <h2 class="section-title">Todo claro antes de empezar</h2>
+      </div>
+
+      <div class="faq-accordion-container">
+        <!-- FAQ 1 -->
+        <div class="faq-item reveal">
+          <button class="faq-question-btn" onclick="toggleFaq(this)" aria-expanded="false">
+            <span>¿Necesito saber de tecnología para tener mi página o Avior?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer-panel">
+            <p>No, para nada. Nosotros nos encargamos de todo el diseño, la programación y la configuración técnica. Te entregamos el producto terminado listo para usar y te explicamos cómo funciona en palabras sencillas.</p>
           </div>
         </div>
-      </article>
-    </div>
-  </section>
 
-  <!-- ══════════════════════════
-       5. CIERRE CONVERSIÓN MINIMALISTA B2B
-  ══════════════════════════ -->
-  <footer class="conversion-footer" id="cta">
-    <div class="conv-cta-block reveal">
-      <div class="conv-badge-wrap">
-        <span class="clay-badge">[ INICIAR CONVERSIÓN ]</span>
-      </div>
-      <h2 class="conv-cta-title">
-        DISEÑEMOS TU ARQUITECTURA AUTÓNOMA
-      </h2>
-      <p class="conv-cta-desc">
-        Agenda una sesión estratégica directa con nuestros ingenieros de sistemas.
-      </p>
-      <div class="conv-actions">
-        <a href="templates/contacto.html" class="btn-clay">
-          AGENDAR CONSULTA PRIVADA ↗
-        </a>
-      </div>
-    </div>
+        <!-- FAQ 2 -->
+        <div class="faq-item reveal">
+          <button class="faq-question-btn" onclick="toggleFaq(this)" aria-expanded="false">
+            <span>¿Qué debo entregarte para comenzar mi proyecto?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer-panel">
+            <p>Solo lo básico: el nombre de tu empresa, tu logo (si tienes), fotos de tus productos o de tu local, y una lista de lo que ofreces con sus precios o preguntas que te hacen tus clientes frecuentemente. Nosotros nos encargamos de ordenarlo.</p>
+          </div>
+        </div>
 
-    <div class="conv-footer-bar reveal" data-delay="100">
-      <div class="conv-footer-logo">
-        <a href="index.html">Scroll Studios</a>
-        <span class="conv-copyright">© 2026 Scroll Studios ⎯ Automation Architecture ⎯ Lima / Global</span>
-      </div>
-      <div class="conv-quick-links">
-        <a href="#inicio">Inicio</a>
-        <a href="#capacidades">Capacidades</a>
-        <a href="#proyectos">Selected Work</a>
-        <a href="templates/nosotros.html">Nosotros</a>
-        <a href="templates/contacto.html">Contacto</a>
-      </div>
-      <div class="conv-social">
-        <a href="https://wa.me/51987355501" target="_blank" rel="noopener">WhatsApp</a>
-        <a href="mailto:contacto@scrollstudios.pe">Email</a>
-      </div>
-    </div>
-  </footer>
+        <!-- FAQ 3 -->
+        <div class="faq-item reveal">
+          <button class="faq-question-btn" onclick="toggleFaq(this)" aria-expanded="false">
+            <span>¿Cuánto demora la entrega?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer-panel">
+            <p>El paquete de Landing Page + Avior se entrega en <strong>7 días hábiles</strong> a partir de que nos entregas tu información. Para páginas corporativas o tiendas con catálogos amplios, acordamos una fecha exacta en el calendario antes de empezar.</p>
+          </div>
+        </div>
 
-  <!-- WhatsApp flotante -->
-  <a href="https://wa.me/51987355501" target="_blank" class="wa-btn" aria-label="Contactar por WhatsApp">
+        <!-- FAQ 4 -->
+        <div class="faq-item reveal">
+          <button class="faq-question-btn" onclick="toggleFaq(this)" aria-expanded="false">
+            <span>¿Hay costos aparte que deba considerar?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer-panel">
+            <p>Sí, de forma transparente: el nombre de dominio (.com o .pe) y el alojamiento web (hosting) son servicios de internet que se pagan anualmente directo al proveedor (nosotros te ayudamos a comprarlos a tu nombre). El mantenimiento mensual es totalmente opcional y te lo explicamos antes de firmar.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="faq-item reveal">
+          <button class="faq-question-btn" onclick="toggleFaq(this)" aria-expanded="false">
+            <span>¿Avior puede equivocarse al responder?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer-panel">
+            <p>Puede ocurrir en situaciones imprevistas. Por eso, Avior solo responde lo que sabe según la información oficial que tú le enseñas. Si un cliente hace una consulta compleja o pide hablar con un humano, Avior te notifica de inmediato y se pausa para que tú tomes el control.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="faq-item reveal">
+          <button class="faq-question-btn" onclick="toggleFaq(this)" aria-expanded="false">
+            <span>¿Cómo es la forma de pago?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer-panel">
+            <p>Trabajamos con total seguridad para ambas partes: <strong>50 % al iniciar</strong> para asegurar el tiempo de desarrollo y <strong>50 % al entregar</strong> tu página probada y aprobada a tu gusto. Aceptamos Yape, Plin y transferencias bancarias en soles.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════
+         10. CIERRE DE CONVERSIÓN Y FOOTER
+    ══════════════════════════ -->
+    <footer class="conversion-footer" id="contacto">
+      <div class="conv-cta-block reveal">
+        <div class="conv-badge-wrap">
+          <span class="clay-badge">Hablemos de tu proyecto</span>
+        </div>
+        <h2 class="conv-cta-title">
+          Empecemos a atender clientes en automático hoy mismo.
+        </h2>
+        <p class="conv-cta-desc">
+          Escríbenos por WhatsApp y te responderemos en minutos con una propuesta clara y sin letra chica.
+        </p>
+        <div class="conv-actions">
+          <a href="https://wa.me/51987355501?text=Hola%20Scroll%20Studios,%20quiero%20empezar%20un%20proyecto" target="_blank" class="btn-clay conv-submit-btn">
+            Escríbenos por WhatsApp ↗
+          </a>
+        </div>
+      </div>
+
+      <div class="conv-footer-bar reveal" data-delay="100">
+        <div class="conv-footer-logo">
+          <a href="index.html">Scroll Studios</a>
+          <span class="conv-copyright">© <span class="current-year">2026</span> Scroll Studios · Agencia digital en Lima, Perú</span>
+        </div>
+        <div class="conv-quick-links">
+          <a href="#servicios">Servicios</a>
+          <a href="#avior">Avior</a>
+          <a href="#precios">Precios</a>
+          <a href="templates/contacto.html">Contacto</a>
+          <a href="templates/privacidad.html">Privacidad</a>
+          <a href="templates/terminos.html">Términos</a>
+        </div>
+        <div class="conv-social">
+          <a href="https://www.instagram.com/scroll.studios/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.facebook.com/profile.php?id=61585200328114" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://wa.me/51987355501" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="mailto:danielhoyysiempre212@gmail.com">danielhoyysiempre212@gmail.com</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Botón WhatsApp Flotante -->
+  <a href="https://wa.me/51987355501?text=Hola%20Scroll%20Studios,%20quiero%20consultar%20sobre%20sus%20servicios" target="_blank" class="wa-btn" aria-label="Escribir por WhatsApp">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white">
       <path d="M16 0C7.163 0 0 7.163 0 16c0 2.82.736 5.469 2.027 7.774L0 32l8.454-2.007A15.93 15.93 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 01-6.756-1.839l-.484-.287-5.02 1.193 1.243-4.893-.317-.503A13.234 13.234 0 012.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.878c-.398-.199-2.354-1.162-2.719-1.295-.365-.133-.63-.199-.896.199-.265.398-1.029 1.295-1.261 1.56-.232.265-.465.298-.863.1-.398-.199-1.681-.619-3.202-1.977-1.183-1.056-1.981-2.36-2.213-2.758-.232-.398-.025-.613.174-.811.179-.178.398-.465.597-.697.199-.232.265-.398.398-.664.133-.265.066-.497-.033-.697-.1-.199-.896-2.16-1.228-2.957-.323-.776-.651-.671-.896-.683l-.763-.013c-.265 0-.697.1-1.062.497-.365.398-1.394 1.362-1.394 3.322s1.427 3.853 1.626 4.118c.199.265 2.808 4.287 6.803 5.011.951.163 1.693.261 2.271.334.954.121 1.823.104 2.51-.061.765-.183 2.354-.963 2.686-1.893.332-.93.332-1.727.232-1.893-.099-.166-.365-.265-.763-.464z"/>
     </svg>
@@ -509,7 +789,7 @@
   ══════════════════════════ -->
   <div class="ss-cta-tooltip" id="ssCtaTooltip" onclick="toggleSSChat()">
     <span class="ss-pulse-dot"></span>
-    <span class="ss-cta-tooltip-label">Probar demo interactiva con mi negocio</span>
+    <span class="ss-cta-tooltip-label">Probar demo con mi negocio</span>
   </div>
 
   <button class="ss-widget-btn" id="ssWidgetBtn" onclick="toggleSSChat()" aria-label="Abrir asistente Avior">
@@ -528,7 +808,7 @@
           </svg>
         </div>
         <div>
-          <div class="ss-header-title">Avior AI</div>
+          <div class="ss-header-title">Avior, el asistente de Scroll Studios</div>
           <div class="ss-header-status">
             <span class="ss-status-dot"></span> En línea
           </div>
@@ -538,19 +818,24 @@
       <button class="ss-close-btn" onclick="toggleSSChat()" aria-label="Cerrar chat">✕</button>
     </div>
 
+    <!-- Aviso de privacidad sensible -->
+    <div class="ss-privacy-notice">
+      <span>🔒 Demo de prueba. No escribas datos personales sensibles ni contraseñas.</span>
+    </div>
+
     <div class="ss-body" id="ssMessages">
       <div class="ss-msg ss-bot">
-        Bienvenido a la demo interactiva de Avior. Para configurar el simulador personalizado, ingresa los datos de tu empresa:
+        ¡Hola! Soy Avior, el asistente virtual de Scroll Studios. Ingresa los datos de tu empresa para probar cómo respondería a las preguntas de tus clientes:
       </div>
 
       <div class="ss-demo-setup">
         <div class="ss-demo-label">
-          <span>Configuración de la demo:</span>
+          <span>Configura la prueba para tu negocio:</span>
         </div>
         <div class="ss-demo-inputs">
-          <input type="text" class="ss-demo-input" id="demoNombre" placeholder="Nombre de tu Empresa" oninput="this.classList.remove('error')"/>
-          <input type="text" class="ss-demo-input" id="demoRubro" placeholder="Rubro / Sector" oninput="this.classList.remove('error')"/>
-          <button type="button" class="ss-demo-btn" id="ssStartDemoBtn" onclick="activateSSDemo()">Probar demo con mi negocio</button>
+          <input type="text" class="ss-demo-input" id="demoNombre" placeholder="Nombre de tu negocio" oninput="this.classList.remove('error')"/>
+          <input type="text" class="ss-demo-input" id="demoRubro" placeholder="Rubro o sector (ej. Odontología, Ropa)" oninput="this.classList.remove('error')"/>
+          <button type="button" class="ss-demo-btn" id="ssStartDemoBtn" onclick="activateSSDemo()">Comenzar prueba interactiva</button>
         </div>
       </div>
     </div>
@@ -562,17 +847,17 @@
             <path d="M12 2C12 7.5 16.5 12 22 12C16.5 12 12 16.5 12 22C12 16.5 7.5 12 2 12C7.5 12 12 7.5 12 2Z"/>
           </svg>
         </div>
-        <h3>Límite de demo alcanzado</h3>
-        <p>Has completado los <strong>5 mensajes de prueba</strong> del simulador Avior para <strong id="ssLimitNombre">tu negocio</strong>.</p>
-        <p class="ss-limit-subtext">¿Deseas implementar la tecnología de Avior en tu canal oficial de WhatsApp 24/7?</p>
-        <a href="https://wa.me/51987355501?text=Hola%20Scroll%20Studios,%20prob%C3%A9%20la%20demo%20de%20Avior%20y%20quiero%20implementarla%20en%20mi%20negocio" target="_blank" class="ss-limit-cta-btn btn-clay">
+        <h3>Prueba completada</h3>
+        <p>Has completado los <strong>5 mensajes de prueba</strong> de Avior para <strong id="ssLimitNombre">tu negocio</strong>.</p>
+        <p class="ss-limit-subtext">¿Quieres que Avior atienda en tu WhatsApp cuando tú no puedes?</p>
+        <a href="https://wa.me/51987355501?text=Hola%20Scroll%20Studios,%20prob%C3%A9%20la%20demo%20de%20Avior%20y%20quiero%20implementarlo%20en%20mi%20WhatsApp" target="_blank" class="ss-limit-cta-btn btn-clay">
           Implementar Avior en mi WhatsApp
         </a>
       </div>
     </div>
 
     <div class="ss-input-area">
-      <input type="text" id="ssInput" placeholder="Completa los datos de tu empresa arriba para comenzar..." disabled onkeydown="if(event.key==='Enter') sendSSMessage()" onclick="if(messageCount>=MAX_MESSAGES) triggerLimitModal()"/>
+      <input type="text" id="ssInput" placeholder="Completa los datos de tu empresa arriba..." disabled onkeydown="if(event.key==='Enter') sendSSMessage()" onclick="if(messageCount>=MAX_MESSAGES) triggerLimitModal()"/>
       <button class="ss-send-btn" id="ssSendBtn" onclick="sendSSMessage()" disabled aria-label="Enviar mensaje">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
@@ -587,8 +872,52 @@
   <script src="static/js/global.js"></script>
   <script src="static/js/home.js"></script>
 
-  <!-- Lógica Widget Avior -->
+  <!-- Lógica Acordeones y Widget Avior -->
   <script>
+    // Acordeón de Servicios
+    function toggleServiceAccordion(btn) {
+      const card = btn.closest('.service-row-card');
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      
+      // Cerrar otros
+      document.querySelectorAll('.service-row-card').forEach(c => {
+        if (c !== card) {
+          c.classList.remove('open');
+          const otherBtn = c.querySelector('.accordion-toggle-btn');
+          if (otherBtn) {
+            otherBtn.setAttribute('aria-expanded', 'false');
+            otherBtn.querySelector('.arrow-icon').textContent = '▾';
+          }
+        }
+      });
+
+      card.classList.toggle('open');
+      btn.setAttribute('aria-expanded', !isExpanded);
+      btn.querySelector('.arrow-icon').textContent = isExpanded ? '▾' : '▴';
+    }
+
+    // Acordeón de FAQ
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+
+      document.querySelectorAll('.faq-item').forEach(f => {
+        if (f !== item) {
+          f.classList.remove('open');
+          const otherBtn = f.querySelector('.faq-question-btn');
+          if (otherBtn) {
+            otherBtn.setAttribute('aria-expanded', 'false');
+            otherBtn.querySelector('.faq-icon').textContent = '+';
+          }
+        }
+      });
+
+      item.classList.toggle('open');
+      btn.setAttribute('aria-expanded', !isExpanded);
+      btn.querySelector('.faq-icon').textContent = isExpanded ? '+' : '−';
+    }
+
+    // LÓGICA AVIOR AI WIDGET
     const MAX_MESSAGES = 5;
     let messageCount = 0;
     let activeNombreNegocio = '';
@@ -615,7 +944,7 @@
 
       if (ssInput) {
         ssInput.disabled = true;
-        ssInput.placeholder = "Límite de demo alcanzado (5/5)";
+        ssInput.placeholder = "Prueba completada (5/5)";
       }
       if (ssSendBtn) {
         ssSendBtn.disabled = true;
@@ -631,13 +960,30 @@
       }
     }
 
+    // Auto-apertura por URL ?ref=folleto (1 vez por sesión)
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('ref') === 'folleto') {
+        const alreadyOpened = sessionStorage.getItem('ss_auto_folleto');
+        if (!alreadyOpened) {
+          sessionStorage.setItem('ss_auto_folleto', 'true');
+          setTimeout(() => {
+            const box = document.getElementById('ssChatBox');
+            if (box && !box.classList.contains('open')) {
+              toggleSSChat();
+            }
+          }, 1200);
+        }
+      }
+    });
+
     window.addEventListener('ss:preloader-complete', () => setTimeout(() => {
       const tooltip = document.getElementById('ssCtaTooltip');
       const box = document.getElementById('ssChatBox');
       if (tooltip && box && !box.classList.contains('open') && !isTooltipDismissed) {
         tooltip.classList.add('visible');
       }
-    }, 3500), { once: true });
+    }, 2500), { once: true });
 
     function toggleSSChat() {
       const box = document.getElementById('ssChatBox');
@@ -657,7 +1003,6 @@
           document.body.style.overflow = '';
           document.documentElement.style.overflow = '';
         }
-        // Blur any focused input to dismiss keyboard
         if (document.activeElement && document.activeElement.tagName === 'INPUT') {
           document.activeElement.blur();
         }
@@ -669,37 +1014,29 @@
         }
         if (isDemoActivated && messageCount < MAX_MESSAGES) {
           const input = document.getElementById('ssInput');
-          // On mobile don't auto-focus to avoid immediate keyboard popup
           if (!isMobile) setTimeout(() => input?.focus(), 350);
         }
       }
     }
 
-    /* ── Mobile Keyboard Detection ── */
+    // Teclado virtual en móvil
     (function initMobileKeyboardHandler() {
       if (window.innerWidth > 600) return;
-
       const chatBox = document.getElementById('ssChatBox');
       if (!chatBox) return;
 
-      // Use visualViewport API (supported on all modern mobile browsers)
       if (window.visualViewport) {
         let initialHeight = window.visualViewport.height;
-        
         window.visualViewport.addEventListener('resize', () => {
           if (!chatBox.classList.contains('open')) return;
-          
           const currentHeight = window.visualViewport.height;
           const heightDiff = initialHeight - currentHeight;
-          // If viewport shrank by more than 100px, keyboard is likely open
           const keyboardOpen = heightDiff > 100;
 
           if (keyboardOpen) {
             chatBox.classList.add('keyboard-open');
-            // Resize chat to fit available viewport
             chatBox.style.height = currentHeight + 'px';
             chatBox.style.maxHeight = currentHeight + 'px';
-            // Scroll messages to bottom
             const body = document.getElementById('ssMessages');
             if (body) setTimeout(() => body.scrollTop = body.scrollHeight, 50);
           } else {
@@ -708,47 +1045,7 @@
             chatBox.style.maxHeight = '';
           }
         });
-
-        // Update baseline on orientation change
-        window.visualViewport.addEventListener('scroll', () => {
-          // Prevent iOS from scrolling the page behind the chat
-          if (chatBox.classList.contains('open')) {
-            window.scrollTo(0, 0);
-          }
-        });
-
-        // Recalculate initial height on orientation change
-        window.addEventListener('orientationchange', () => {
-          setTimeout(() => { initialHeight = window.visualViewport.height; }, 300);
-        });
       }
-
-      // Fallback: focus/blur on inputs inside the chat
-      chatBox.addEventListener('focusin', (e) => {
-        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
-          setTimeout(() => {
-            chatBox.classList.add('keyboard-open');
-            const body = document.getElementById('ssMessages');
-            if (body) body.scrollTop = body.scrollHeight;
-          }, 300);
-        }
-      });
-
-      chatBox.addEventListener('focusout', (e) => {
-        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
-          setTimeout(() => {
-            // Only remove if no other input is focused
-            if (!chatBox.contains(document.activeElement) || 
-                (document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA')) {
-              chatBox.classList.remove('keyboard-open');
-              if (window.visualViewport) {
-                chatBox.style.height = '';
-                chatBox.style.maxHeight = '';
-              }
-            }
-          }, 150);
-        }
-      });
     })();
 
     function activateSSDemo() {
@@ -783,9 +1080,9 @@
       const ssSendBtn = document.getElementById('ssSendBtn');
       ssInput.disabled = false;
       ssSendBtn.disabled = false;
-      ssInput.placeholder = `Realiza una consulta a Avior sobre ${activeNombreNegocio}...`;
+      ssInput.placeholder = `Hazle una pregunta a Avior sobre ${activeNombreNegocio}...`;
 
-      appendSSMsg(`Simulador activado. Avior responderá como asistente virtual de ${activeNombreNegocio}. Puedes realizar cualquier consulta de un cliente.`, 'ss-bot');
+      appendSSMsg(`Simulador activado. Avior responderá como el asistente de ${activeNombreNegocio} en WhatsApp. Puedes hacerle cualquier consulta de un cliente.`, 'ss-bot');
       setTimeout(() => ssInput.focus(), 350);
     }
 
@@ -825,12 +1122,12 @@
         appendSSMsg(data.reply || 'Sin respuesta del servidor.', 'ss-bot');
       } catch (err) {
         removeSSTyping(typingElem);
-        appendSSMsg('Asistente en modo offline. Puedes agendar una llamada con nuestro equipo técnico.', 'ss-bot');
+        appendSSMsg('Asistente en modo offline. Puedes consultar directamente por WhatsApp al +51 987 355 501.', 'ss-bot');
       }
 
       if (messageCount >= MAX_MESSAGES) {
         if (input) {
-          input.placeholder = "Demo finalizada - Haz clic para continuar...";
+          input.placeholder = "Prueba completada - Haz clic para continuar...";
         }
       }
     }

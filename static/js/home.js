@@ -19,6 +19,24 @@ function initPreloader() {
   // Iniciar siempre el render continuo de la escultura 3D a 60 FPS
   init3DHeroCanvas();
 
+  // Si el usuario llega con un hash directo (ej: #precios, #servicios, #avior):
+  if (window.location.hash) {
+    if (curtain) curtain.style.display = 'none';
+    document.documentElement.classList.remove('preloader-active');
+    document.body.classList.remove('preloader-active');
+    document.body.style.overflow = '';
+    if (heroVisual) {
+      gsap.set(heroVisual, { opacity: 1, x: 0, y: 0, scale: 1, zIndex: 1, clearProps: 'all' });
+    }
+    gsap.set(['header', '.hero-badge-wrap', '.hero-title', '.hero-desc', '.hero-actions', '.hero-trust-bar'], {
+      opacity: 1, y: 0, clearProps: 'all'
+    });
+    initScrollAnimations();
+    scrollToHashTarget();
+    window.dispatchEvent(new Event('ss:preloader-complete'));
+    return;
+  }
+
   if (!heroVisual || !curtain || typeof gsap === 'undefined') {
     if (curtain) curtain.style.display = 'none';
     document.documentElement.classList.remove('preloader-active');
@@ -81,10 +99,11 @@ function initPreloader() {
       document.documentElement.classList.remove('preloader-active');
       document.body.classList.remove('preloader-active');
       document.body.style.overflow = '';
-      window.scrollTo(0, 0);
       gsap.set(heroVisual, { zIndex: 1, clearProps: 'zIndex' });
       if (curtain) curtain.style.display = 'none';
       initScrollAnimations();
+      // Si la URL tiene hash (ej: /#precios), hacer scroll a esa sección
+      scrollToHashTarget();
       window.dispatchEvent(new Event('ss:preloader-complete'));
     }
   });
@@ -147,11 +166,26 @@ function initPreloader() {
         opacity: 1, y: 0
       });
       initScrollAnimations();
+      scrollToHashTarget();
     }
   }, 4800);
 }
 
 /* ─────────────────────────────────────
+   SCROLL A SECCIÓN POR HASH EN URL
+   (Respeta navegación desde otras páginas como /contacto → /#precios)
+───────────────────────────────────── */
+function scrollToHashTarget() {
+  const hash = window.location.hash;
+  if (!hash) return;
+  const target = document.querySelector(hash);
+  if (!target) return;
+  // Pequeño delay para que ScrollTrigger recalcule posiciones
+  setTimeout(() => {
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 120);
+}
+/* -------------------------------------
    SCROLL ANIMATIONS (GSAP ScrollTrigger Staggers)
 ───────────────────────────────────── */
 function initScrollAnimations() {
@@ -445,6 +479,10 @@ function initMagneticCursor() {
 /* ─────────────────────────────────────
    INIT HOMEPAGE
 ───────────────────────────────────── */
+window.addEventListener('hashchange', () => {
+  scrollToHashTarget();
+});
+
 const initHomePage = () => {
   initPreloader();
   initMagneticCursor();
