@@ -812,7 +812,7 @@
 
     <!-- Aviso de privacidad sensible -->
     <div class="ss-privacy-notice">
-      <span>🔒 Demo de prueba. No escribas datos personales sensibles ni contraseñas.</span>
+      <span>Demo de prueba. No escribas datos personales sensibles ni contraseñas.</span>
     </div>
 
     <div class="ss-body" id="ssMessages">
@@ -850,8 +850,8 @@
 
     <div class="ss-input-area">
       <input type="text" id="ssInput" placeholder="Completa los datos de tu empresa arriba..." disabled onkeydown="if(event.key==='Enter') sendSSMessage()" onclick="if(messageCount>=MAX_MESSAGES) triggerLimitModal()"/>
-      <button class="ss-send-btn" id="ssSendBtn" onclick="sendSSMessage()" disabled aria-label="Enviar mensaje">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <button type="button" class="ss-send-btn" id="ssSendBtn" onclick="sendSSMessage()" disabled aria-label="Enviar mensaje" title="Enviar mensaje">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
         </svg>
       </button>
